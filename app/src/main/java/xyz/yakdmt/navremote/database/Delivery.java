@@ -7,7 +7,7 @@ package xyz.yakdmt.navremote.database;
 /**
  * Entity mapped to table "DELIVERY".
  */
-public class Delivery {
+public class Delivery implements java.io.Serializable {
 
     private String id;
     private String transportation_method;

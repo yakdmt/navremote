@@ -10,7 +10,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table "CARGO".
  */
-public class Cargo {
+public class Cargo implements java.io.Serializable {
 
     private String id;
     private String transport;

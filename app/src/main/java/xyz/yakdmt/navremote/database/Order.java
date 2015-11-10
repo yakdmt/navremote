@@ -10,7 +10,7 @@ import de.greenrobot.dao.DaoException;
 /**
  * Entity mapped to table "ORDER".
  */
-public class Order {
+public class Order implements java.io.Serializable {
 
     private String id;
     private String date;

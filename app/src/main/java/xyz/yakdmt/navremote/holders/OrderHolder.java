@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import de.greenrobot.event.EventBus;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.utils.Events;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -25,9 +27,14 @@ public class OrderHolder extends RecyclerView.ViewHolder {
         mTextView = (TextView) itemView.findViewById(R.id.title);
     }
 
-    public void bind(Order order) {
-
+    public void bind(final Order order) {
         mTextView.setText(order.getId());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new Events.OnOrderClick(order));
+            }
+        });
     }
 
 }

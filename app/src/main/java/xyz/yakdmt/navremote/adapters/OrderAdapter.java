@@ -45,4 +45,5 @@ public class OrderAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return mData.size();
     }
+
 }

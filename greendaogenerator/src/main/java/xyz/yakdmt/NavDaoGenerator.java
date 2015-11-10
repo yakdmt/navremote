@@ -12,6 +12,7 @@ public class NavDaoGenerator {
         Schema schema = new Schema(4, "xyz.yakdmt.navremote.database");
         schema.enableKeepSectionsByDefault();
         Entity order = schema.addEntity("Order");
+        order.implementsSerializable();
         order.addStringProperty("id").unique().primaryKey();
         order.addStringProperty("date");
         order.addStringProperty("time");
@@ -79,6 +80,7 @@ public class NavDaoGenerator {
         order.addToOne(contact, contactId);
 
         Entity cargo = schema.addEntity("Cargo");
+        cargo.implementsSerializable();
         cargo.addStringProperty("id").unique().primaryKey();
         cargo.addStringProperty("transport");
         cargo.addStringProperty("master_document");
@@ -140,6 +142,7 @@ public class NavDaoGenerator {
         cargo.addToOne(order, cargoOrderId);
 
         Entity delivery = schema.addEntity("Delivery");
+        delivery.implementsSerializable();
         delivery.addStringProperty("id").unique().primaryKey();
         delivery.addStringProperty("transportation_method");
         delivery.addStringProperty("status");
