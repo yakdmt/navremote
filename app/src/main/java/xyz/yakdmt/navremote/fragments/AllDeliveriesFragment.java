@@ -1,6 +1,5 @@
 package xyz.yakdmt.navremote.fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,25 +14,26 @@ import java.util.ArrayList;
 import de.greenrobot.event.EventBus;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
-import xyz.yakdmt.navremote.adapters.OrderAdapter;
+import xyz.yakdmt.navremote.adapters.DeliveryAdapter;
 import xyz.yakdmt.navremote.database.DaoTask;
-import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.utils.Events;
 
 /**
- * Created by yakdmt on 08/11/15.
+ * Created by yakdmt on 11/11/15.
  */
-public class AllOrdersFragment extends Fragment {
+public class AllDeliveriesFragment extends Fragment {
+
     public static final String ARG_PAGE = "ARG_PAGE";
 
     private int mPage;
     private RecyclerView mList;
-    private OrderAdapter mAdapter;
+    private DeliveryAdapter mAdapter;
 
-    public static AllOrdersFragment newInstance(int page) {
+    public static AllDeliveriesFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        AllOrdersFragment fragment = new AllOrdersFragment();
+        AllDeliveriesFragment fragment = new AllDeliveriesFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,19 +59,17 @@ public class AllOrdersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ArrayList<Order> orders = (ArrayList<Order>) DaoTask.getInstance().getSession().getOrderDao().queryBuilder().list();
-        mAdapter = new OrderAdapter(getActivity(), orders);
+        ArrayList<Delivery> deliveries = (ArrayList<Delivery>) DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder().list();
+        mAdapter = new DeliveryAdapter(getActivity(), deliveries);
         mList.setAdapter(mAdapter);
         return view;
     }
 
     @SuppressWarnings("unused")
-    public void onEvent(Events.OnOrderClick event) {
+    public void onEvent(Events.OnDeliveryClick event) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra("order", event.getOrder());
+        intent.putExtra("delivery", event.getDelivery());
         startActivity(intent);
     }
-
-
 
 }

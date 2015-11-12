@@ -24,8 +24,12 @@ import android.view.View;
 
 import org.xmlpull.v1.XmlPullParserException;
 
+import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.DaoTask;
+import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
+import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
 import xyz.yakdmt.navremote.utils.SchemeParser;
 
@@ -158,10 +162,14 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            if (position==0) {
-
+            switch (position) {
+                case 0:
+                    return AllOrdersFragment.newInstance(position);
+                case 1:
+                    return AllCargoesFragment.newInstance(position);
+                default:
+                    return AllDeliveriesFragment.newInstance(position);
             }
-            return AllOrdersFragment.newInstance(position + 1);
         }
 
         @Override
@@ -174,6 +182,16 @@ public class MainActivity extends AppCompatActivity
          for (int i=0; i<10; i++) {
              Order order = new Order("10000"+String.valueOf(i));
              DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(order);
+         }
+
+         for (int i=0; i<10; i++) {
+             Cargo cargo = new Cargo("20000"+String.valueOf(i));
+             DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
+         }
+
+         for (int i=0; i<10; i++) {
+             Delivery delivery = new Delivery("30000"+String.valueOf(i));
+             DaoTask.getInstance().getSession().getDeliveryDao().insertOrReplace(delivery);
          }
      }
 }

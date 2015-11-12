@@ -1,5 +1,7 @@
 package xyz.yakdmt.navremote.utils;
 
+import xyz.yakdmt.navremote.database.Cargo;
+import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
 
 /**
@@ -17,6 +19,34 @@ public class Events {
 
         public Order getOrder(){
             return mOrder;
+        }
+
+    }
+
+    public static class OnCargoClick {
+
+        private Cargo mCargo;
+
+        public OnCargoClick(Cargo pCargo) {
+            mCargo = pCargo;
+        }
+
+        public Cargo getCargo(){
+            return mCargo;
+        }
+
+    }
+
+    public static class OnDeliveryClick {
+
+        private Delivery mDelivery;
+
+        public OnDeliveryClick(Delivery pDelivery) {
+            mDelivery = pDelivery;
+        }
+
+        public Delivery getDelivery(){
+            return mDelivery;
         }
 
     }
