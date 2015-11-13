@@ -16,7 +16,7 @@ import xyz.yakdmt.navremote.utils.Events;
  */
 public class OrderHolder extends RecyclerView.ViewHolder {
 
-    private TextView mTextView;
+    private TextView mId;
     private ImageView mImageView;
     private Context mContext;
 
@@ -24,11 +24,11 @@ public class OrderHolder extends RecyclerView.ViewHolder {
         super(itemView);
         mContext = context;
         mImageView = (ImageView) itemView.findViewById(R.id.image);
-        mTextView = (TextView) itemView.findViewById(R.id.title);
+        mId = (TextView) itemView.findViewById(R.id.id);
     }
 
     public void bind(final Order order) {
-        mTextView.setText(order.getId());
+        mId.setText(order.getId());
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
