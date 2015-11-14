@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="8dp"
+
     android:layout_height="match_parent">
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -9,50 +9,12 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:padding="8dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
         card_view:cardElevation="4dp"
         card_view:cardCornerRadius="4dp">
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:gravity="end"
-            android:layout_gravity="top|end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <View
-                    android:background="@drawable/red_circle"
-                    android:layout_marginRight="4dp"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp">
 
-                </View>
-                <TextView
-                    android:id="@+id/id"
-                    android:text="CR045434"
-                    android:textSize="12sp"
-                    android:textColor="@color/cardview_dark_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/date_time"
-                android:textSize="12sp"
-                android:text="23/03/2015 13:15:50"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/manager"
-                android:textSize="12sp"
-                android:text="YAKOVLEV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <include layout="@layout/order_content"/>
 
     </android.support.v7.widget.CardView>
 </LinearLayout>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_gravity="top|start"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/client_name"
+                android:text="ООО  &quot;Пирелли Тайр Руссия&quot;"
+                style="@style/MainInfo" />
+
+            <TextView
+                android:id="@+id/cargo_desc"
+                android:text="L-Треонин по ПЭ б/н от 12.05.2014"
+                style="@style/MainInfo" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_gravity="top|end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Дата отправки:"
+                style="@style/ServiceInfo" />
+            <TextView
+                style="@style/MainInfo"
+                android:id="@+id/departure_date"
+                android:text="04/06/14"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_gravity="top|start"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:text="Откуда:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/departure"
+                android:textSize="12sp"
+                android:text="Россия, Морской Порт, Новороссийск -мор.порт, ул Транспортная д2. (Московский насосный з-д) "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_gravity="top|end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@drawable/red_circle"
+                    android:layout_marginRight="4dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp">
+
+                </View>
+                <TextView
+                    android:id="@+id/id"
+                    android:text="CR045434"
+                    android:textSize="12sp"
+                    android:textColor="@color/cardview_dark_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date_time"
+                android:textSize="12sp"
+                android:text="23/03/2015 13:15:50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/declarant"
+                android:text="YAKOVLEV"
+                style="@style/ServiceInfo" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_gravity="top|start"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:text="Куда:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/arrival"
+                android:textSize="12sp"
+                android:text="Россия, Морской Порт, Новороссийск -мор.порт, ул Транспортная д2. (Московский насосный з-д) "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_gravity="top|end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weight"
+                android:text="Вес брутто: 1500 кг"
+                style="@style/ServiceInfo" />
+
+            <TextView
+                android:id="@+id/volume"
+                style="@style/ServiceInfo"
+                android:text="Объем: 74,14 м3" />
+            <TextView
+                android:id="@+id/count"
+                style="@style/ServiceInfo"
+                android:text="мест: 1000" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

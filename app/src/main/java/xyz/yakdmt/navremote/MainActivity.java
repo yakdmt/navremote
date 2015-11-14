@@ -28,6 +28,7 @@ import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.database.OrderDao;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
 import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
@@ -181,11 +182,47 @@ public class MainActivity extends AppCompatActivity
      public void addTestData(){
          for (int i=0; i<10; i++) {
              Order order = new Order("10000"+String.valueOf(i));
+             order.setDate("23/03/2015");
+             order.setTime("14:30:23");
+             order.setState("не обработана");
+             /*
+             StringBuilder departureBuilder = new StringBuilder();
+             departureBuilder.append(order.getDeparture_country_name());
+             departureBuilder.append(", ");
+             departureBuilder.append(order.getDeparture_checkpoint_name());
+             departureBuilder.append(", ");
+             departureBuilder.append(order.getDeparture_checkpoint_address());
+             mDeparture.setText(departureBuilder);
+             mDateTime.setText(order.getDate() + " " + order.getTime());
+             mDeclarant.setText(order.getDeclarant_code());
+             StringBuilder arrivalBuilder = new StringBuilder();
+             arrivalBuilder.append(order.getDestination_country_name());
+             arrivalBuilder.append(", ");
+             arrivalBuilder.append(order.getDestination_checkpoint_name());
+             arrivalBuilder.append(", ");
+             arrivalBuilder.append(order.getDestination_checkpoint_address());
+             mArrival.setText(arrivalBuilder);
+             mWeight.setText(order.getBrutto_weight() + " кг.");
+             mVolume.setText(order.getVolume()+" м^3");
+             mCount.setText(order.getCount());
+             mClientName.setText(order.getClient_name());
+             mCargoDesc.setText(order.getCargo_description());
+             mDepartureDate.setText(order.getDeparture_date());
+             */
              DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(order);
          }
 
          for (int i=0; i<10; i++) {
              Cargo cargo = new Cargo("20000"+String.valueOf(i));
+             Order order = DaoTask.getInstance()
+                     .getSession()
+                     .getOrderDao()
+                     .queryBuilder()
+                     .where(OrderDao.Properties.Id.eq("10000"+String.valueOf(i)))
+                     .unique();
+             if (order != null) {
+                 order.setCargo(cargo);
+             }
              DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
          }
 

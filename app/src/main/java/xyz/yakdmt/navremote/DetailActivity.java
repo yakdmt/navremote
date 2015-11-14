@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import xyz.yakdmt.navremote.database.Cargo;
+import xyz.yakdmt.navremote.database.Client;
+import xyz.yakdmt.navremote.database.Contact;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.fragments.CargoFragment;
@@ -67,4 +69,22 @@ public class DetailActivity  extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
+
+    public void openClientFragment(Client client){
+
+    }
+
+    public void openContactFragment(Contact contact){
+
+    }
+
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount()>1) {
+            getFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
+        return;
+    }
+
 }
