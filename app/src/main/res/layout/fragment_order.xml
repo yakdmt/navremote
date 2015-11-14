@@ -16,7 +16,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/order_content"/>
+    <include layout="@layout/content_order"/>
     <LinearLayout
         android:baselineAligned="false"
         android:orientation="horizontal"

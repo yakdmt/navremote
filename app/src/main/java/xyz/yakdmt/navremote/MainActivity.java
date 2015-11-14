@@ -222,6 +222,7 @@ public class MainActivity extends AppCompatActivity
                      .unique();
              if (order != null) {
                  order.setCargo(cargo);
+                 cargo.setOrder(order);
              }
              DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
          }
