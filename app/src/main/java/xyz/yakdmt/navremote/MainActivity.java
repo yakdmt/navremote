@@ -25,6 +25,7 @@ import android.view.View;
 import org.xmlpull.v1.XmlPullParserException;
 
 import xyz.yakdmt.navremote.database.Cargo;
+import xyz.yakdmt.navremote.database.CargoDao;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
@@ -229,6 +230,15 @@ public class MainActivity extends AppCompatActivity
 
          for (int i=0; i<10; i++) {
              Delivery delivery = new Delivery("30000"+String.valueOf(i));
+             Cargo cargo = DaoTask.getInstance()
+                     .getSession()
+                     .getCargoDao()
+                     .queryBuilder()
+                     .where(CargoDao.Properties.Id.eq("20000"+String.valueOf(i)))
+                     .unique();
+             if (cargo!=null) {
+                 delivery.setCargo(cargo);
+             }
              DaoTask.getInstance().getSession().getDeliveryDao().insertOrReplace(delivery);
          }
      }

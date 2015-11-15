@@ -15,8 +15,63 @@
             android:background="?attr/colorPrimary" />
 
     </android.support.design.widget.AppBarLayout>
-    <TextView
-        android:text="delivery detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/content_delivery"/>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_margin="4dp"
+                android:orientation="vertical"
+                android:gravity="start"
+                android:layout_gravity="top|start"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/cargo_ref"
+                    android:text="Груз: C096658"
+                    style="@style/Ref" />
+                <TextView
+                    android:id="@+id/transportation_method"
+                    android:text="Метод: Автотранспорт, международная перевозка"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/performer"
+                    android:text="Исполнитель: Львов Андрей Сергеевич"
+                    style="@style/ServiceInfo"/>
+                <TextView
+                    android:id="@+id/auto_carrier"
+                    android:text="ООО Белтрансвейс (AE2038-7/A2635A-7)"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/terminal"
+                    android:text="Терминал: т/п Ярцево Смоленской таможни"
+                    style="@style/ServiceInfo"/>
+                <TextView
+                    android:id="@+id/arrival_terminal_date"
+                    android:text="Ожид.: 23/03/13; Факт.: 12/01/14"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/actual_release_terminal_date"
+                    android:text="Факт. Выпуск Терминал Дата: 12/01/14"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/container_number"
+                    android:text="Номер контейнера: TRHU2631792"
+                    style="@style/ServiceInfo" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </LinearLayout>

@@ -20,11 +20,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/client_name"
-                android:text="Клиент: UPS-SCS (CIS)"
-                style="@style/MainInfo" />
-            <TextView
-                android:id="@+id/description"
-                android:text="Описание: Ceramics One More Test"
+                android:text="Клиент: ОАО Вимм-Билль-Данн Напитки"
                 style="@style/MainInfo" />
 
 
@@ -39,16 +35,14 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/id"
-                android:text="50-31553"
-                android:textSize="12sp"
+                android:text="D084001"
                 android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                style="@style/MainInfo"
-                android:id="@+id/appearance_date"
-                android:text="04/06/14"
-                />
+                android:id="@+id/status"
+                android:text="ЗАВЕРШЕНА"
+                style="@style/ServiceInfo" />
         </LinearLayout>
 
     </LinearLayout>
@@ -64,51 +58,33 @@
             android:gravity="start"
             android:layout_gravity="top|start"
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/cargo_desc"
+                android:text="Груз: С/х техника_прил.10_KRU_17.12.13_CIF"
+                style="@style/MainInfo" />
+            <TextView
+                android:id="@+id/description"
+                android:text="Прямая Доставка для Заявки CR040745"
+                style="@style/MainInfo" />
             <TextView
                 android:text="Отправление"
                 style="@style/MainInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
-                android:id="@+id/sender_name"
-                android:text="VSMPO-AVISMA CORPORATION"
+                android:id="@+id/start_point"
+                android:text="Россия, т/п Ярцево Смоленской таможни"
                 style="@style/ServiceInfo" />
             <TextView
-                android:id="@+id/expected_departure_date"
-                android:text="23/03/1023"
-                style="@style/ServiceInfo" />
-            <TextView
-                android:id="@+id/occurence"
-                android:text="Город, ЯРОСЛАВЛЬ"
+                android:id="@+id/departure_date"
+                android:text="Ожид.: 23/03/13; Факт.: 12/01/14"
                 style="@style/ServiceInfo" />
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:gravity="end"
-            android:layout_gravity="top|end"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-
-            <TextView
-                android:id="@+id/master_document"
-                android:textSize="12sp"
-                android:text="064-78090891"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/transport_line"
-                android:text="64 Czech Airlines"
-                style="@style/ServiceInfo" />
-                />
-        </LinearLayout>
     </LinearLayout>
 
 
@@ -131,40 +107,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
-                android:id="@+id/consignee_name"
-                android:text="СЕТРА ЛУБРИКАНТС"
+                android:id="@+id/receiver"
+                android:textSize="12sp"
+                android:text="ООО ЕЛТРАНС+"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/finish_point"
+                android:text="Юго-Восточный Новороссийск. ТП"
                 style="@style/ServiceInfo" />
             <TextView
-                android:id="@+id/expected_arrival_date"
-                android:text="23/03/1023"
+                android:id="@+id/arrival_date"
+                android:text="Ожид.: 23/03/13; Факт.: 12/01/14"
                 style="@style/ServiceInfo" />
-            <TextView
-                android:id="@+id/destination"
-                android:text="Город, ЯРОСЛАВЛЬ"
-                style="@style/ServiceInfo" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:gravity="end"
-            android:layout_gravity="top|end"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/weight"
-                android:text="Вес брутто: 1500 кг"
-                style="@style/ServiceInfo" />
-
-            <TextView
-                android:id="@+id/volume"
-                style="@style/ServiceInfo"
-                android:text="Объем: 74,14 м3" />
-            <TextView
-                android:id="@+id/count"
-                style="@style/ServiceInfo"
-                android:text="мест: 1000" />
-
         </LinearLayout>
 
     </LinearLayout>

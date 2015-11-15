@@ -1,11 +1,14 @@
 package xyz.yakdmt.navremote.database;
 
+import java.util.List;
+import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
+import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
 
 import xyz.yakdmt.navremote.database.Delivery;
@@ -29,26 +32,28 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
         public final static Property Auto_train_number = new Property(3, String.class, "auto_train_number", false, "AUTO_TRAIN_NUMBER");
         public final static Property Auto_carrier = new Property(4, String.class, "auto_carrier", false, "AUTO_CARRIER");
         public final static Property Description = new Property(5, String.class, "description", false, "DESCRIPTION");
-        public final static Property Cargo_id = new Property(6, String.class, "cargo_id", false, "CARGO_ID");
-        public final static Property Client_name = new Property(7, String.class, "client_name", false, "CLIENT_NAME");
-        public final static Property Cargo_description = new Property(8, String.class, "cargo_description", false, "CARGO_DESCRIPTION");
-        public final static Property Expected_start_date = new Property(9, String.class, "expected_start_date", false, "EXPECTED_START_DATE");
-        public final static Property Actual_start_date = new Property(10, String.class, "actual_start_date", false, "ACTUAL_START_DATE");
-        public final static Property Start_checkpoint_name = new Property(11, String.class, "start_checkpoint_name", false, "START_CHECKPOINT_NAME");
-        public final static Property Finish_checkpoint_name = new Property(12, String.class, "finish_checkpoint_name", false, "FINISH_CHECKPOINT_NAME");
-        public final static Property Start_country = new Property(13, String.class, "start_country", false, "START_COUNTRY");
-        public final static Property Expected_arrival_terminal_date = new Property(14, String.class, "expected_arrival_terminal_date", false, "EXPECTED_ARRIVAL_TERMINAL_DATE");
-        public final static Property Actual_arrival_terminal_date = new Property(15, String.class, "actual_arrival_terminal_date", false, "ACTUAL_ARRIVAL_TERMINAL_DATE");
-        public final static Property Terminal_name = new Property(16, String.class, "terminal_name", false, "TERMINAL_NAME");
-        public final static Property Receiver_name = new Property(17, String.class, "receiver_name", false, "RECEIVER_NAME");
-        public final static Property Actual_release_terminal_date = new Property(18, String.class, "actual_release_terminal_date", false, "ACTUAL_RELEASE_TERMINAL_DATE");
-        public final static Property Actual_finish_date = new Property(19, String.class, "actual_finish_date", false, "ACTUAL_FINISH_DATE");
-        public final static Property Performer_name = new Property(20, String.class, "performer_name", false, "PERFORMER_NAME");
-        public final static Property Gtd_release_date = new Property(21, String.class, "gtd_release_date", false, "GTD_RELEASE_DATE");
-        public final static Property Gtd_number = new Property(22, String.class, "gtd_number", false, "GTD_NUMBER");
-        public final static Property Container_number = new Property(23, String.class, "container_number", false, "CONTAINER_NUMBER");
-        public final static Property Wagon_number = new Property(24, String.class, "wagon_number", false, "WAGON_NUMBER");
+        public final static Property Client_name = new Property(6, String.class, "client_name", false, "CLIENT_NAME");
+        public final static Property Cargo_description = new Property(7, String.class, "cargo_description", false, "CARGO_DESCRIPTION");
+        public final static Property Expected_start_date = new Property(8, String.class, "expected_start_date", false, "EXPECTED_START_DATE");
+        public final static Property Actual_start_date = new Property(9, String.class, "actual_start_date", false, "ACTUAL_START_DATE");
+        public final static Property Start_checkpoint_name = new Property(10, String.class, "start_checkpoint_name", false, "START_CHECKPOINT_NAME");
+        public final static Property Finish_checkpoint_name = new Property(11, String.class, "finish_checkpoint_name", false, "FINISH_CHECKPOINT_NAME");
+        public final static Property Start_country = new Property(12, String.class, "start_country", false, "START_COUNTRY");
+        public final static Property Expected_arrival_terminal_date = new Property(13, String.class, "expected_arrival_terminal_date", false, "EXPECTED_ARRIVAL_TERMINAL_DATE");
+        public final static Property Actual_arrival_terminal_date = new Property(14, String.class, "actual_arrival_terminal_date", false, "ACTUAL_ARRIVAL_TERMINAL_DATE");
+        public final static Property Terminal_name = new Property(15, String.class, "terminal_name", false, "TERMINAL_NAME");
+        public final static Property Receiver_name = new Property(16, String.class, "receiver_name", false, "RECEIVER_NAME");
+        public final static Property Actual_release_terminal_date = new Property(17, String.class, "actual_release_terminal_date", false, "ACTUAL_RELEASE_TERMINAL_DATE");
+        public final static Property Actual_finish_date = new Property(18, String.class, "actual_finish_date", false, "ACTUAL_FINISH_DATE");
+        public final static Property Performer_name = new Property(19, String.class, "performer_name", false, "PERFORMER_NAME");
+        public final static Property Gtd_release_date = new Property(20, String.class, "gtd_release_date", false, "GTD_RELEASE_DATE");
+        public final static Property Gtd_number = new Property(21, String.class, "gtd_number", false, "GTD_NUMBER");
+        public final static Property Container_number = new Property(22, String.class, "container_number", false, "CONTAINER_NUMBER");
+        public final static Property Wagon_number = new Property(23, String.class, "wagon_number", false, "WAGON_NUMBER");
+        public final static Property Cargo_id = new Property(24, String.class, "cargo_id", false, "CARGO_ID");
     };
+
+    private DaoSession daoSession;
 
 
     public DeliveryDao(DaoConfig config) {
@@ -57,6 +62,7 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
     
     public DeliveryDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -69,25 +75,25 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
                 "\"AUTO_TRAIN_NUMBER\" TEXT," + // 3: auto_train_number
                 "\"AUTO_CARRIER\" TEXT," + // 4: auto_carrier
                 "\"DESCRIPTION\" TEXT," + // 5: description
-                "\"CARGO_ID\" TEXT," + // 6: cargo_id
-                "\"CLIENT_NAME\" TEXT," + // 7: client_name
-                "\"CARGO_DESCRIPTION\" TEXT," + // 8: cargo_description
-                "\"EXPECTED_START_DATE\" TEXT," + // 9: expected_start_date
-                "\"ACTUAL_START_DATE\" TEXT," + // 10: actual_start_date
-                "\"START_CHECKPOINT_NAME\" TEXT," + // 11: start_checkpoint_name
-                "\"FINISH_CHECKPOINT_NAME\" TEXT," + // 12: finish_checkpoint_name
-                "\"START_COUNTRY\" TEXT," + // 13: start_country
-                "\"EXPECTED_ARRIVAL_TERMINAL_DATE\" TEXT," + // 14: expected_arrival_terminal_date
-                "\"ACTUAL_ARRIVAL_TERMINAL_DATE\" TEXT," + // 15: actual_arrival_terminal_date
-                "\"TERMINAL_NAME\" TEXT," + // 16: terminal_name
-                "\"RECEIVER_NAME\" TEXT," + // 17: receiver_name
-                "\"ACTUAL_RELEASE_TERMINAL_DATE\" TEXT," + // 18: actual_release_terminal_date
-                "\"ACTUAL_FINISH_DATE\" TEXT," + // 19: actual_finish_date
-                "\"PERFORMER_NAME\" TEXT," + // 20: performer_name
-                "\"GTD_RELEASE_DATE\" TEXT," + // 21: gtd_release_date
-                "\"GTD_NUMBER\" TEXT," + // 22: gtd_number
-                "\"CONTAINER_NUMBER\" TEXT," + // 23: container_number
-                "\"WAGON_NUMBER\" TEXT);"); // 24: wagon_number
+                "\"CLIENT_NAME\" TEXT," + // 6: client_name
+                "\"CARGO_DESCRIPTION\" TEXT," + // 7: cargo_description
+                "\"EXPECTED_START_DATE\" TEXT," + // 8: expected_start_date
+                "\"ACTUAL_START_DATE\" TEXT," + // 9: actual_start_date
+                "\"START_CHECKPOINT_NAME\" TEXT," + // 10: start_checkpoint_name
+                "\"FINISH_CHECKPOINT_NAME\" TEXT," + // 11: finish_checkpoint_name
+                "\"START_COUNTRY\" TEXT," + // 12: start_country
+                "\"EXPECTED_ARRIVAL_TERMINAL_DATE\" TEXT," + // 13: expected_arrival_terminal_date
+                "\"ACTUAL_ARRIVAL_TERMINAL_DATE\" TEXT," + // 14: actual_arrival_terminal_date
+                "\"TERMINAL_NAME\" TEXT," + // 15: terminal_name
+                "\"RECEIVER_NAME\" TEXT," + // 16: receiver_name
+                "\"ACTUAL_RELEASE_TERMINAL_DATE\" TEXT," + // 17: actual_release_terminal_date
+                "\"ACTUAL_FINISH_DATE\" TEXT," + // 18: actual_finish_date
+                "\"PERFORMER_NAME\" TEXT," + // 19: performer_name
+                "\"GTD_RELEASE_DATE\" TEXT," + // 20: gtd_release_date
+                "\"GTD_NUMBER\" TEXT," + // 21: gtd_number
+                "\"CONTAINER_NUMBER\" TEXT," + // 22: container_number
+                "\"WAGON_NUMBER\" TEXT," + // 23: wagon_number
+                "\"CARGO_ID\" TEXT);"); // 24: cargo_id
     }
 
     /** Drops the underlying database table. */
@@ -131,100 +137,106 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
             stmt.bindString(6, description);
         }
  
-        String cargo_id = entity.getCargo_id();
-        if (cargo_id != null) {
-            stmt.bindString(7, cargo_id);
-        }
- 
         String client_name = entity.getClient_name();
         if (client_name != null) {
-            stmt.bindString(8, client_name);
+            stmt.bindString(7, client_name);
         }
  
         String cargo_description = entity.getCargo_description();
         if (cargo_description != null) {
-            stmt.bindString(9, cargo_description);
+            stmt.bindString(8, cargo_description);
         }
  
         String expected_start_date = entity.getExpected_start_date();
         if (expected_start_date != null) {
-            stmt.bindString(10, expected_start_date);
+            stmt.bindString(9, expected_start_date);
         }
  
         String actual_start_date = entity.getActual_start_date();
         if (actual_start_date != null) {
-            stmt.bindString(11, actual_start_date);
+            stmt.bindString(10, actual_start_date);
         }
  
         String start_checkpoint_name = entity.getStart_checkpoint_name();
         if (start_checkpoint_name != null) {
-            stmt.bindString(12, start_checkpoint_name);
+            stmt.bindString(11, start_checkpoint_name);
         }
  
         String finish_checkpoint_name = entity.getFinish_checkpoint_name();
         if (finish_checkpoint_name != null) {
-            stmt.bindString(13, finish_checkpoint_name);
+            stmt.bindString(12, finish_checkpoint_name);
         }
  
         String start_country = entity.getStart_country();
         if (start_country != null) {
-            stmt.bindString(14, start_country);
+            stmt.bindString(13, start_country);
         }
  
         String expected_arrival_terminal_date = entity.getExpected_arrival_terminal_date();
         if (expected_arrival_terminal_date != null) {
-            stmt.bindString(15, expected_arrival_terminal_date);
+            stmt.bindString(14, expected_arrival_terminal_date);
         }
  
         String actual_arrival_terminal_date = entity.getActual_arrival_terminal_date();
         if (actual_arrival_terminal_date != null) {
-            stmt.bindString(16, actual_arrival_terminal_date);
+            stmt.bindString(15, actual_arrival_terminal_date);
         }
  
         String terminal_name = entity.getTerminal_name();
         if (terminal_name != null) {
-            stmt.bindString(17, terminal_name);
+            stmt.bindString(16, terminal_name);
         }
  
         String receiver_name = entity.getReceiver_name();
         if (receiver_name != null) {
-            stmt.bindString(18, receiver_name);
+            stmt.bindString(17, receiver_name);
         }
  
         String actual_release_terminal_date = entity.getActual_release_terminal_date();
         if (actual_release_terminal_date != null) {
-            stmt.bindString(19, actual_release_terminal_date);
+            stmt.bindString(18, actual_release_terminal_date);
         }
  
         String actual_finish_date = entity.getActual_finish_date();
         if (actual_finish_date != null) {
-            stmt.bindString(20, actual_finish_date);
+            stmt.bindString(19, actual_finish_date);
         }
  
         String performer_name = entity.getPerformer_name();
         if (performer_name != null) {
-            stmt.bindString(21, performer_name);
+            stmt.bindString(20, performer_name);
         }
  
         String gtd_release_date = entity.getGtd_release_date();
         if (gtd_release_date != null) {
-            stmt.bindString(22, gtd_release_date);
+            stmt.bindString(21, gtd_release_date);
         }
  
         String gtd_number = entity.getGtd_number();
         if (gtd_number != null) {
-            stmt.bindString(23, gtd_number);
+            stmt.bindString(22, gtd_number);
         }
  
         String container_number = entity.getContainer_number();
         if (container_number != null) {
-            stmt.bindString(24, container_number);
+            stmt.bindString(23, container_number);
         }
  
         String wagon_number = entity.getWagon_number();
         if (wagon_number != null) {
-            stmt.bindString(25, wagon_number);
+            stmt.bindString(24, wagon_number);
         }
+ 
+        String cargo_id = entity.getCargo_id();
+        if (cargo_id != null) {
+            stmt.bindString(25, cargo_id);
+        }
+    }
+
+    @Override
+    protected void attachEntity(Delivery entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     /** @inheritdoc */
@@ -243,25 +255,25 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // auto_train_number
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // auto_carrier
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // description
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // cargo_id
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // client_name
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // cargo_description
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // expected_start_date
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // actual_start_date
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // start_checkpoint_name
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // finish_checkpoint_name
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // start_country
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // expected_arrival_terminal_date
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // actual_arrival_terminal_date
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // terminal_name
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // receiver_name
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // actual_release_terminal_date
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // actual_finish_date
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // performer_name
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // gtd_release_date
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // gtd_number
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // container_number
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // wagon_number
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // client_name
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // cargo_description
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // expected_start_date
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // actual_start_date
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // start_checkpoint_name
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // finish_checkpoint_name
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // start_country
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // expected_arrival_terminal_date
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // actual_arrival_terminal_date
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // terminal_name
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // receiver_name
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // actual_release_terminal_date
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // actual_finish_date
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // performer_name
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // gtd_release_date
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // gtd_number
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // container_number
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // wagon_number
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // cargo_id
         );
         return entity;
     }
@@ -275,25 +287,25 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
         entity.setAuto_train_number(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setAuto_carrier(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setDescription(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setCargo_id(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setClient_name(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setCargo_description(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setExpected_start_date(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setActual_start_date(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setStart_checkpoint_name(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setFinish_checkpoint_name(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setStart_country(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setExpected_arrival_terminal_date(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setActual_arrival_terminal_date(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setTerminal_name(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setReceiver_name(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setActual_release_terminal_date(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setActual_finish_date(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setPerformer_name(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setGtd_release_date(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setGtd_number(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setContainer_number(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setWagon_number(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setClient_name(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCargo_description(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setExpected_start_date(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setActual_start_date(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setStart_checkpoint_name(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFinish_checkpoint_name(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setStart_country(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setExpected_arrival_terminal_date(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setActual_arrival_terminal_date(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setTerminal_name(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setReceiver_name(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setActual_release_terminal_date(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setActual_finish_date(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setPerformer_name(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setGtd_release_date(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setGtd_number(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setContainer_number(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setWagon_number(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setCargo_id(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
      }
     
     /** @inheritdoc */
@@ -318,4 +330,95 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
         return true;
     }
     
+    private String selectDeep;
+
+    protected String getSelectDeep() {
+        if (selectDeep == null) {
+            StringBuilder builder = new StringBuilder("SELECT ");
+            SqlUtils.appendColumns(builder, "T", getAllColumns());
+            builder.append(',');
+            SqlUtils.appendColumns(builder, "T0", daoSession.getCargoDao().getAllColumns());
+            builder.append(" FROM DELIVERY T");
+            builder.append(" LEFT JOIN CARGO T0 ON T.\"CARGO_ID\"=T0.\"ID\"");
+            builder.append(' ');
+            selectDeep = builder.toString();
+        }
+        return selectDeep;
+    }
+    
+    protected Delivery loadCurrentDeep(Cursor cursor, boolean lock) {
+        Delivery entity = loadCurrent(cursor, 0, lock);
+        int offset = getAllColumns().length;
+
+        Cargo cargo = loadCurrentOther(daoSession.getCargoDao(), cursor, offset);
+        entity.setCargo(cargo);
+
+        return entity;    
+    }
+
+    public Delivery loadDeep(Long key) {
+        assertSinglePk();
+        if (key == null) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(getSelectDeep());
+        builder.append("WHERE ");
+        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
+        String sql = builder.toString();
+        
+        String[] keyArray = new String[] { key.toString() };
+        Cursor cursor = db.rawQuery(sql, keyArray);
+        
+        try {
+            boolean available = cursor.moveToFirst();
+            if (!available) {
+                return null;
+            } else if (!cursor.isLast()) {
+                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
+            }
+            return loadCurrentDeep(cursor, true);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
+    public List<Delivery> loadAllDeepFromCursor(Cursor cursor) {
+        int count = cursor.getCount();
+        List<Delivery> list = new ArrayList<Delivery>(count);
+        
+        if (cursor.moveToFirst()) {
+            if (identityScope != null) {
+                identityScope.lock();
+                identityScope.reserveRoom(count);
+            }
+            try {
+                do {
+                    list.add(loadCurrentDeep(cursor, false));
+                } while (cursor.moveToNext());
+            } finally {
+                if (identityScope != null) {
+                    identityScope.unlock();
+                }
+            }
+        }
+        return list;
+    }
+    
+    protected List<Delivery> loadDeepAllAndCloseCursor(Cursor cursor) {
+        try {
+            return loadAllDeepFromCursor(cursor);
+        } finally {
+            cursor.close();
+        }
+    }
+    
+
+    /** A raw-style query where you can pass any WHERE clause and arguments. */
+    public List<Delivery> queryDeep(String where, String... selectionArg) {
+        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
+        return loadDeepAllAndCloseCursor(cursor);
+    }
+ 
 }

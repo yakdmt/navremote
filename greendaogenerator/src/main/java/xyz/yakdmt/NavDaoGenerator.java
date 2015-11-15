@@ -2,6 +2,7 @@ package xyz.yakdmt;
 
 import de.greenrobot.daogenerator.DaoGenerator;
 import de.greenrobot.daogenerator.Entity;
+import de.greenrobot.daogenerator.Index;
 import de.greenrobot.daogenerator.Property;
 import de.greenrobot.daogenerator.Schema;
 
@@ -149,7 +150,7 @@ public class NavDaoGenerator {
         delivery.addStringProperty("auto_train_number");
         delivery.addStringProperty("auto_carrier");
         delivery.addStringProperty("description");
-        delivery.addStringProperty("cargo_id");
+        //delivery.addStringProperty("cargo_id");
         delivery.addStringProperty("client_name");
         delivery.addStringProperty("cargo_description");
         delivery.addStringProperty("expected_start_date");
@@ -170,6 +171,8 @@ public class NavDaoGenerator {
         delivery.addStringProperty("wagon_number");
         Property deliveryId = order.addStringProperty("deliveryId").getProperty();
         order.addToOne(delivery, deliveryId);
+        Property deliveryCargoId = delivery.addStringProperty("cargo_id").getProperty();
+        delivery.addToOne(cargo, deliveryCargoId);
 
         Entity product = schema.addEntity("Product");
         Property orderId = product.addStringProperty("orderId").getProperty();
@@ -205,7 +208,13 @@ public class NavDaoGenerator {
         user.addStringProperty("username");
 
         Entity routeRow = schema.addEntity("RouteRow");
-        routeRow.addStringProperty("id").unique().primaryKey();
+        //routeRow.addStringProperty("id").unique().primaryKey();
+        Property property1 = routeRow.addStringProperty("delivery_id").getProperty();
+        Property property2 = routeRow.addStringProperty("string_number").getProperty();
+        Index index = new Index();
+        index.addProperty(property1);
+        index.addProperty(property2);
+        routeRow.addIndex(index);
         routeRow.addStringProperty("delivery_id");
         routeRow.addStringProperty("string_number");
         routeRow.addStringProperty("position");
