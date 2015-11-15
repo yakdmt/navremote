@@ -26,10 +26,13 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.CargoDao;
+import xyz.yakdmt.navremote.database.Checkpoint;
+import xyz.yakdmt.navremote.database.CheckpointDao;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.OrderDao;
+import xyz.yakdmt.navremote.database.RouteRow;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
 import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
@@ -228,6 +231,13 @@ public class MainActivity extends AppCompatActivity
              DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
          }
 
+         for (int j=0; j<5; j++) {
+             Checkpoint checkpoint = new Checkpoint();
+             checkpoint.setId("point" + j);
+             checkpoint.setName("point" + j);
+             DaoTask.getInstance().getSession().getCheckpointDao().insertOrReplace(checkpoint);
+         }
+
          for (int i=0; i<10; i++) {
              Delivery delivery = new Delivery("30000"+String.valueOf(i));
              Cargo cargo = DaoTask.getInstance()
@@ -239,7 +249,19 @@ public class MainActivity extends AppCompatActivity
              if (cargo!=null) {
                  delivery.setCargo(cargo);
              }
+             for (int j=0; j<5; j++) {
+                 RouteRow routeRow = new RouteRow();
+                 routeRow.setDelivery_id("30000" + i);
+                 routeRow.setString_number(String.valueOf(j));
+                 routeRow.setPosition(String.valueOf(10 - j));
+                 routeRow.setAddress("address");
+                 Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq("point"+j)).unique();
+                 routeRow.setCheckpoint(checkpoint);
+                 DaoTask.getInstance().getSession().getRouteRowDao().insertOrReplace(routeRow);
+             }
              DaoTask.getInstance().getSession().getDeliveryDao().insertOrReplace(delivery);
          }
+
+
      }
 }

@@ -214,11 +214,11 @@ public class NavDaoGenerator {
         Index index = new Index();
         index.addProperty(property1);
         index.addProperty(property2);
+        index.makeUnique();
         routeRow.addIndex(index);
-        routeRow.addStringProperty("delivery_id");
-        routeRow.addStringProperty("string_number");
         routeRow.addStringProperty("position");
-        routeRow.addStringProperty("checkpoint_id");
+        //routeRow.addStringProperty("checkpoint_id");
+        routeRow.addIdProperty().autoincrement();
         routeRow.addStringProperty("checkpoint_description");
         routeRow.addStringProperty("procedure_type");
         routeRow.addStringProperty("expected_arrival_date");
@@ -231,6 +231,8 @@ public class NavDaoGenerator {
         routeRow.addStringProperty("country_code");
         routeRow.addStringProperty("country_name");
         routeRow.addStringProperty("address");
+        Property routeRowCheckpointId = routeRow.addStringProperty("checkpoint_id").getProperty();
+        routeRow.addToOne(checkpoint, routeRowCheckpointId);
 
         Entity comment = schema.addEntity("Comment");
         comment.addStringProperty("id").unique().primaryKey();

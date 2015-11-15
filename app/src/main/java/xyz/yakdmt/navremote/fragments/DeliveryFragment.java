@@ -43,6 +43,7 @@ public class DeliveryFragment extends Fragment {
     @Bind(R.id.arrival_terminal_date) TextView mArrTermDate;
     @Bind(R.id.actual_release_terminal_date) TextView mActRelTerm;
     @Bind(R.id.container_number) TextView mContainerNum;
+    @Bind(R.id.route_ref) TextView mRouteRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,12 @@ public class DeliveryFragment extends Fragment {
         mArrTermDate.setText("Ожид.: "+delivery.getExpected_arrival_terminal_date()+"; Факт.:"+delivery.getActual_arrival_terminal_date());
         mActRelTerm.setText("Факт.: "+delivery.getActual_release_terminal_date());
         mContainerNum.setText("Номер контейнера: "+delivery.getContainer_number());
-
+        mRouteRef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((DetailActivity)getActivity()).openRouteFragment(delivery);
+            }
+        });
         return view;
     }
 
