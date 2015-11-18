@@ -51,7 +51,7 @@ public class CommentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_items, container, false);
+        View view = inflater.inflate(R.layout.fragment_detailed_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         ArrayList<Comment> comments = new ArrayList<>();

@@ -61,7 +61,7 @@ public class RouteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_items, container, false);
+        View view = inflater.inflate(R.layout.fragment_detailed_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         ArrayList<RouteRow> routeRows = (ArrayList<RouteRow>) DaoTask.getInstance().getSession().getRouteRowDao().queryBuilder().where(RouteRowDao.Properties.Delivery_id.eq(delivery.getId())).list();

@@ -1,139 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_cargo"/>
+
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary" />
-
-        </android.support.design.widget.AppBarLayout>
-
-        <include layout="@layout/content_cargo"/>
-
-        <LinearLayout
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_margin="4dp"
-                android:orientation="vertical"
-                android:gravity="start"
-                android:layout_gravity="top|start"
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content">
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/route"
-                    android:text="Маршрут: СТАНДАРТ IMP SHER-CA"/>
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/transport"
-                    android:text="Транспорт: воздушный"/>
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/customs_clearance"
-                    android:text="Таможенное оформление: да"/>
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/broker"
-                    android:text="Брокер: ИнтерСити Логистикс"/>
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/delivery_conditions"
-                    android:text="Условия поставки: СИФ Склад Солнечногорск"/>
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/processing_mode"
-                    android:text="Режим обработки: Импорт"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="4dp"
-                android:orientation="vertical"
-                android:gravity="end"
-                android:layout_gravity="top|end"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/cost"
-                    android:text="Стоимость: 300000 USD"
-                    />
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/insurance"
-                    android:text="Страховка: Да, 400000"
-                    />
-                <TextView
-                    style="@style/ServiceInfo"
-                    android:id="@+id/contract_number"
-                    android:text="Договор 2012-010"
-                    />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_margin="4dp"
             android:orientation="vertical"
             android:gravity="start"
             android:layout_gravity="top|start"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content">
             <TextView
                 style="@style/ServiceInfo"
-                android:id="@+id/performer"
-                android:text="Исполнитель: Александр Никифоров"/>
+                android:id="@+id/route"
+                android:text="Маршрут: СТАНДАРТ IMP SHER-CA"/>
             <TextView
                 style="@style/ServiceInfo"
-                android:id="@+id/status"
-                android:text="Статус: Выставлен Счет" />
+                android:id="@+id/transport"
+                android:text="Транспорт: воздушный"/>
             <TextView
                 style="@style/ServiceInfo"
-                android:id="@+id/ready_state"
-                android:text="Готов к выдаче: да" />
+                android:id="@+id/customs_clearance"
+                android:text="Таможенное оформление: да"/>
             <TextView
-                style="@style/Ref"
-                android:id="@+id/order_ref"
-                android:text="Заявка: RQ000004"
-                />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    style="@style/Ref"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:id="@+id/comments_ref"
-                    android:text="Комментарии: 1"
-                    />
-                <TextView
-                    style="@style/Ref"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_width="0dp"
-                    android:id="@+id/works_ref"
-                    android:text="Работы: 1"
-                    />
-
-            </LinearLayout>
+                style="@style/ServiceInfo"
+                android:id="@+id/broker"
+                android:text="Брокер: ИнтерСити Логистикс"/>
+            <TextView
+                style="@style/ServiceInfo"
+                android:id="@+id/delivery_conditions"
+                android:text="Условия поставки: СИФ Склад Солнечногорск"/>
+            <TextView
+                style="@style/ServiceInfo"
+                android:id="@+id/processing_mode"
+                android:text="Режим обработки: Импорт"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:layout_gravity="top|end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/ServiceInfo"
+                android:id="@+id/cost"
+                android:text="Стоимость: 300000 USD"
+                />
+            <TextView
+                style="@style/ServiceInfo"
+                android:id="@+id/insurance"
+                android:text="Страховка: Да, 400000"
+                />
+            <TextView
+                style="@style/ServiceInfo"
+                android:id="@+id/contract_number"
+                android:text="Договор 2012-010"
+                />
+
+
+        </LinearLayout>
+
     </LinearLayout>
-</ScrollView>
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_gravity="top|start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/ServiceInfo"
+            android:id="@+id/performer"
+            android:text="Исполнитель: Александр Никифоров"/>
+        <TextView
+            style="@style/ServiceInfo"
+            android:id="@+id/status"
+            android:text="Статус: Выставлен Счет" />
+        <TextView
+            style="@style/ServiceInfo"
+            android:id="@+id/ready_state"
+            android:text="Готов к выдаче: да" />
+        <TextView
+            style="@style/Ref"
+            android:id="@+id/order_ref"
+            android:text="Заявка: RQ000004"
+            />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/Ref"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:id="@+id/comments_ref"
+                android:text="Комментарии: 1"
+                />
+            <TextView
+                style="@style/Ref"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:layout_width="0dp"
+                android:id="@+id/works_ref"
+                android:text="Работы: 1"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+
