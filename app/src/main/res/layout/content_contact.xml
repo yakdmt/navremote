@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/name"
+        android:text="Дмитрий Викторович Николаев"
+        style="@style/MainInfo" />
+    <TextView
+        android:id="@+id/firm_name"
+        android:text="Балтик Марин Транспорт"
+        style="@style/MainInfo" />
+    <TextView
+        android:id="@+id/phone"
+        android:text="Телефон: (495) 555-55-44"
+        style="@style/MainInfo" />
+    <TextView
+        android:id="@+id/mobile_phone"
+        android:text="Моб.: +7(499)657-01-46"
+        style="@style/MainInfo" />
+    <TextView
+        android:id="@+id/manager"
+        android:text="Менеджер: BELOVA"
+        style="@style/MainInfo" />
+    <TextView
+        android:id="@+id/index"
+        android:text="Индекс: 178245"
+        style="@style/MainInfo" />
+</LinearLayout>
+

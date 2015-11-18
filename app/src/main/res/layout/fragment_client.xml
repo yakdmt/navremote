@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_margin="4dp"
+                android:orientation="vertical"
+                android:gravity="start"
+                android:layout_gravity="top|start"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/id"
+                    android:text="3r1333"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/name"
+                    android:text="ОООТорговый домВесь Мир(бр)"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/ext_name"
+                    android:text="ООО Торговый дом Весь Мир"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/last_comment"
+                    android:text="сверен с 1С на 31.03.14 (Кудрявцева)"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/email"
+                    android:text="Email: kondeykina@allwordnonwovens.ru"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/phone"
+                    android:text="Телефон: 221-25-95"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/contact"
+                    android:text="Контакт: Ирина Лесечко 910 452 8012"
+                    style="@style/MainInfo" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

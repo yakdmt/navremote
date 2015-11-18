@@ -16,6 +16,9 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Cargo;
+import xyz.yakdmt.navremote.database.CommentDao;
+import xyz.yakdmt.navremote.database.DaoTask;
+import xyz.yakdmt.navremote.database.WorkDao;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -52,6 +55,9 @@ public class CargoFragment extends Fragment {
     @Bind(R.id.status) TextView mStatus;
     @Bind(R.id.ready_state) TextView mReadyState;
     @Bind(R.id.order_ref) TextView mOrderRef;
+
+    @Bind(R.id.works_ref) TextView mWorksRef;
+    @Bind(R.id.comments_ref) TextView mCommentsRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class CargoFragment extends Fragment {
         mCost.setText("Стоимость: "+cargo.getCost()+" "+cargo.getCurrency_code());
         mInsurance.setText("Страховка: "+cargo.getInsurance()+", "+cargo.getInsurance_amount());
         mPerformer.setText("Исполнитель: "+cargo.getStatus());
-        mStatus.setText("Статус: "+cargo.getStatus());
+        mStatus.setText("Статус: " + cargo.getStatus());
         mReadyState.setText("Готов к выдаче: "+cargo.getReady_state());
         if (cargo.getOrder()!=null) {
             SpannableString orderId = new SpannableString(cargo.getOrder().getId());
@@ -100,6 +106,26 @@ public class CargoFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ((DetailActivity)getActivity()).openOrderFragment(cargo.getOrder());
+                }
+            });
+        }
+        long worksCount = DaoTask.getInstance().getSession().getWorkDao().queryBuilder().where(WorkDao.Properties.Cargo_id.eq(cargo.getId())).count();
+        mWorksRef.setText("Работы: "+worksCount);
+        if (worksCount>0) {
+            mWorksRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).openWorksFragment(cargo);
+                }
+            });
+        }
+        long commentsCount = DaoTask.getInstance().getSession().getCommentDao().queryBuilder().where(CommentDao.Properties.Object_id.eq(cargo.getId())).count();
+        mCommentsRef.setText("Комментарии: "+commentsCount);
+        if (commentsCount>0) {
+            mCommentsRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).openCommentsFragment(cargo);
                 }
             });
         }

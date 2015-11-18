@@ -15,7 +15,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
+import xyz.yakdmt.navremote.database.CommentDao;
+import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
+import xyz.yakdmt.navremote.database.WorkDao;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -44,6 +47,9 @@ public class DeliveryFragment extends Fragment {
     @Bind(R.id.actual_release_terminal_date) TextView mActRelTerm;
     @Bind(R.id.container_number) TextView mContainerNum;
     @Bind(R.id.route_ref) TextView mRouteRef;
+
+    @Bind(R.id.works_ref) TextView mWorksRef;
+    @Bind(R.id.comments_ref) TextView mCommentsRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,9 +93,30 @@ public class DeliveryFragment extends Fragment {
         mRouteRef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((DetailActivity)getActivity()).openRouteFragment(delivery);
+                ((DetailActivity) getActivity()).openRouteFragment(delivery);
             }
         });
+
+        long worksCount = DaoTask.getInstance().getSession().getWorkDao().queryBuilder().where(WorkDao.Properties.Delivery_id.eq(delivery.getId())).count();
+        mWorksRef.setText("Работы: " + worksCount);
+        if (worksCount>0) {
+            mWorksRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).openWorksFragment(delivery);
+                }
+            });
+        }
+        long commentsCount = DaoTask.getInstance().getSession().getCommentDao().queryBuilder().where(CommentDao.Properties.Object_id.eq(delivery.getId())).count();
+        mCommentsRef.setText("Комментарии: "+commentsCount);
+        if (commentsCount>0) {
+            mCommentsRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).openCommentsFragment(delivery);
+                }
+            });
+        }
         return view;
     }
 

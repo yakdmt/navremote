@@ -55,6 +55,7 @@ public class NavDaoGenerator {
         order.addStringProperty("comment");
 
         Entity client = schema.addEntity("Client");
+        client.implementsSerializable();
         client.addStringProperty("id").unique().primaryKey();
         client.addStringProperty("name");
         client.addStringProperty("last_comment");
@@ -67,12 +68,14 @@ public class NavDaoGenerator {
         order.addToOne(client, clientId);
 
         Entity contact = schema.addEntity("Contact");
+        contact.implementsSerializable();
         contact.addStringProperty("id").unique().primaryKey();
         contact.addStringProperty("client_id");
         contact.addStringProperty("name");
         contact.addStringProperty("client_name");
         contact.addStringProperty("postal_index");
         contact.addStringProperty("region_code");
+        contact.addStringProperty("firm_name");
         contact.addStringProperty("phone");
         contact.addStringProperty("mobile_phone");
         contact.addStringProperty("manager_code");

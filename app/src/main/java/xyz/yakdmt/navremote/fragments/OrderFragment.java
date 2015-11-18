@@ -102,7 +102,7 @@ public class OrderFragment extends Fragment {
             mContactRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((DetailActivity)getActivity()).openContactFragment(order.getContact());
+                    ((DetailActivity)getActivity()).showContactDialog(order.getContact());
                 }
             });
         }

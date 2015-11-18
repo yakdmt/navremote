@@ -7,7 +7,7 @@ package xyz.yakdmt.navremote.database;
 /**
  * Entity mapped to table "CONTACT".
  */
-public class Contact {
+public class Contact implements java.io.Serializable {
 
     private String id;
     private String client_id;
@@ -15,6 +15,7 @@ public class Contact {
     private String client_name;
     private String postal_index;
     private String region_code;
+    private String firm_name;
     private String phone;
     private String mobile_phone;
     private String manager_code;
@@ -29,13 +30,14 @@ public class Contact {
         this.id = id;
     }
 
-    public Contact(String id, String client_id, String name, String client_name, String postal_index, String region_code, String phone, String mobile_phone, String manager_code) {
+    public Contact(String id, String client_id, String name, String client_name, String postal_index, String region_code, String firm_name, String phone, String mobile_phone, String manager_code) {
         this.id = id;
         this.client_id = client_id;
         this.name = name;
         this.client_name = client_name;
         this.postal_index = postal_index;
         this.region_code = region_code;
+        this.firm_name = firm_name;
         this.phone = phone;
         this.mobile_phone = mobile_phone;
         this.manager_code = manager_code;
@@ -87,6 +89,14 @@ public class Contact {
 
     public void setRegion_code(String region_code) {
         this.region_code = region_code;
+    }
+
+    public String getFirm_name() {
+        return firm_name;
+    }
+
+    public void setFirm_name(String firm_name) {
+        this.firm_name = firm_name;
     }
 
     public String getPhone() {

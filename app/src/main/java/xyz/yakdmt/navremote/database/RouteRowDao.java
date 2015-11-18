@@ -64,7 +64,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
                 "\"DELIVERY_ID\" TEXT," + // 0: delivery_id
                 "\"STRING_NUMBER\" TEXT," + // 1: string_number
                 "\"POSITION\" TEXT," + // 2: position
-                "\"_id\" INTEGER PRIMARY KEY ," + // 3: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 3: id
                 "\"CHECKPOINT_DESCRIPTION\" TEXT," + // 4: checkpoint_description
                 "\"PROCEDURE_TYPE\" TEXT," + // 5: procedure_type
                 "\"EXPECTED_ARRIVAL_DATE\" TEXT," + // 6: expected_arrival_date

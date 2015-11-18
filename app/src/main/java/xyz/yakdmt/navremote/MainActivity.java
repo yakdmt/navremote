@@ -28,11 +28,15 @@ import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.CargoDao;
 import xyz.yakdmt.navremote.database.Checkpoint;
 import xyz.yakdmt.navremote.database.CheckpointDao;
+import xyz.yakdmt.navremote.database.Client;
+import xyz.yakdmt.navremote.database.Comment;
+import xyz.yakdmt.navremote.database.Contact;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.OrderDao;
 import xyz.yakdmt.navremote.database.RouteRow;
+import xyz.yakdmt.navremote.database.Work;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
 import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
@@ -183,7 +187,16 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
-     public void addTestData(){
+     public void addTestData() {
+         Client client1 = new Client("cl10001");
+         Client client2 = new Client("cl10002");
+         DaoTask.getInstance().getSession().getClientDao().insertOrReplace(client1);
+         DaoTask.getInstance().getSession().getClientDao().insertOrReplace(client2);
+
+         Contact contact1 = new Contact("contac01");
+         Contact contact2 = new Contact("contac02");
+         DaoTask.getInstance().getSession().getContactDao().insertOrReplace(contact1);
+         DaoTask.getInstance().getSession().getContactDao().insertOrReplace(contact2);
          for (int i=0; i<10; i++) {
              Order order = new Order("10000"+String.valueOf(i));
              order.setDate("23/03/2015");
@@ -213,6 +226,13 @@ public class MainActivity extends AppCompatActivity
              mCargoDesc.setText(order.getCargo_description());
              mDepartureDate.setText(order.getDeparture_date());
              */
+             if (i<5) {
+                 order.setClient(client1);
+                 order.setContact(contact1);
+             } else {
+                 order.setClient(client2);
+                 order.setContact(contact2);
+             }
              DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(order);
          }
 
@@ -228,6 +248,7 @@ public class MainActivity extends AppCompatActivity
                  order.setCargo(cargo);
                  cargo.setOrder(order);
              }
+
              DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
          }
 
@@ -255,11 +276,33 @@ public class MainActivity extends AppCompatActivity
                  routeRow.setString_number(String.valueOf(j));
                  routeRow.setPosition(String.valueOf(10 - j));
                  routeRow.setAddress("address");
-                 Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq("point"+j)).unique();
+                 Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq("point" + j)).unique();
                  routeRow.setCheckpoint(checkpoint);
                  DaoTask.getInstance().getSession().getRouteRowDao().insertOrReplace(routeRow);
              }
              DaoTask.getInstance().getSession().getDeliveryDao().insertOrReplace(delivery);
+         }
+
+         for (int i=0; i<10; i++) {
+             Work work = new Work(String.valueOf(i));
+             work.setCargo_id("20000"+i);
+             work.setDelivery_id("30000"+i);
+
+             DaoTask.getInstance().getSession().getWorkDao().insertOrReplace(work);
+         }
+
+         for (int i=0; i<10; i++) {
+             Comment comment = new Comment(String.valueOf(i));
+             comment.setObject_id("20000" + i);
+
+             DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(comment);
+         }
+
+         for (int i=0; i<10; i++) {
+             Comment comment = new Comment(String.valueOf(10+i));
+             comment.setObject_id("30000"+i);
+             comment.setText("comment"+comment.getId());
+             DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(comment);
          }
 
 

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:background="@color/cardview_dark_background"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/work_code"
+                    android:text="Код: ДЕКЛ2"
+                    style="@style/MainInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/work_type"
+                    android:text="Тип: Груз"
+                    style="@style/MainInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/delivery_id"
+                    android:text="Доставка: 50-30409"
+                    style="@style/MainInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/cargo_id"
+                    android:text="Груз: 50-30409"
+                    style="@style/MainInfo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/description"
+                style="@style/MainInfo"
+                android:text="ускорение груза за счет заказчика без ускорения с нашей стороны"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/working_place"
+                android:text="Место выполнения: текст текст текст"
+                style="@style/MainInfo" />
+            <TextView
+                android:id="@+id/count"
+                android:text="Количество: 1 ШТ"
+                style="@style/MainInfo"/>
+            <TextView
+                android:id="@+id/comment"
+                android:text="Комментарий: выставляем +3300 как за доп услугу фдлваофдлвпоф фдволпдфлвпо"
+                style="@style/MainInfo"/>
+            <TextView
+                android:id="@+id/actual_finish_date"
+                android:text="Завершена: 10/09/15, 11:00:00"
+                style="@style/MainInfo" />
+            <TextView
+                android:id="@+id/responsible_worker"
+                android:text="Отв.: KRIVOSHEEN (СКЛАД-СВО)"
+                style="@style/MainInfo"/>
+            <TextView
+                android:id="@+id/creator"
+                android:text="Создал: KRIVOSHEEN"
+                style="@style/MainInfo"/>
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

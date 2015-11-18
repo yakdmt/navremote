@@ -49,6 +49,28 @@
                         android:text="Маршрут"
                         style="@style/Ref" />
                 </RelativeLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/Ref"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:id="@+id/comments_ref"
+                        android:text="Комментарии: 1"
+                        />
+                    <TextView
+                        style="@style/Ref"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_width="0dp"
+                        android:id="@+id/works_ref"
+                        android:text="Работы: 1"
+                        />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/transportation_method"

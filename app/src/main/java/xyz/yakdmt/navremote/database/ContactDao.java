@@ -29,9 +29,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
         public final static Property Client_name = new Property(3, String.class, "client_name", false, "CLIENT_NAME");
         public final static Property Postal_index = new Property(4, String.class, "postal_index", false, "POSTAL_INDEX");
         public final static Property Region_code = new Property(5, String.class, "region_code", false, "REGION_CODE");
-        public final static Property Phone = new Property(6, String.class, "phone", false, "PHONE");
-        public final static Property Mobile_phone = new Property(7, String.class, "mobile_phone", false, "MOBILE_PHONE");
-        public final static Property Manager_code = new Property(8, String.class, "manager_code", false, "MANAGER_CODE");
+        public final static Property Firm_name = new Property(6, String.class, "firm_name", false, "FIRM_NAME");
+        public final static Property Phone = new Property(7, String.class, "phone", false, "PHONE");
+        public final static Property Mobile_phone = new Property(8, String.class, "mobile_phone", false, "MOBILE_PHONE");
+        public final static Property Manager_code = new Property(9, String.class, "manager_code", false, "MANAGER_CODE");
     };
 
 
@@ -53,9 +54,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
                 "\"CLIENT_NAME\" TEXT," + // 3: client_name
                 "\"POSTAL_INDEX\" TEXT," + // 4: postal_index
                 "\"REGION_CODE\" TEXT," + // 5: region_code
-                "\"PHONE\" TEXT," + // 6: phone
-                "\"MOBILE_PHONE\" TEXT," + // 7: mobile_phone
-                "\"MANAGER_CODE\" TEXT);"); // 8: manager_code
+                "\"FIRM_NAME\" TEXT," + // 6: firm_name
+                "\"PHONE\" TEXT," + // 7: phone
+                "\"MOBILE_PHONE\" TEXT," + // 8: mobile_phone
+                "\"MANAGER_CODE\" TEXT);"); // 9: manager_code
     }
 
     /** Drops the underlying database table. */
@@ -99,19 +101,24 @@ public class ContactDao extends AbstractDao<Contact, String> {
             stmt.bindString(6, region_code);
         }
  
+        String firm_name = entity.getFirm_name();
+        if (firm_name != null) {
+            stmt.bindString(7, firm_name);
+        }
+ 
         String phone = entity.getPhone();
         if (phone != null) {
-            stmt.bindString(7, phone);
+            stmt.bindString(8, phone);
         }
  
         String mobile_phone = entity.getMobile_phone();
         if (mobile_phone != null) {
-            stmt.bindString(8, mobile_phone);
+            stmt.bindString(9, mobile_phone);
         }
  
         String manager_code = entity.getManager_code();
         if (manager_code != null) {
-            stmt.bindString(9, manager_code);
+            stmt.bindString(10, manager_code);
         }
     }
 
@@ -131,9 +138,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // client_name
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // postal_index
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // region_code
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // phone
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // mobile_phone
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // manager_code
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // firm_name
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // phone
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // mobile_phone
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // manager_code
         );
         return entity;
     }
@@ -147,9 +155,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
         entity.setClient_name(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setPostal_index(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setRegion_code(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setPhone(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setMobile_phone(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setManager_code(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFirm_name(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setPhone(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setMobile_phone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setManager_code(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     /** @inheritdoc */
