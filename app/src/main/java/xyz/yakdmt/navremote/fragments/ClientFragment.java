@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Client;
 
@@ -39,6 +40,9 @@ public class ClientFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_client, container, false);
         ButterKnife.bind(this, view);
+        if (!App.bindViews) {
+            return view;
+        }
         mId.setText(client.getId());
         mName.setText(client.getName());
         mExtName.setText(client.getName());

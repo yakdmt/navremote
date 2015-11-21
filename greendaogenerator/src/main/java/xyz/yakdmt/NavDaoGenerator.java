@@ -193,9 +193,9 @@ public class NavDaoGenerator {
 
 
         Entity document = schema.addEntity("Document");
-        Property orderId1 = document.addStringProperty("orderId").getProperty();
+        Property orderId1 = document.addStringProperty("orderId").unique().getProperty();
         document.addToOne(order, orderId1);
-        document.addStringProperty("id");
+        document.addIdProperty().autoincrement();
         document.addStringProperty("document_name");
         document.addStringProperty("document_path");
         document.addStringProperty("creator");

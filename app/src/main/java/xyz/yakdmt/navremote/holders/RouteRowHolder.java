@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Checkpoint;
@@ -42,6 +43,9 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
                     ((DetailActivity)mContext).showCheckpointDialog(checkpoint);
                 }
             });
+        }
+        if (!App.bindViews) {
+            return;
         }
         mAddress.setText(routeRow.getCountry_name()+", "+routeRow.getAddress());
         mProcedureType.setText("Тип процедуры: "+routeRow.getProcedure_type());

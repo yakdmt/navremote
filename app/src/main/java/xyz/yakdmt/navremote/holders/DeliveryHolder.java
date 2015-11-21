@@ -8,6 +8,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.utils.Events;
@@ -41,6 +42,9 @@ public class DeliveryHolder extends RecyclerView.ViewHolder {
                 EventBus.getDefault().post(new Events.OnDeliveryClick(delivery));
             }
         });
+        if (!App.bindViews) {
+            return;
+        }
         mId.setText(delivery.getId());
         mClientName.setText("Клиент: "+delivery.getClient_name());
         mDescription.setText(delivery.getDescription());

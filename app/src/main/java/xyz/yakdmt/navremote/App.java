@@ -8,6 +8,7 @@ import android.content.Context;
  */
 public class App extends Application {
     private static Context context;
+    public static boolean bindViews = true;
 
     @Override public void onCreate() {
         super.onCreate();

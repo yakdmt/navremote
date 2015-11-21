@@ -27,7 +27,7 @@ import xyz.yakdmt.navremote.fragments.WorksFragment;
 /**
  * Created by yakdmt on 10/11/15.
  */
-public class DetailActivity  extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

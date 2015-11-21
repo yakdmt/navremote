@@ -13,7 +13,7 @@ import de.greenrobot.dao.DaoException;
 public class Document {
 
     private String orderId;
-    private String id;
+    private Long id;
     private String document_name;
     private String document_path;
     private String creator;
@@ -34,7 +34,11 @@ public class Document {
     public Document() {
     }
 
-    public Document(String orderId, String id, String document_name, String document_path, String creator) {
+    public Document(Long id) {
+        this.id = id;
+    }
+
+    public Document(String orderId, Long id, String document_name, String document_path, String creator) {
         this.orderId = orderId;
         this.id = id;
         this.document_name = document_name;
@@ -56,11 +60,11 @@ public class Document {
         this.orderId = orderId;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -15,9 +15,12 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.DaoTask;
+import xyz.yakdmt.navremote.database.Document;
+import xyz.yakdmt.navremote.database.DocumentDao;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.Product;
 import xyz.yakdmt.navremote.database.ProductDao;
@@ -64,6 +67,9 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         ButterKnife.bind(this, view);
+        if (!App.bindViews) {
+            return view;
+        }
         //from holder
         mId.setText(order.getId());
         StringBuilder departureBuilder = new StringBuilder();
@@ -134,8 +140,8 @@ public class OrderFragment extends Fragment {
             });
         }
 
-        mManager.setText("Менеджер: "+order.getManager());
-        mPerformer.setText("Исполнитель: " + order.getPerformer_name());
+        mManager.setText(order.getManager());
+        mPerformer.setText(order.getPerformer_name());
 
         final ArrayList<Product> products = (ArrayList<Product>) DaoTask.getInstance().getSession().getProductDao().queryBuilder().where(ProductDao.Properties.Order_id.eq(order.getId())).list();
         if (products!=null && products.size()>0) {
@@ -144,6 +150,16 @@ public class OrderFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ((DetailActivity)getActivity()).openProductsFragment(order);
+                }
+            });
+        }
+        final Document document = DaoTask.getInstance().getSession().getDocumentDao().queryBuilder().where(DocumentDao.Properties.OrderId.eq(order.getId())).unique();
+        if (document!=null) {
+            mDocumentsRef.setText("Документ: "+document.getDocument_name());
+            mDocumentsRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).showDocumentDialog(document);
                 }
             });
         }

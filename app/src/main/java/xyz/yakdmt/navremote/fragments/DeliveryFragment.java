@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.CommentDao;
@@ -62,6 +63,9 @@ public class DeliveryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_delivery, container, false);
         ButterKnife.bind(this, view);
+        if (!App.bindViews) {
+            return view;
+        }
         mId.setText(delivery.getId());
         mClientName.setText("Клиент: "+delivery.getClient_name());
         mDescription.setText(delivery.getDescription());

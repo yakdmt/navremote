@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Work;
 
@@ -36,6 +37,9 @@ public class WorkHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final Work work) {
+        if (!App.bindViews) {
+            return;
+        }
         mWorkCode.setText("Код: "+work.getWork_code());
         mWorkType.setText("Тип: "+work.getWork_type());
         mDelivery.setText("Доставка: "+work.getDelivery_id());

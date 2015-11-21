@@ -9,6 +9,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.utils.Events;
@@ -49,6 +50,9 @@ public class OrderHolder extends RecyclerView.ViewHolder {
                 EventBus.getDefault().post(new Events.OnOrderClick(order));
             }
         });
+        if (!App.bindViews) {
+            return;
+        }
         mId.setText(order.getId());
         StringBuilder departureBuilder = new StringBuilder();
         departureBuilder.append(order.getDeparture_country_name());

@@ -17,7 +17,7 @@ import xyz.yakdmt.navremote.database.Document;
 /** 
  * DAO for table "DOCUMENT".
 */
-public class DocumentDao extends AbstractDao<Document, Void> {
+public class DocumentDao extends AbstractDao<Document, Long> {
 
     public static final String TABLENAME = "DOCUMENT";
 
@@ -27,7 +27,7 @@ public class DocumentDao extends AbstractDao<Document, Void> {
     */
     public static class Properties {
         public final static Property OrderId = new Property(0, String.class, "orderId", false, "ORDER_ID");
-        public final static Property Id = new Property(1, String.class, "id", false, "ID");
+        public final static Property Id = new Property(1, Long.class, "id", true, "_id");
         public final static Property Document_name = new Property(2, String.class, "document_name", false, "DOCUMENT_NAME");
         public final static Property Document_path = new Property(3, String.class, "document_path", false, "DOCUMENT_PATH");
         public final static Property Creator = new Property(4, String.class, "creator", false, "CREATOR");
@@ -49,8 +49,8 @@ public class DocumentDao extends AbstractDao<Document, Void> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"DOCUMENT\" (" + //
-                "\"ORDER_ID\" TEXT," + // 0: orderId
-                "\"ID\" TEXT," + // 1: id
+                "\"ORDER_ID\" TEXT UNIQUE ," + // 0: orderId
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 1: id
                 "\"DOCUMENT_NAME\" TEXT," + // 2: document_name
                 "\"DOCUMENT_PATH\" TEXT," + // 3: document_path
                 "\"CREATOR\" TEXT);"); // 4: creator
@@ -72,9 +72,9 @@ public class DocumentDao extends AbstractDao<Document, Void> {
             stmt.bindString(1, orderId);
         }
  
-        String id = entity.getId();
+        Long id = entity.getId();
         if (id != null) {
-            stmt.bindString(2, id);
+            stmt.bindLong(2, id);
         }
  
         String document_name = entity.getDocument_name();
@@ -101,8 +101,8 @@ public class DocumentDao extends AbstractDao<Document, Void> {
 
     /** @inheritdoc */
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1);
     }    
 
     /** @inheritdoc */
@@ -110,7 +110,7 @@ public class DocumentDao extends AbstractDao<Document, Void> {
     public Document readEntity(Cursor cursor, int offset) {
         Document entity = new Document( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // orderId
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // id
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // id
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // document_name
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // document_path
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // creator
@@ -122,7 +122,7 @@ public class DocumentDao extends AbstractDao<Document, Void> {
     @Override
     public void readEntity(Cursor cursor, Document entity, int offset) {
         entity.setOrderId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
         entity.setDocument_name(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setDocument_path(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setCreator(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
@@ -130,15 +130,19 @@ public class DocumentDao extends AbstractDao<Document, Void> {
     
     /** @inheritdoc */
     @Override
-    protected Void updateKeyAfterInsert(Document entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected Long updateKeyAfterInsert(Document entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     /** @inheritdoc */
     @Override
-    public Void getKey(Document entity) {
-        return null;
+    public Long getKey(Document entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     /** @inheritdoc */

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Product;
 
@@ -30,6 +31,9 @@ public class ProductHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final Product product) {
+        if (!App.bindViews) {
+            return;
+        }
         mObject.setText(product.getOrder_id());
         mNumber.setText("Номер п/п: "+product.getCount());
         mDescription.setText(product.getDescription());

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Comment;
 
@@ -30,6 +31,9 @@ public class CommentHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final Comment comment) {
+        if (!App.bindViews) {
+            return;
+        }
         mObject.setText(comment.getObject_type()+" "+comment.getObject_id());
         mDate.setText(comment.getDate());
         String dept = "";
