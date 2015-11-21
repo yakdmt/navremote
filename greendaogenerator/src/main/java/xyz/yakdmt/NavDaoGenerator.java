@@ -178,12 +178,18 @@ public class NavDaoGenerator {
         delivery.addToOne(cargo, deliveryCargoId);
 
         Entity product = schema.addEntity("Product");
-        Property orderId = product.addStringProperty("orderId").getProperty();
-        product.addToOne(order, orderId);
+        product.addIdProperty().autoincrement();
+        Property propertyOrderId = product.addStringProperty("order_id").getProperty();
+        Property propertyStringNumber = product.addStringProperty("string_number").getProperty();
+        Index indexProduct = new Index();
+        indexProduct.addProperty(propertyOrderId);
+        indexProduct.addProperty(propertyStringNumber);
+        indexProduct.makeUnique();
         product.addStringProperty("stringNo");
         product.addStringProperty("brutto_weight");
         product.addStringProperty("count");
         product.addStringProperty("description");
+
 
 
         Entity document = schema.addEntity("Document");

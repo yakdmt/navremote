@@ -1,14 +1,11 @@
 package xyz.yakdmt.navremote.database;
 
-import java.util.List;
-import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
 
 import xyz.yakdmt.navremote.database.Product;
@@ -17,7 +14,7 @@ import xyz.yakdmt.navremote.database.Product;
 /** 
  * DAO for table "PRODUCT".
 */
-public class ProductDao extends AbstractDao<Product, Void> {
+public class ProductDao extends AbstractDao<Product, Long> {
 
     public static final String TABLENAME = "PRODUCT";
 
@@ -26,14 +23,14 @@ public class ProductDao extends AbstractDao<Product, Void> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property OrderId = new Property(0, String.class, "orderId", false, "ORDER_ID");
-        public final static Property StringNo = new Property(1, String.class, "stringNo", false, "STRING_NO");
-        public final static Property Brutto_weight = new Property(2, String.class, "brutto_weight", false, "BRUTTO_WEIGHT");
-        public final static Property Count = new Property(3, String.class, "count", false, "COUNT");
-        public final static Property Description = new Property(4, String.class, "description", false, "DESCRIPTION");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Order_id = new Property(1, String.class, "order_id", false, "ORDER_ID");
+        public final static Property String_number = new Property(2, String.class, "string_number", false, "STRING_NUMBER");
+        public final static Property StringNo = new Property(3, String.class, "stringNo", false, "STRING_NO");
+        public final static Property Brutto_weight = new Property(4, String.class, "brutto_weight", false, "BRUTTO_WEIGHT");
+        public final static Property Count = new Property(5, String.class, "count", false, "COUNT");
+        public final static Property Description = new Property(6, String.class, "description", false, "DESCRIPTION");
     };
-
-    private DaoSession daoSession;
 
 
     public ProductDao(DaoConfig config) {
@@ -42,18 +39,19 @@ public class ProductDao extends AbstractDao<Product, Void> {
     
     public ProductDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"PRODUCT\" (" + //
-                "\"ORDER_ID\" TEXT," + // 0: orderId
-                "\"STRING_NO\" TEXT," + // 1: stringNo
-                "\"BRUTTO_WEIGHT\" TEXT," + // 2: brutto_weight
-                "\"COUNT\" TEXT," + // 3: count
-                "\"DESCRIPTION\" TEXT);"); // 4: description
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "\"ORDER_ID\" TEXT," + // 1: order_id
+                "\"STRING_NUMBER\" TEXT," + // 2: string_number
+                "\"STRING_NO\" TEXT," + // 3: stringNo
+                "\"BRUTTO_WEIGHT\" TEXT," + // 4: brutto_weight
+                "\"COUNT\" TEXT," + // 5: count
+                "\"DESCRIPTION\" TEXT);"); // 6: description
     }
 
     /** Drops the underlying database table. */
@@ -67,53 +65,59 @@ public class ProductDao extends AbstractDao<Product, Void> {
     protected void bindValues(SQLiteStatement stmt, Product entity) {
         stmt.clearBindings();
  
-        String orderId = entity.getOrderId();
-        if (orderId != null) {
-            stmt.bindString(1, orderId);
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
+        String order_id = entity.getOrder_id();
+        if (order_id != null) {
+            stmt.bindString(2, order_id);
+        }
+ 
+        String string_number = entity.getString_number();
+        if (string_number != null) {
+            stmt.bindString(3, string_number);
         }
  
         String stringNo = entity.getStringNo();
         if (stringNo != null) {
-            stmt.bindString(2, stringNo);
+            stmt.bindString(4, stringNo);
         }
  
         String brutto_weight = entity.getBrutto_weight();
         if (brutto_weight != null) {
-            stmt.bindString(3, brutto_weight);
+            stmt.bindString(5, brutto_weight);
         }
  
         String count = entity.getCount();
         if (count != null) {
-            stmt.bindString(4, count);
+            stmt.bindString(6, count);
         }
  
         String description = entity.getDescription();
         if (description != null) {
-            stmt.bindString(5, description);
+            stmt.bindString(7, description);
         }
-    }
-
-    @Override
-    protected void attachEntity(Product entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
     }
 
     /** @inheritdoc */
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     /** @inheritdoc */
     @Override
     public Product readEntity(Cursor cursor, int offset) {
         Product entity = new Product( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // orderId
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // stringNo
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // brutto_weight
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // count
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // description
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // order_id
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // string_number
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // stringNo
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // brutto_weight
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // count
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // description
         );
         return entity;
     }
@@ -121,24 +125,30 @@ public class ProductDao extends AbstractDao<Product, Void> {
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, Product entity, int offset) {
-        entity.setOrderId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setStringNo(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setBrutto_weight(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setCount(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setDescription(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setOrder_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setString_number(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setStringNo(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setBrutto_weight(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setCount(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDescription(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */
     @Override
-    protected Void updateKeyAfterInsert(Product entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected Long updateKeyAfterInsert(Product entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     /** @inheritdoc */
     @Override
-    public Void getKey(Product entity) {
-        return null;
+    public Long getKey(Product entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     /** @inheritdoc */
@@ -147,95 +157,4 @@ public class ProductDao extends AbstractDao<Product, Void> {
         return true;
     }
     
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getOrderDao().getAllColumns());
-            builder.append(" FROM PRODUCT T");
-            builder.append(" LEFT JOIN ORDER T0 ON T.\"ORDER_ID\"=T0.\"ID\"");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected Product loadCurrentDeep(Cursor cursor, boolean lock) {
-        Product entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        Order order = loadCurrentOther(daoSession.getOrderDao(), cursor, offset);
-        entity.setOrder(order);
-
-        return entity;    
-    }
-
-    public Product loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<Product> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<Product> list = new ArrayList<Product>(count);
-        
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-    
-    protected List<Product> loadDeepAllAndCloseCursor(Cursor cursor) {
-        try {
-            return loadAllDeepFromCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-
-    /** A raw-style query where you can pass any WHERE clause and arguments. */
-    public List<Product> queryDeep(String where, String... selectionArg) {
-        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
-        return loadDeepAllAndCloseCursor(cursor);
-    }
- 
 }

@@ -16,63 +16,87 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_order"/>
-    <LinearLayout
-        android:baselineAligned="false"
-        android:orientation="horizontal"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_margin="4dp"
             android:orientation="vertical"
-            android:gravity="start"
-            android:layout_gravity="top|start"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/client_ref"
-                style="@style/Ref"
-                android:text="Клиент: 15039" />
-            <TextView
-                android:id="@+id/contact_ref"
-                style="@style/Ref"
-                android:text="Контакт: C011761" />
-            <TextView
-                android:id="@+id/cargo_ref"
-                style="@style/Ref"
-                android:text="Груз: C011761" />
-            <TextView
-                android:id="@+id/delivery_ref"
-                style="@style/Ref"
-                android:text="Доставка: D091955" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/content_order"/>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    android:layout_gravity="top|start"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/client_ref"
+                        style="@style/Ref"
+                        android:text="Клиент: 15039" />
+                    <TextView
+                        android:id="@+id/contact_ref"
+                        style="@style/Ref"
+                        android:text="Контакт: C011761" />
+                    <TextView
+                        android:id="@+id/cargo_ref"
+                        style="@style/Ref"
+                        android:text="Груз: C011761" />
+                    <TextView
+                        android:id="@+id/delivery_ref"
+                        style="@style/Ref"
+                        android:text="Доставка: D091955" />
+                    <TextView
+                        android:id="@+id/productsRef"
+                        android:text="Товары: 1"
+                        style="@style/Ref" />
+
+                    <TextView
+                        android:id="@+id/documentsRef"
+                        android:text="Документы: 1"
+                        style="@style/Ref" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    android:layout_gravity="top|end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Менеджер:"
+                        style="@style/ServiceInfo" />
+                    <TextView
+                        android:id="@+id/manager"
+                        android:text="YAKOVLEV"
+                        style="@style/ServiceInfo" />
+                    <TextView
+                        android:text="Исполнитель:"
+                        style="@style/ServiceInfo" />
+                    <TextView
+                        android:id="@+id/performer"
+                        android:text="YAKOVLEV"
+                        style="@style/ServiceInfo" />
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_margin="4dp"
-            android:orientation="vertical"
-            android:gravity="end"
-            android:layout_gravity="top|end"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Менеджер:"
-                style="@style/ServiceInfo" />
-            <TextView
-                android:id="@+id/manager"
-                android:text="YAKOVLEV"
-                style="@style/ServiceInfo" />
-            <TextView
-                android:text="Исполнитель:"
-                style="@style/ServiceInfo" />
-            <TextView
-                android:id="@+id/performer"
-                android:text="YAKOVLEV"
-                style="@style/ServiceInfo" />
+    </ScrollView>
 
 
-        </LinearLayout>
-
-    </LinearLayout>
 </LinearLayout>

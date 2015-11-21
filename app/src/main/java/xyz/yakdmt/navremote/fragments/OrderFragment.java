@@ -11,12 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.database.Product;
+import xyz.yakdmt.navremote.database.ProductDao;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -44,7 +48,8 @@ public class OrderFragment extends Fragment {
     @Bind(R.id.delivery_ref) TextView mDeliveryRef;
     @Bind(R.id.manager) TextView mManager;
     @Bind(R.id.performer) TextView mPerformer;
-
+    @Bind(R.id.productsRef) TextView mProductsRef;
+    @Bind(R.id.documentsRef) TextView mDocumentsRef;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +130,20 @@ public class OrderFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ((DetailActivity)getActivity()).openDeliveryFragment(order.getDelivery());
+                }
+            });
+        }
+
+        mManager.setText("Менеджер: "+order.getManager());
+        mPerformer.setText("Исполнитель: " + order.getPerformer_name());
+
+        final ArrayList<Product> products = (ArrayList<Product>) DaoTask.getInstance().getSession().getProductDao().queryBuilder().where(ProductDao.Properties.Order_id.eq(order.getId())).list();
+        if (products!=null && products.size()>0) {
+            mProductsRef.setText("Товары: "+products.size());
+            mProductsRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)getActivity()).openProductsFragment(order);
                 }
             });
         }

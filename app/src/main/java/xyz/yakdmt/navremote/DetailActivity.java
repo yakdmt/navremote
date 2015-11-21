@@ -18,6 +18,7 @@ import xyz.yakdmt.navremote.fragments.ClientFragment;
 import xyz.yakdmt.navremote.fragments.CommentsFragment;
 import xyz.yakdmt.navremote.fragments.DeliveryFragment;
 import xyz.yakdmt.navremote.fragments.OrderFragment;
+import xyz.yakdmt.navremote.fragments.ProductsFragment;
 import xyz.yakdmt.navremote.fragments.RouteFragment;
 import xyz.yakdmt.navremote.fragments.WorksFragment;
 
@@ -130,6 +131,17 @@ public class DetailActivity  extends AppCompatActivity {
         commentsFragment.setArguments(bundle);
         getFragmentManager().beginTransaction()
                 .replace(R.id.container, commentsFragment, CommentsFragment.class.getName())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void openProductsFragment(Order order){
+        ProductsFragment productsFragment = new ProductsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("order", order);
+        productsFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, productsFragment, ProductsFragment.class.getName())
                 .addToBackStack(null)
                 .commit();
     }

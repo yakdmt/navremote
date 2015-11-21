@@ -35,6 +35,7 @@ import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.OrderDao;
+import xyz.yakdmt.navremote.database.Product;
 import xyz.yakdmt.navremote.database.RouteRow;
 import xyz.yakdmt.navremote.database.Work;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
@@ -301,8 +302,19 @@ public class MainActivity extends AppCompatActivity
          for (int i=0; i<10; i++) {
              Comment comment = new Comment(String.valueOf(10+i));
              comment.setObject_id("30000"+i);
-             comment.setText("comment"+comment.getId());
+             comment.setText("comment" + comment.getId());
              DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(comment);
+         }
+
+         for (int i=0; i<10; i++) {
+             Product product = new Product();
+             product.setOrder_id("10000"+i);
+             product.setString_number("100");
+             Product product2 = new Product();
+             product2.setOrder_id("10000" + i);
+             product2.setString_number("200");
+             DaoTask.getInstance().getSession().getProductDao().insertOrReplace(product);
+             DaoTask.getInstance().getSession().getProductDao().insertOrReplace(product2);
          }
 
 
