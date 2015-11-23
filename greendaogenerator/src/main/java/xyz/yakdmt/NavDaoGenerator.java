@@ -178,14 +178,13 @@ public class NavDaoGenerator {
         delivery.addToOne(cargo, deliveryCargoId);
 
         Entity product = schema.addEntity("Product");
-        product.addIdProperty().autoincrement();
+        product.addStringProperty("id").notNull().primaryKey().unique();
         Property propertyOrderId = product.addStringProperty("order_id").getProperty();
         Property propertyStringNumber = product.addStringProperty("string_number").getProperty();
         Index indexProduct = new Index();
         indexProduct.addProperty(propertyOrderId);
         indexProduct.addProperty(propertyStringNumber);
         indexProduct.makeUnique();
-        product.addStringProperty("stringNo");
         product.addStringProperty("brutto_weight");
         product.addStringProperty("count");
         product.addStringProperty("description");
@@ -227,7 +226,7 @@ public class NavDaoGenerator {
         routeRow.addIndex(index);
         routeRow.addStringProperty("position");
         //routeRow.addStringProperty("checkpoint_id");
-        routeRow.addIdProperty().autoincrement();
+        routeRow.addStringProperty("id").notNull().primaryKey().unique();
         routeRow.addStringProperty("checkpoint_description");
         routeRow.addStringProperty("procedure_type");
         routeRow.addStringProperty("expected_arrival_date");

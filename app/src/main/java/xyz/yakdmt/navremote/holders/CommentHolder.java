@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Comment;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -34,14 +35,14 @@ public class CommentHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mObject.setText(comment.getObject_type()+" "+comment.getObject_id());
-        mDate.setText(comment.getDate());
+        mObject.setText(TextUtil.removeNulls(comment.getObject_type() + " " + comment.getObject_id()));
+        mDate.setText(TextUtil.removeNulls(comment.getDate()));
         String dept = "";
         if (!TextUtils.isEmpty(comment.getDepartment())) {
             dept = " ("+comment.getDepartment()+")";
         }
-        mAuthor.setText(comment.getAuthor()+dept);
-        mText.setText(comment.getText());
+        mAuthor.setText(TextUtil.removeNulls(comment.getAuthor()+dept));
+        mText.setText(TextUtil.removeNulls(comment.getText()));
     }
 
 

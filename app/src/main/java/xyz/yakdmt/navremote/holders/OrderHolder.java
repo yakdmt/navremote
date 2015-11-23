@@ -13,6 +13,7 @@ import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.utils.Events;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -53,29 +54,29 @@ public class OrderHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mId.setText(order.getId());
+        mId.setText(TextUtil.removeNulls(order.getId()));
         StringBuilder departureBuilder = new StringBuilder();
         departureBuilder.append(order.getDeparture_country_name());
         departureBuilder.append(", ");
         departureBuilder.append(order.getDeparture_checkpoint_name());
         departureBuilder.append(", ");
         departureBuilder.append(order.getDeparture_checkpoint_address());
-        mDeparture.setText(departureBuilder);
-        mDateTime.setText(order.getDate() + " " + order.getTime());
-        mDeclarant.setText(order.getDeclarant_code());
+        mDeparture.setText(TextUtil.removeNulls(departureBuilder));
+        mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime()));
+        mDeclarant.setText(TextUtil.removeNulls(order.getDeclarant_code()));
         StringBuilder arrivalBuilder = new StringBuilder();
         arrivalBuilder.append(order.getDestination_country_name());
         arrivalBuilder.append(", ");
         arrivalBuilder.append(order.getDestination_checkpoint_name());
         arrivalBuilder.append(", ");
         arrivalBuilder.append(order.getDestination_checkpoint_address());
-        mArrival.setText(arrivalBuilder);
-        mWeight.setText(order.getBrutto_weight() + " кг.");
-        mVolume.setText(order.getVolume()+" м^3");
-        mCount.setText(order.getCount());
-        mClientName.setText(order.getClient_name());
-        mCargoDesc.setText(order.getCargo_description());
-        mDepartureDate.setText(order.getDeparture_date());
+        mArrival.setText(TextUtil.removeNulls(arrivalBuilder));
+        mWeight.setText(TextUtil.removeNulls(order.getBrutto_weight() + " кг."));
+        mVolume.setText(TextUtil.removeNulls(order.getVolume()+" м^3"));
+        mCount.setText(TextUtil.removeNulls(order.getCount()));
+        mClientName.setText(TextUtil.removeNulls(order.getClient_name()));
+        mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description()));
+        mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date()));
     }
 
 }

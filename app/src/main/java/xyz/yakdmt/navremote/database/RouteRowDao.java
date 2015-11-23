@@ -17,7 +17,7 @@ import xyz.yakdmt.navremote.database.RouteRow;
 /** 
  * DAO for table "ROUTE_ROW".
 */
-public class RouteRowDao extends AbstractDao<RouteRow, Long> {
+public class RouteRowDao extends AbstractDao<RouteRow, String> {
 
     public static final String TABLENAME = "ROUTE_ROW";
 
@@ -29,7 +29,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
         public final static Property Delivery_id = new Property(0, String.class, "delivery_id", false, "DELIVERY_ID");
         public final static Property String_number = new Property(1, String.class, "string_number", false, "STRING_NUMBER");
         public final static Property Position = new Property(2, String.class, "position", false, "POSITION");
-        public final static Property Id = new Property(3, Long.class, "id", true, "_id");
+        public final static Property Id = new Property(3, String.class, "id", true, "ID");
         public final static Property Checkpoint_description = new Property(4, String.class, "checkpoint_description", false, "CHECKPOINT_DESCRIPTION");
         public final static Property Procedure_type = new Property(5, String.class, "procedure_type", false, "PROCEDURE_TYPE");
         public final static Property Expected_arrival_date = new Property(6, String.class, "expected_arrival_date", false, "EXPECTED_ARRIVAL_DATE");
@@ -64,7 +64,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
                 "\"DELIVERY_ID\" TEXT," + // 0: delivery_id
                 "\"STRING_NUMBER\" TEXT," + // 1: string_number
                 "\"POSITION\" TEXT," + // 2: position
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 3: id
+                "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 3: id
                 "\"CHECKPOINT_DESCRIPTION\" TEXT," + // 4: checkpoint_description
                 "\"PROCEDURE_TYPE\" TEXT," + // 5: procedure_type
                 "\"EXPECTED_ARRIVAL_DATE\" TEXT," + // 6: expected_arrival_date
@@ -108,11 +108,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
         if (position != null) {
             stmt.bindString(3, position);
         }
- 
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(4, id);
-        }
+        stmt.bindString(4, entity.getId());
  
         String checkpoint_description = entity.getCheckpoint_description();
         if (checkpoint_description != null) {
@@ -188,8 +184,8 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
 
     /** @inheritdoc */
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3);
+    public String readKey(Cursor cursor, int offset) {
+        return cursor.getString(offset + 3);
     }    
 
     /** @inheritdoc */
@@ -199,7 +195,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // delivery_id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // string_number
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // position
-            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3), // id
+            cursor.getString(offset + 3), // id
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // checkpoint_description
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // procedure_type
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // expected_arrival_date
@@ -223,7 +219,7 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
         entity.setDelivery_id(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setString_number(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setPosition(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setId(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
+        entity.setId(cursor.getString(offset + 3));
         entity.setCheckpoint_description(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setProcedure_type(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setExpected_arrival_date(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
@@ -241,14 +237,13 @@ public class RouteRowDao extends AbstractDao<RouteRow, Long> {
     
     /** @inheritdoc */
     @Override
-    protected Long updateKeyAfterInsert(RouteRow entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+    protected String updateKeyAfterInsert(RouteRow entity, long rowId) {
+        return entity.getId();
     }
     
     /** @inheritdoc */
     @Override
-    public Long getKey(RouteRow entity) {
+    public String getKey(RouteRow entity) {
         if(entity != null) {
             return entity.getId();
         } else {

@@ -24,6 +24,7 @@ import xyz.yakdmt.navremote.database.DocumentDao;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.Product;
 import xyz.yakdmt.navremote.database.ProductDao;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -71,34 +72,34 @@ public class OrderFragment extends Fragment {
             return view;
         }
         //from holder
-        mId.setText(order.getId());
+        mId.setText(TextUtil.removeNulls(order.getId()));
         StringBuilder departureBuilder = new StringBuilder();
         departureBuilder.append(order.getDeparture_country_name());
         departureBuilder.append(", ");
         departureBuilder.append(order.getDeparture_checkpoint_name());
         departureBuilder.append(", ");
         departureBuilder.append(order.getDeparture_checkpoint_address());
-        mDeparture.setText(departureBuilder);
-        mDateTime.setText(order.getDate() + " " + order.getTime());
-        mDeclarant.setText(order.getDeclarant_code());
+        mDeparture.setText(TextUtil.removeNulls(departureBuilder));
+        mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime()));
+        mDeclarant.setText(TextUtil.removeNulls(order.getDeclarant_code()));
         StringBuilder arrivalBuilder = new StringBuilder();
         arrivalBuilder.append(order.getDestination_country_name());
         arrivalBuilder.append(", ");
         arrivalBuilder.append(order.getDestination_checkpoint_name());
         arrivalBuilder.append(", ");
         arrivalBuilder.append(order.getDestination_checkpoint_address());
-        mArrival.setText(arrivalBuilder);
-        mWeight.setText(order.getBrutto_weight() + " кг.");
-        mVolume.setText(order.getVolume()+" м^3");
-        mCount.setText(order.getCount());
-        mClientName.setText(order.getClient_name());
-        mCargoDesc.setText(order.getCargo_description());
-        mDepartureDate.setText(order.getDeparture_date());
+        mArrival.setText(TextUtil.removeNulls(arrivalBuilder));
+        mWeight.setText(TextUtil.removeNulls(order.getBrutto_weight() + " кг."));
+        mVolume.setText(TextUtil.removeNulls(order.getVolume()+" м^3"));
+        mCount.setText(TextUtil.removeNulls(order.getCount()));
+        mClientName.setText(TextUtil.removeNulls(order.getClient_name()));
+        mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description()));
+        mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date()));
         //additional views
         if (order.getClient()!=null) {
             SpannableString clientId = new SpannableString(order.getClient().getId());
             clientId.setSpan(new UnderlineSpan(), 0, clientId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mClientRef.setText("Клиент:" + clientId);
+            mClientRef.setText(TextUtil.removeNulls("Клиент:" + clientId));
             mClientRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,7 +110,7 @@ public class OrderFragment extends Fragment {
         if (order.getContact()!=null) {
             SpannableString contactId = new SpannableString(order.getContact().getId());
             contactId.setSpan(new UnderlineSpan(), 0, contactId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mContactRef.setText("Контакт:" + contactId);
+            mContactRef.setText(TextUtil.removeNulls("Контакт:" + contactId));
             mContactRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,7 +121,7 @@ public class OrderFragment extends Fragment {
         if (order.getCargo()!=null) {
             SpannableString cargoId = new SpannableString(order.getCargo().getId());
             cargoId.setSpan(new UnderlineSpan(), 0, cargoId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mCargoRef.setText("Груз:" + cargoId);
+            mCargoRef.setText(TextUtil.removeNulls("Груз:" + cargoId));
             mCargoRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -131,7 +132,7 @@ public class OrderFragment extends Fragment {
         if (order.getDelivery()!=null) {
             SpannableString deliveryId = new SpannableString(order.getDelivery().getId());
             deliveryId.setSpan(new UnderlineSpan(), 0, deliveryId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mDeliveryRef.setText("Доставка:" + deliveryId);
+            mDeliveryRef.setText(TextUtil.removeNulls("Доставка:" + deliveryId));
             mDeliveryRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -140,12 +141,12 @@ public class OrderFragment extends Fragment {
             });
         }
 
-        mManager.setText(order.getManager());
-        mPerformer.setText(order.getPerformer_name());
+        mManager.setText(TextUtil.removeNulls(order.getManager()));
+        mPerformer.setText(TextUtil.removeNulls(order.getPerformer_name()));
 
         final ArrayList<Product> products = (ArrayList<Product>) DaoTask.getInstance().getSession().getProductDao().queryBuilder().where(ProductDao.Properties.Order_id.eq(order.getId())).list();
         if (products!=null && products.size()>0) {
-            mProductsRef.setText("Товары: "+products.size());
+            mProductsRef.setText(TextUtil.removeNulls("Товары: "+products.size()));
             mProductsRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -155,7 +156,7 @@ public class OrderFragment extends Fragment {
         }
         final Document document = DaoTask.getInstance().getSession().getDocumentDao().queryBuilder().where(DocumentDao.Properties.OrderId.eq(order.getId())).unique();
         if (document!=null) {
-            mDocumentsRef.setText("Документ: "+document.getDocument_name());
+            mDocumentsRef.setText(TextUtil.removeNulls("Документ: "+document.getDocument_name()));
             mDocumentsRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -165,6 +166,10 @@ public class OrderFragment extends Fragment {
         }
 
         return view;
+    }
+
+    public Order getOrder(){
+        return order;
     }
 
 }

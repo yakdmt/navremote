@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/greendaogenerator/greendaogenerator.iml" filepath="$PROJECT_DIR$/greendaogenerator/greendaogenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/navremote.iml" filepath="$PROJECT_DIR$/navremote.iml" />
-      <module fileurl="file://$PROJECT_DIR$/navremote.iml" filepath="$PROJECT_DIR$/navremote.iml" />
       <module fileurl="file://$PROJECT_DIR$/xmlschemeparser/xmlschemeparser.iml" filepath="$PROJECT_DIR$/xmlschemeparser/xmlschemeparser.iml" />
     </modules>
   </component>

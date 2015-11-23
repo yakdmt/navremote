@@ -12,6 +12,7 @@ import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.utils.Events;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -53,21 +54,21 @@ public class CargoHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mId.setText(cargo.getId());
-        mClientName.setText("Клиент: "+cargo.getClient_name());
-        mDescription.setText("Описание: "+cargo.getDescription());
-        mAppearanceDate.setText("Дата появления: "+cargo.getAppearance_date());
-        mSenderName.setText(cargo.getSender_name());
-        mExpDepDate.setText(cargo.getExpected_departure_date());
-        mOccurence.setText(cargo.getOccurence_checkpoint_type()+", "+cargo.getOccurence_checkpoint_code());
-        mMasterDocument.setText(cargo.getMaster_document());
-        mTransportLine.setText(cargo.getTransport_line_code()+", "+cargo.getTransport_line_name());
-        mConsigneeName.setText(cargo.getConsignee_name());
-        mExpArrDate.setText(cargo.getExpected_arrival_date());
-        mDestination.setText(cargo.getDestination_checkpoint_type()+", "+cargo.getDestination_checkpoint_code());
-        mWeight.setText("Вес, кг: "+cargo.getWeight());
-        mVolume.setText("Объем, м^3: "+cargo.getVolume());
-        mCount.setText("Мест: "+cargo.getCount());
+        mId.setText(TextUtil.removeNulls(cargo.getId()));
+        mClientName.setText(TextUtil.removeNulls("Клиент: "+cargo.getClient_name()));
+        mDescription.setText(TextUtil.removeNulls("Описание: "+cargo.getDescription()));
+        mAppearanceDate.setText(TextUtil.removeNulls("Дата появления: "+cargo.getAppearance_date()));
+        mSenderName.setText(TextUtil.removeNulls(cargo.getSender_name()));
+        mExpDepDate.setText(TextUtil.removeNulls(cargo.getExpected_departure_date()));
+        mOccurence.setText(TextUtil.removeNulls(cargo.getOccurence_checkpoint_type()+", "+cargo.getOccurence_checkpoint_code()));
+        mMasterDocument.setText(TextUtil.removeNulls(cargo.getMaster_document()));
+        mTransportLine.setText(TextUtil.removeNulls(cargo.getTransport_line_code()+", "+cargo.getTransport_line_name()));
+        mConsigneeName.setText(TextUtil.removeNulls(cargo.getConsignee_name()));
+        mExpArrDate.setText(TextUtil.removeNulls(cargo.getExpected_arrival_date()));
+        mDestination.setText(TextUtil.removeNulls(cargo.getDestination_checkpoint_type()+", "+cargo.getDestination_checkpoint_code()));
+        mWeight.setText(TextUtil.removeNulls("Вес, кг: "+cargo.getWeight()));
+        mVolume.setText(TextUtil.removeNulls("Объем, м^3: "+cargo.getVolume()));
+        mCount.setText(TextUtil.removeNulls("Мест: "+cargo.getCount()));
     }
 
 }

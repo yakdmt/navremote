@@ -23,6 +23,7 @@ import xyz.yakdmt.navremote.fragments.OrderFragment;
 import xyz.yakdmt.navremote.fragments.ProductsFragment;
 import xyz.yakdmt.navremote.fragments.RouteFragment;
 import xyz.yakdmt.navremote.fragments.WorksFragment;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -168,15 +169,15 @@ public class DetailActivity  extends AppCompatActivity {
         adb.setView(view);
 
         TextView name = (TextView) view.findViewById(R.id.name);
-        name.setText(checkpoint.getName());
+        name.setText(TextUtil.removeNulls(checkpoint.getName()));
         TextView countryCode = (TextView) view.findViewById(R.id.country_code);
-        countryCode.setText(checkpoint.getCountry_code());
+        countryCode.setText(TextUtil.removeNulls(checkpoint.getCountry_code()));
         TextView type = (TextView) view.findViewById(R.id.type);
-        type.setText(checkpoint.getType());
+        type.setText(TextUtil.removeNulls(checkpoint.getType()));
         TextView cityName = (TextView) view.findViewById(R.id.city_name);
-        cityName.setText(checkpoint.getCity_name());
+        cityName.setText(TextUtil.removeNulls(checkpoint.getCity_name()));
         TextView info = (TextView) view.findViewById(R.id.info);
-        info.setText(checkpoint.getInfo());
+        info.setText(TextUtil.removeNulls(checkpoint.getInfo()));
         adb.create().show();
     }
 
@@ -188,17 +189,17 @@ public class DetailActivity  extends AppCompatActivity {
         adb.setView(view);
 
         TextView name = (TextView) view.findViewById(R.id.name);
-        name.setText(contact.getName());
+        name.setText(TextUtil.removeNulls(contact.getName()));
         TextView firmName = (TextView) view.findViewById(R.id.firm_name);
-        firmName.setText(contact.getFirm_name());
+        firmName.setText(TextUtil.removeNulls(contact.getFirm_name()));
         TextView phone = (TextView) view.findViewById(R.id.phone);
-        phone.setText(contact.getPhone());
+        phone.setText(TextUtil.removeNulls(contact.getPhone()));
         TextView mobilePhone = (TextView) view.findViewById(R.id.mobile_phone);
-        mobilePhone.setText(contact.getMobile_phone());
+        mobilePhone.setText(TextUtil.removeNulls(contact.getMobile_phone()));
         TextView manager = (TextView) view.findViewById((R.id.manager));
-        manager.setText(contact.getManager_code());
+        manager.setText(TextUtil.removeNulls(contact.getManager_code()));
         TextView index = (TextView) view.findViewById(R.id.index);
-        index.setText(contact.getPostal_index());
+        index.setText(TextUtil.removeNulls(contact.getPostal_index()));
         adb.create().show();
     }
 
@@ -210,13 +211,13 @@ public class DetailActivity  extends AppCompatActivity {
         adb.setView(view);
 
         TextView object = (TextView) view.findViewById(R.id.object);
-        object.setText("Заявка: " + document.getOrderId());
+        object.setText(TextUtil.removeNulls("Заявка: " + document.getOrderId()));
         TextView documentNumber = (TextView) view.findViewById(R.id.document_number);
-        documentNumber.setText("Номер: " + document.getDocument_name());
+        documentNumber.setText(TextUtil.removeNulls("Номер: " + document.getDocument_name()));
         TextView fileName = (TextView) view.findViewById(R.id.file_name);
-        fileName.setText("Имя файла: " + document.getDocument_name());
+        fileName.setText(TextUtil.removeNulls("Имя файла: " + document.getDocument_name()));
         TextView creator = (TextView) view.findViewById(R.id.creator);
-        creator.setText("Создал: " + document.getCreator());
+        creator.setText(TextUtil.removeNulls("Создал: " + document.getCreator()));
         Button openButton = (Button) view.findViewById(R.id.open);
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,5 +241,6 @@ public class DetailActivity  extends AppCompatActivity {
     private void openDocument(String filePath){
 
     }
+
 
 }

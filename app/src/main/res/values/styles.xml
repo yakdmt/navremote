@@ -26,6 +26,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="EditServiceInfo" parent="ServiceInfo">
+        <item name="android:layout_width">72dp</item>
+    </style>
+
     <style name="MainInfo" parent="TextAppearance.AppCompat.Large">
         <item name="android:textSize">14sp</item>
         <item name="android:paddingLeft">8dp</item>

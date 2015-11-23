@@ -2,11 +2,11 @@ package xyz.yakdmt.navremote;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,8 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import org.xmlpull.v1.XmlPullParserException;
 
 import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.CargoDao;
@@ -42,7 +40,7 @@ import xyz.yakdmt.navremote.database.Work;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
 import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
-import xyz.yakdmt.navremote.utils.SchemeParser;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,13 +64,14 @@ public class MainActivity extends AppCompatActivity
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 try {
                     SchemeParser.getInstance().doParse(MainActivity.this);
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
-                }
+                }*/
+                openCreateActivity();
             }
         });
 
@@ -230,22 +229,22 @@ public class MainActivity extends AppCompatActivity
              departureBuilder.append(order.getDeparture_checkpoint_name());
              departureBuilder.append(", ");
              departureBuilder.append(order.getDeparture_checkpoint_address());
-             mDeparture.setText(departureBuilder);
-             mDateTime.setText(order.getDate() + " " + order.getTime());
-             mDeclarant.setText(order.getDeclarant_code());
+             mDeparture.setText(TextUtil.removeNulls(departureBuilder);
+             mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime());
+             mDeclarant.setText(TextUtil.removeNulls(order.getDeclarant_code());
              StringBuilder arrivalBuilder = new StringBuilder();
              arrivalBuilder.append(order.getDestination_country_name());
              arrivalBuilder.append(", ");
              arrivalBuilder.append(order.getDestination_checkpoint_name());
              arrivalBuilder.append(", ");
              arrivalBuilder.append(order.getDestination_checkpoint_address());
-             mArrival.setText(arrivalBuilder);
-             mWeight.setText(order.getBrutto_weight() + " кг.");
-             mVolume.setText(order.getVolume()+" м^3");
-             mCount.setText(order.getCount());
-             mClientName.setText(order.getClient_name());
-             mCargoDesc.setText(order.getCargo_description());
-             mDepartureDate.setText(order.getDeparture_date());
+             mArrival.setText(TextUtil.removeNulls(arrivalBuilder);
+             mWeight.setText(TextUtil.removeNulls(order.getBrutto_weight() + " кг.");
+             mVolume.setText(TextUtil.removeNulls(order.getVolume()+" м^3");
+             mCount.setText(TextUtil.removeNulls(order.getCount());
+             mClientName.setText(TextUtil.removeNulls(order.getClient_name());
+             mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description());
+             mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date());
              */
              if (i<5) {
                  order.setClient(client1);
@@ -295,6 +294,7 @@ public class MainActivity extends AppCompatActivity
                  RouteRow routeRow = new RouteRow();
                  routeRow.setDelivery_id("30000" + i);
                  routeRow.setString_number(String.valueOf(j));
+                 routeRow.setId(routeRow.getDelivery_id()+routeRow.getString_number());
                  routeRow.setPosition(String.valueOf(10 - j));
                  routeRow.setAddress("address");
                  Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq("point" + j)).unique();
@@ -322,15 +322,16 @@ public class MainActivity extends AppCompatActivity
          for (int i=0; i<10; i++) {
              Comment comment = new Comment(String.valueOf(10+i));
              comment.setObject_id("30000"+i);
-             comment.setText("comment" + comment.getId());
+             comment.setText(TextUtil.removeNulls("comment" + comment.getId()));
              DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(comment);
          }
 
          for (int i=0; i<10; i++) {
-             Product product = new Product();
+             Product product = new Product("10000"+i+"100");
              product.setOrder_id("10000"+i);
              product.setString_number("100");
-             Product product2 = new Product();
+             Product product2 = new Product("10000"+i+"200");
+             product.setId(product.getOrder_id() + product.getString_number());
              product2.setOrder_id("10000" + i);
              product2.setString_number("200");
              DaoTask.getInstance().getSession().getProductDao().insertOrReplace(product);
@@ -344,6 +345,10 @@ public class MainActivity extends AppCompatActivity
              DaoTask.getInstance().getSession().getDocumentDao().insertOrReplace(document);
          }
 
-
      }
+
+    public void openCreateActivity(){
+        Intent intent= new Intent(this, CreateActivity.class);
+        startActivity(intent);
+    }
 }

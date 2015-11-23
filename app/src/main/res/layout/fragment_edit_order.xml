@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    android:layout_gravity="top|start"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/client_name"
+                        android:text="ООО  &quot;Пирелли Тайр Руссия&quot;"
+                        style="@style/MainInfo" />
+
+                    <EditText
+                        android:id="@+id/cargo_desc"
+                        android:hint="Описание груза"
+                        style="@style/MainInfo" />
+                    <TextView
+                        android:text="Дата отправки:"
+                        style="@style/ServiceInfo" />
+                    <EditText
+                        style="@style/MainInfo"
+                        android:id="@+id/departure_date"
+                        android:hint="дд/мм/гг"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    android:layout_gravity="top|end"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/id"
+                        android:text="CR045434"
+                        android:textSize="12sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/date_time"
+                        android:textSize="12sp"
+                        android:text="23/03/2015 13:15:50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/declarant"
+                        android:text="YAKOVLEV"
+                        style="@style/ServiceInfo" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    android:layout_gravity="top|start"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="Откуда:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/departure_country_name"
+                        android:hint="Страна"
+                        style="@style/MainInfo" />
+                    <EditText
+                        android:id="@+id/departure_checkpoint_name"
+                        android:hint="Пункт"
+                        style="@style/MainInfo" />
+                    <EditText
+                        android:id="@+id/departure_checkpoint_address"
+                        android:hint="Адрес"
+                        style="@style/MainInfo" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    android:layout_gravity="top|start"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="12sp"
+                        android:text="Куда:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/arrival_country_name"
+                        android:hint="Страна"
+                        style="@style/MainInfo" />
+                    <EditText
+                        android:id="@+id/arrival_checkpoint_name"
+                        android:hint="Пункт"
+                        style="@style/MainInfo" />
+                    <EditText
+                        android:id="@+id/arrival_checkpoint_address"
+                        android:hint="Адрес"
+                        style="@style/MainInfo" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="4dp"
+                    android:orientation="vertical"
+                    android:gravity="start"
+                    android:layout_gravity="top|start"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/ServiceInfo"
+                            android:layout_width="wrap_content"
+                            android:text="Вес брутто:" />
+                        <EditText
+                            android:id="@+id/weight"
+                            android:hint="кг"
+                            style="@style/EditServiceInfo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/ServiceInfo"
+                            android:layout_width="wrap_content"
+                            android:text="Объем:" />
+                        <EditText
+                            android:id="@+id/volume"
+                            android:hint="м^3"
+                            style="@style/EditServiceInfo" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/ServiceInfo"
+                            android:layout_width="wrap_content"
+                            android:text="Мест:" />
+                        <EditText
+                            android:id="@+id/count"
+                            style="@style/EditServiceInfo" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/documentsRef"
+                        android:text="Прикрепить документ"
+                        style="@style/Ref" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -15,7 +15,8 @@ public class RouteRow {
     private String delivery_id;
     private String string_number;
     private String position;
-    private Long id;
+    /** Not-null value. */
+    private String id;
     private String checkpoint_description;
     private String procedure_type;
     private String expected_arrival_date;
@@ -46,11 +47,11 @@ public class RouteRow {
     public RouteRow() {
     }
 
-    public RouteRow(Long id) {
+    public RouteRow(String id) {
         this.id = id;
     }
 
-    public RouteRow(String delivery_id, String string_number, String position, Long id, String checkpoint_description, String procedure_type, String expected_arrival_date, String actual_arrival_date, String actual_arrival_time, String actual_departure_date, String actual_departure_time, String expected_departure_date, String expected_departure_time, String country_code, String country_name, String address, String checkpoint_id) {
+    public RouteRow(String delivery_id, String string_number, String position, String id, String checkpoint_description, String procedure_type, String expected_arrival_date, String actual_arrival_date, String actual_arrival_time, String actual_departure_date, String actual_departure_time, String expected_departure_date, String expected_departure_time, String country_code, String country_name, String address, String checkpoint_id) {
         this.delivery_id = delivery_id;
         this.string_number = string_number;
         this.position = position;
@@ -100,11 +101,13 @@ public class RouteRow {
         this.position = position;
     }
 
-    public Long getId() {
+    /** Not-null value. */
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setId(String id) {
         this.id = id;
     }
 

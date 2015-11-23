@@ -9,10 +9,10 @@ package xyz.yakdmt.navremote.database;
  */
 public class Product {
 
-    private Long id;
+    /** Not-null value. */
+    private String id;
     private String order_id;
     private String string_number;
-    private String stringNo;
     private String brutto_weight;
     private String count;
     private String description;
@@ -23,25 +23,26 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id) {
+    public Product(String id) {
         this.id = id;
     }
 
-    public Product(Long id, String order_id, String string_number, String stringNo, String brutto_weight, String count, String description) {
+    public Product(String id, String order_id, String string_number, String brutto_weight, String count, String description) {
         this.id = id;
         this.order_id = order_id;
         this.string_number = string_number;
-        this.stringNo = stringNo;
         this.brutto_weight = brutto_weight;
         this.count = count;
         this.description = description;
     }
 
-    public Long getId() {
+    /** Not-null value. */
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,14 +60,6 @@ public class Product {
 
     public void setString_number(String string_number) {
         this.string_number = string_number;
-    }
-
-    public String getStringNo() {
-        return stringNo;
-    }
-
-    public void setStringNo(String stringNo) {
-        this.stringNo = stringNo;
     }
 
     public String getBrutto_weight() {

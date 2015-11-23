@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Work;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -40,21 +41,21 @@ public class WorkHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mWorkCode.setText("Код: "+work.getWork_code());
-        mWorkType.setText("Тип: "+work.getWork_type());
-        mDelivery.setText("Доставка: "+work.getDelivery_id());
-        mCargo.setText("Груз: "+work.getCargo_id());
-        mDescription.setText(work.getDescription());
-        mWorkingPlace.setText("Место выполнения: "+work.getWorking_place());
-        mCount.setText("Количество: "+work.getCount());
-        mComment.setText("Комментарий: "+work.getComment());
-        mFinishDate.setText("Завершена: "+work.getActual_finish_date()+"; "+work.getActual_finish_time());
+        mWorkCode.setText(TextUtil.removeNulls("Код: " + work.getWork_code()));
+        mWorkType.setText(TextUtil.removeNulls("Тип: "+work.getWork_type()));
+        mDelivery.setText(TextUtil.removeNulls("Доставка: "+work.getDelivery_id()));
+        mCargo.setText(TextUtil.removeNulls("Груз: "+work.getCargo_id()));
+        mDescription.setText(TextUtil.removeNulls(work.getDescription()));
+        mWorkingPlace.setText(TextUtil.removeNulls("Место выполнения: "+work.getWorking_place()));
+        mCount.setText(TextUtil.removeNulls("Количество: "+work.getCount()));
+        mComment.setText(TextUtil.removeNulls("Комментарий: "+work.getComment()));
+        mFinishDate.setText(TextUtil.removeNulls("Завершена: "+work.getActual_finish_date()+"; "+work.getActual_finish_time()));
         String dept = "";
         if (!TextUtils.isEmpty(work.getResponsible_department())){
             dept= "("+work.getResponsible_department()+")";
         }
-        mResponsible.setText("Отв.: "+work.getResponsible_worker()+dept);
-        mCreator.setText("Создал: "+work.getCreator());
+        mResponsible.setText(TextUtil.removeNulls("Отв.: "+work.getResponsible_worker()+dept));
+        mCreator.setText(TextUtil.removeNulls("Создал: "+work.getCreator()));
     }
 
 

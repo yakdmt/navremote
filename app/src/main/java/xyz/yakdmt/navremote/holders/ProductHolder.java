@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Product;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -34,11 +35,11 @@ public class ProductHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mObject.setText(product.getOrder_id());
-        mNumber.setText("Номер п/п: "+product.getCount());
-        mDescription.setText(product.getDescription());
-        mCount.setText("Количество: "+product.getCount());
-        mBruttoWeight.setText("Вес брутто: "+ product.getBrutto_weight());
+        mObject.setText(TextUtil.removeNulls(product.getOrder_id()));
+        mNumber.setText(TextUtil.removeNulls("Номер п/п: "+product.getCount()));
+        mDescription.setText(TextUtil.removeNulls(product.getDescription()));
+        mCount.setText(TextUtil.removeNulls("Количество: "+product.getCount()));
+        mBruttoWeight.setText(TextUtil.removeNulls("Вес брутто: "+ product.getBrutto_weight()));
     }
 
 

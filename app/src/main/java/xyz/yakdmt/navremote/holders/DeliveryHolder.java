@@ -12,6 +12,7 @@ import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Delivery;
 import xyz.yakdmt.navremote.utils.Events;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -45,16 +46,16 @@ public class DeliveryHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mId.setText(delivery.getId());
-        mClientName.setText("Клиент: "+delivery.getClient_name());
-        mDescription.setText(delivery.getDescription());
-        mStatus.setText(delivery.getStatus());
-        mCargoDesc.setText("Груз: "+delivery.getCargo_description());
-        mDepDate.setText("Ожид.: "+delivery.getExpected_start_date()+"Факт: "+delivery.getActual_start_date());
-        mStartPoint.setText(delivery.getStart_country()+", "+delivery.getStart_checkpoint_name());
-        mReceiver.setText(delivery.getReceiver_name());
-        mFinishPoint.setText(delivery.getFinish_checkpoint_name());
-        mArrivalDate.setText("Факт: "+delivery.getActual_finish_date());
+        mId.setText(TextUtil.removeNulls(delivery.getId()));
+        mClientName.setText(TextUtil.removeNulls("Клиент: "+delivery.getClient_name()));
+        mDescription.setText(TextUtil.removeNulls(delivery.getDescription()));
+        mStatus.setText(TextUtil.removeNulls(delivery.getStatus()));
+        mCargoDesc.setText(TextUtil.removeNulls("Груз: "+delivery.getCargo_description()));
+        mDepDate.setText(TextUtil.removeNulls("Ожид.: "+delivery.getExpected_start_date()+"Факт: "+delivery.getActual_start_date()));
+        mStartPoint.setText(TextUtil.removeNulls(delivery.getStart_country()+", "+delivery.getStart_checkpoint_name()));
+        mReceiver.setText(TextUtil.removeNulls(delivery.getReceiver_name()));
+        mFinishPoint.setText(TextUtil.removeNulls(delivery.getFinish_checkpoint_name()));
+        mArrivalDate.setText(TextUtil.removeNulls("Факт: "+delivery.getActual_finish_date()));
     }
 
 }

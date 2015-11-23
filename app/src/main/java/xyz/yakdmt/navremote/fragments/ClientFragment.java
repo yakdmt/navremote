@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Client;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -43,13 +44,13 @@ public class ClientFragment extends Fragment {
         if (!App.bindViews) {
             return view;
         }
-        mId.setText(client.getId());
-        mName.setText(client.getName());
-        mExtName.setText(client.getName());
-        mLastComment.setText(client.getLast_comment());
-        mEmail.setText("Email: "+client.getEmail());
-        mPhone.setText("Телефон: "+client.getPhone());
-        mContact.setText("Контакт: "+client.getContact());
+        mId.setText(TextUtil.removeNulls(client.getId()));
+        mName.setText(TextUtil.removeNulls(client.getName()));
+        mExtName.setText(TextUtil.removeNulls(client.getName()));
+        mLastComment.setText(TextUtil.removeNulls(client.getLast_comment()));
+        mEmail.setText(TextUtil.removeNulls("Email: "+client.getEmail()));
+        mPhone.setText(TextUtil.removeNulls("Телефон: "+client.getPhone()));
+        mContact.setText(TextUtil.removeNulls("Контакт: "+client.getContact()));
 
         return view;
     }

@@ -12,6 +12,7 @@ import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.database.Checkpoint;
 import xyz.yakdmt.navremote.database.RouteRow;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 08/11/15.
@@ -36,7 +37,7 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
     public void bind(final RouteRow routeRow) {
         final Checkpoint checkpoint = routeRow.getCheckpoint();
         if (checkpoint!=null) {
-            mCheckpointRef.setText("Пункт: "+checkpoint.getName());
+            mCheckpointRef.setText(TextUtil.removeNulls("Пункт: " + checkpoint.getName()));
             mCheckpointRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -47,12 +48,12 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mAddress.setText(routeRow.getCountry_name()+", "+routeRow.getAddress());
-        mProcedureType.setText("Тип процедуры: "+routeRow.getProcedure_type());
-        mExpectedArrival.setText("Ожид.: "+routeRow.getExpected_arrival_date());
-        mActualArrival.setText("Факт.: "+routeRow.getActual_arrival_date()+" "+routeRow.getActual_arrival_time());
-        mExpectedDeparture.setText("Ожид.: "+routeRow.getExpected_departure_date()+" "+routeRow.getExpected_departure_time());
-        mActualDeparture.setText("Факт.: "+routeRow.getActual_departure_date()+" "+routeRow.getActual_departure_time());
+        mAddress.setText(TextUtil.removeNulls(routeRow.getCountry_name()+", "+routeRow.getAddress()));
+        mProcedureType.setText(TextUtil.removeNulls("Тип процедуры: "+routeRow.getProcedure_type()));
+        mExpectedArrival.setText(TextUtil.removeNulls("Ожид.: "+routeRow.getExpected_arrival_date()));
+        mActualArrival.setText(TextUtil.removeNulls("Факт.: "+routeRow.getActual_arrival_date()+" "+routeRow.getActual_arrival_time()));
+        mExpectedDeparture.setText(TextUtil.removeNulls("Ожид.: "+routeRow.getExpected_departure_date()+" "+routeRow.getExpected_departure_time()));
+        mActualDeparture.setText(TextUtil.removeNulls("Факт.: "+routeRow.getActual_departure_date()+" "+routeRow.getActual_departure_time()));
 
     }
 

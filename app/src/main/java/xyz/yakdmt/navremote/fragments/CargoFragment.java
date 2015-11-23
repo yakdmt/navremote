@@ -20,6 +20,7 @@ import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.CommentDao;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.WorkDao;
+import xyz.yakdmt.navremote.utils.TextUtil;
 
 /**
  * Created by yakdmt on 10/11/15.
@@ -75,37 +76,37 @@ public class CargoFragment extends Fragment {
             return view;
         }
         //from holder
-        mId.setText(cargo.getId());
-        mClientName.setText("Клиент: "+cargo.getClient_name());
-        mDescription.setText("Описание: "+cargo.getDescription());
-        mAppearanceDate.setText("Дата появления: "+cargo.getAppearance_date());
-        mSenderName.setText(cargo.getSender_name());
-        mExpDepDate.setText(cargo.getExpected_departure_date());
-        mOccurence.setText(cargo.getOccurence_checkpoint_type()+", "+cargo.getOccurence_checkpoint_code());
-        mMasterDocument.setText(cargo.getMaster_document());
-        mTransportLine.setText(cargo.getTransport_line_code()+", "+cargo.getTransport_line_name());
-        mConsigneeName.setText(cargo.getConsignee_name());
-        mExpArrDate.setText(cargo.getExpected_arrival_date());
-        mDestination.setText(cargo.getDestination_checkpoint_type()+", "+cargo.getDestination_checkpoint_code());
-        mWeight.setText("Вес, кг: "+cargo.getWeight());
-        mVolume.setText("Объем, м^3: "+cargo.getVolume());
-        mCount.setText("Мест: "+cargo.getCount());
+        mId.setText(TextUtil.removeNulls(cargo.getId()));
+        mClientName.setText(TextUtil.removeNulls("Клиент: "+cargo.getClient_name()));
+        mDescription.setText(TextUtil.removeNulls("Описание: "+cargo.getDescription()));
+        mAppearanceDate.setText(TextUtil.removeNulls("Дата появления: "+cargo.getAppearance_date()));
+        mSenderName.setText(TextUtil.removeNulls(cargo.getSender_name()));
+        mExpDepDate.setText(TextUtil.removeNulls(cargo.getExpected_departure_date()));
+        mOccurence.setText(TextUtil.removeNulls(cargo.getOccurence_checkpoint_type()+", "+cargo.getOccurence_checkpoint_code()));
+        mMasterDocument.setText(TextUtil.removeNulls(cargo.getMaster_document()));
+        mTransportLine.setText(TextUtil.removeNulls(cargo.getTransport_line_code()+", "+cargo.getTransport_line_name()));
+        mConsigneeName.setText(TextUtil.removeNulls(cargo.getConsignee_name()));
+        mExpArrDate.setText(TextUtil.removeNulls(cargo.getExpected_arrival_date()));
+        mDestination.setText(TextUtil.removeNulls(cargo.getDestination_checkpoint_type()+", "+cargo.getDestination_checkpoint_code()));
+        mWeight.setText(TextUtil.removeNulls("Вес, кг: "+cargo.getWeight()));
+        mVolume.setText(TextUtil.removeNulls("Объем, м^3: "+cargo.getVolume()));
+        mCount.setText(TextUtil.removeNulls("Мест: "+cargo.getCount()));
         //additional
-        mRoute.setText("Маршрут: "+cargo.getRoute());
-        mTransport.setText("Транспорт: "+cargo.getTransport());
-        mCustoms.setText("Таможенное оформление: "+cargo.getCustoms_clearance());
-        mBroker.setText("Брокер: "+cargo.getBroker_name());
-        mDeliveryConditions.setText("Условия поставки: "+cargo.getDelivery_conditions());
-        mProcessingMode.setText("Режим обработки: "+cargo.getProcessing_mode());
-        mCost.setText("Стоимость: "+cargo.getCost()+" "+cargo.getCurrency_code());
-        mInsurance.setText("Страховка: "+cargo.getInsurance()+", "+cargo.getInsurance_amount());
-        mPerformer.setText("Исполнитель: "+cargo.getStatus());
-        mStatus.setText("Статус: " + cargo.getStatus());
-        mReadyState.setText("Готов к выдаче: "+cargo.getReady_state());
+        mRoute.setText(TextUtil.removeNulls("Маршрут: "+cargo.getRoute()));
+        mTransport.setText(TextUtil.removeNulls("Транспорт: "+cargo.getTransport()));
+        mCustoms.setText(TextUtil.removeNulls("Таможенное оформление: "+cargo.getCustoms_clearance()));
+        mBroker.setText(TextUtil.removeNulls("Брокер: "+cargo.getBroker_name()));
+        mDeliveryConditions.setText(TextUtil.removeNulls("Условия поставки: "+cargo.getDelivery_conditions()));
+        mProcessingMode.setText(TextUtil.removeNulls("Режим обработки: "+cargo.getProcessing_mode()));
+        mCost.setText(TextUtil.removeNulls("Стоимость: "+cargo.getCost()+" "+cargo.getCurrency_code()));
+        mInsurance.setText(TextUtil.removeNulls("Страховка: "+cargo.getInsurance()+", "+cargo.getInsurance_amount()));
+        mPerformer.setText(TextUtil.removeNulls("Исполнитель: "+cargo.getStatus()));
+        mStatus.setText(TextUtil.removeNulls("Статус: " + cargo.getStatus()));
+        mReadyState.setText(TextUtil.removeNulls("Готов к выдаче: "+cargo.getReady_state()));
         if (cargo.getOrder()!=null) {
             SpannableString orderId = new SpannableString(cargo.getOrder().getId());
             orderId.setSpan(new UnderlineSpan(), 0, orderId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mOrderRef.setText("Заказ:" + orderId);
+            mOrderRef.setText(TextUtil.removeNulls("Заказ:" + orderId));
             mOrderRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -114,7 +115,7 @@ public class CargoFragment extends Fragment {
             });
         }
         long worksCount = DaoTask.getInstance().getSession().getWorkDao().queryBuilder().where(WorkDao.Properties.Cargo_id.eq(cargo.getId())).count();
-        mWorksRef.setText("Работы: "+worksCount);
+        mWorksRef.setText(TextUtil.removeNulls("Работы: "+worksCount));
         if (worksCount>0) {
             mWorksRef.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,7 +125,7 @@ public class CargoFragment extends Fragment {
             });
         }
         long commentsCount = DaoTask.getInstance().getSession().getCommentDao().queryBuilder().where(CommentDao.Properties.Object_id.eq(cargo.getId())).count();
-        mCommentsRef.setText("Комментарии: "+commentsCount);
+        mCommentsRef.setText(TextUtil.removeNulls("Комментарии: "+commentsCount));
         if (commentsCount>0) {
             mCommentsRef.setOnClickListener(new View.OnClickListener() {
                 @Override
