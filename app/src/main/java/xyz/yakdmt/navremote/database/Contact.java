@@ -4,19 +4,30 @@ package xyz.yakdmt.navremote.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import xyz.yakdmt.navremote.utils.Column;
+import xyz.yakdmt.navremote.utils.Saveable;
+
 /**
  * Entity mapped to table "CONTACT".
  */
-public class Contact implements java.io.Serializable {
+public class Contact implements java.io.Serializable, Saveable {
 
+     @Column(name = "Но.")
     private String id;
+     @Column(name = "adgad")
     private String client_id;
+     @Column(name = "Название")
     private String name;
+     @Column(name = "Название Фирмы")
     private String client_name;
+     @Column(name = "Почтовый Индекс")
     private String postal_index;
     private String region_code;
     private String firm_name;
+     @Column(name = "Телефон")
     private String phone;
+     @Column(name = "Мобильный Телефон")
     private String mobile_phone;
     private String manager_code;
 
@@ -124,6 +135,9 @@ public class Contact implements java.io.Serializable {
     }
 
     // KEEP METHODS - put your custom methods here
+    public void save() {
+        DaoTask.getInstance().getSession().getContactDao().insertOrReplace(this);
+    }
     // KEEP METHODS END
 
 }

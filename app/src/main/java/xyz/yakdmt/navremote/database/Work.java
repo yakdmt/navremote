@@ -4,10 +4,13 @@ package xyz.yakdmt.navremote.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import xyz.yakdmt.navremote.utils.Saveable;
+
 /**
  * Entity mapped to table "WORK".
  */
-public class Work {
+public class Work implements Saveable {
 
     private String id;
     private String work_code;
@@ -174,6 +177,10 @@ public class Work {
     }
 
     // KEEP METHODS - put your custom methods here
+    @Override
+    public void save() {
+        DaoTask.getInstance().getSession().getWorkDao().insertOrReplace(this);
+    }
     // KEEP METHODS END
 
 }

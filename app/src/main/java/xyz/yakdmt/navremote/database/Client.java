@@ -4,10 +4,13 @@ package xyz.yakdmt.navremote.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import xyz.yakdmt.navremote.utils.Saveable;
+
 /**
  * Entity mapped to table "CLIENT".
  */
-public class Client implements java.io.Serializable {
+public class Client implements Saveable, java.io.Serializable {
 
     private String id;
     private String name;
@@ -94,6 +97,10 @@ public class Client implements java.io.Serializable {
     }
 
     // KEEP METHODS - put your custom methods here
+    @Override
+    public void save() {
+        DaoTask.getInstance().getSession().getClientDao().insertOrReplace(this);
+    }
     // KEEP METHODS END
 
 }

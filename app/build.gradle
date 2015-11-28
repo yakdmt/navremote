@@ -10,12 +10,31 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
+
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4096M"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
+    project.tasks.withType(com.android.build.gradle.tasks.Dex) {
+        additionalParameters=['--core-library'] // --core-library option needed for now, will fix it soon
     }
 }
 
@@ -29,4 +48,5 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'de.greenrobot:greendao:2.0.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:multidex:1.0.0'
 }

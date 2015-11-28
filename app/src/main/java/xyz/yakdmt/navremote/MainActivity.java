@@ -1,6 +1,7 @@
 package xyz.yakdmt.navremote;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.File;
+
 import xyz.yakdmt.navremote.database.Cargo;
 import xyz.yakdmt.navremote.database.CargoDao;
 import xyz.yakdmt.navremote.database.Checkpoint;
@@ -40,6 +43,9 @@ import xyz.yakdmt.navremote.database.Work;
 import xyz.yakdmt.navremote.fragments.AllCargoesFragment;
 import xyz.yakdmt.navremote.fragments.AllDeliveriesFragment;
 import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
+import xyz.yakdmt.navremote.tasks.GetFilesTask;
+import xyz.yakdmt.navremote.tasks.ParseTask;
+import xyz.yakdmt.navremote.utils.Constants;
 import xyz.yakdmt.navremote.utils.TextUtil;
 
 public class MainActivity extends AppCompatActivity
@@ -208,6 +214,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
      public void addTestData() {
+         refreshData();
          Client client1 = new Client("cl10001");
          Client client2 = new Client("cl10002");
          DaoTask.getInstance().getSession().getClientDao().insertOrReplace(client1);
@@ -351,4 +358,31 @@ public class MainActivity extends AppCompatActivity
         Intent intent= new Intent(this, CreateActivity.class);
         startActivity(intent);
     }
+
+    public void refreshData(){
+        ProgressDialog progress = new ProgressDialog(this);
+        progress.setCancelable(false);
+        progress.setMessage("Загрузка...");
+        if (checkFiles()) {
+            new ParseTask(this, progress).execute();
+        } else {
+            new GetFilesTask(this, progress).execute();
+        }
+    }
+
+    public boolean checkFiles(){
+        for (String filename : Constants.FILENAME_ARRAY) {
+            File output = new File(App.getContext().getFilesDir()+"/"+filename+ Constants.FILE_EXTENSION);
+            if (!output.exists()) {
+                return false;
+            }
+            if (output.length()==0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
+

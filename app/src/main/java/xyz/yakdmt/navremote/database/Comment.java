@@ -4,10 +4,13 @@ package xyz.yakdmt.navremote.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import xyz.yakdmt.navremote.utils.Saveable;
+
 /**
  * Entity mapped to table "COMMENT".
  */
-public class Comment {
+public class Comment implements Saveable {
 
     private String id;
     private String object_id;
@@ -94,6 +97,10 @@ public class Comment {
     }
 
     // KEEP METHODS - put your custom methods here
+    @Override
+    public void save() {
+        DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(this);
+    }
     // KEEP METHODS END
 
 }

@@ -4,10 +4,13 @@ package xyz.yakdmt.navremote.database;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import xyz.yakdmt.navremote.utils.Saveable;
+
 /**
  * Entity mapped to table "PRODUCT".
  */
-public class Product {
+public class Product implements Saveable {
 
     /** Not-null value. */
     private String id;
@@ -87,6 +90,10 @@ public class Product {
     }
 
     // KEEP METHODS - put your custom methods here
+    @Override
+    public void save() {
+        DaoTask.getInstance().getSession().getProductDao().insertOrReplace(this);
+    }
     // KEEP METHODS END
 
 }

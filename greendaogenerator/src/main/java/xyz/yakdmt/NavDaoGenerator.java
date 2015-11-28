@@ -14,6 +14,7 @@ public class NavDaoGenerator {
         schema.enableKeepSectionsByDefault();
         Entity order = schema.addEntity("Order");
         order.implementsSerializable();
+        order.implementsInterface("Saveable");
         order.addStringProperty("id").unique().primaryKey();
         order.addStringProperty("date");
         order.addStringProperty("time");
@@ -55,6 +56,7 @@ public class NavDaoGenerator {
         order.addStringProperty("comment");
 
         Entity client = schema.addEntity("Client");
+        client.implementsInterface("Saveable");
         client.implementsSerializable();
         client.addStringProperty("id").unique().primaryKey();
         client.addStringProperty("name");
@@ -69,15 +71,16 @@ public class NavDaoGenerator {
 
         Entity contact = schema.addEntity("Contact");
         contact.implementsSerializable();
-        contact.addStringProperty("id").unique().primaryKey();
-        contact.addStringProperty("client_id");
-        contact.addStringProperty("name");
-        contact.addStringProperty("client_name");
-        contact.addStringProperty("postal_index");
+        contact.implementsInterface("Saveable");
+        contact.addStringProperty("id").unique().primaryKey().codeBeforeField(getAnnotationString("Но."));
+        contact.addStringProperty("client_id").codeBeforeField(getAnnotationString("adgad"));
+        contact.addStringProperty("name").codeBeforeField(getAnnotationString("Название"));
+        contact.addStringProperty("client_name").codeBeforeField(getAnnotationString("Название Фирмы"));
+        contact.addStringProperty("postal_index").codeBeforeField(getAnnotationString("Почтовый Индекс"));
         contact.addStringProperty("region_code");
         contact.addStringProperty("firm_name");
-        contact.addStringProperty("phone");
-        contact.addStringProperty("mobile_phone");
+        contact.addStringProperty("phone").codeBeforeField(getAnnotationString("Телефон"));
+        contact.addStringProperty("mobile_phone").codeBeforeField(getAnnotationString("Мобильный Телефон"));
         contact.addStringProperty("manager_code");
 
         Property contactId = order.addStringProperty("contact_id").getProperty();
@@ -85,6 +88,7 @@ public class NavDaoGenerator {
 
         Entity cargo = schema.addEntity("Cargo");
         cargo.implementsSerializable();
+        cargo.implementsInterface("Saveable");
         cargo.addStringProperty("id").unique().primaryKey();
         cargo.addStringProperty("transport");
         cargo.addStringProperty("master_document");
@@ -147,6 +151,7 @@ public class NavDaoGenerator {
 
         Entity delivery = schema.addEntity("Delivery");
         delivery.implementsSerializable();
+        delivery.implementsInterface("Saveable");
         delivery.addStringProperty("id").unique().primaryKey();
         delivery.addStringProperty("transportation_method");
         delivery.addStringProperty("status");
@@ -178,6 +183,7 @@ public class NavDaoGenerator {
         delivery.addToOne(cargo, deliveryCargoId);
 
         Entity product = schema.addEntity("Product");
+        product.implementsInterface("Saveable");
         product.addStringProperty("id").notNull().primaryKey().unique();
         Property propertyOrderId = product.addStringProperty("order_id").getProperty();
         Property propertyStringNumber = product.addStringProperty("string_number").getProperty();
@@ -192,6 +198,7 @@ public class NavDaoGenerator {
 
 
         Entity document = schema.addEntity("Document");
+        document.implementsInterface("Saveable");
         Property orderId1 = document.addStringProperty("orderId").unique().getProperty();
         document.addToOne(order, orderId1);
         document.addIdProperty().autoincrement();
@@ -201,6 +208,7 @@ public class NavDaoGenerator {
 
 
         Entity checkpoint = schema.addEntity("Checkpoint");
+        checkpoint.implementsInterface("Saveable");
         checkpoint.addStringProperty("id").primaryKey();
         checkpoint.addStringProperty("name");
         checkpoint.addStringProperty("country_code");
@@ -211,12 +219,14 @@ public class NavDaoGenerator {
 
 
         Entity user = schema.addEntity("User");
+        user.implementsInterface("Saveable");
         user.addStringProperty("id").unique().primaryKey();
         user.addStringProperty("password");
         user.addStringProperty("username");
 
         Entity routeRow = schema.addEntity("RouteRow");
         //routeRow.addStringProperty("id").unique().primaryKey();
+        routeRow.implementsInterface("Saveable");
         Property property1 = routeRow.addStringProperty("delivery_id").getProperty();
         Property property2 = routeRow.addStringProperty("string_number").getProperty();
         Index index = new Index();
@@ -243,6 +253,7 @@ public class NavDaoGenerator {
         routeRow.addToOne(checkpoint, routeRowCheckpointId);
 
         Entity comment = schema.addEntity("Comment");
+        comment.implementsInterface("Saveable");
         comment.addStringProperty("id").unique().primaryKey();
         comment.addStringProperty("object_id");
         comment.addStringProperty("object_type");
@@ -252,6 +263,7 @@ public class NavDaoGenerator {
         comment.addStringProperty("department");
 
         Entity work = schema.addEntity("Work");
+        work.implementsInterface("Saveable");
         work.addStringProperty("id").unique().primaryKey();
         work.addStringProperty("work_code");
         work.addStringProperty("work_type");
@@ -272,4 +284,10 @@ public class NavDaoGenerator {
 
         new DaoGenerator().generateAll(schema, "../navremote/app/src/main/java/");
     }
+
+    public static String getAnnotationString(String entityName) {
+        return "@Column(name = \""+entityName+"\")";
+    }
+
+
 }
