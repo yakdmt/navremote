@@ -25,11 +25,17 @@ public class ClientDao extends AbstractDao<Client, String> {
     public static class Properties {
         public final static Property Id = new Property(0, String.class, "id", true, "ID");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Last_comment = new Property(2, String.class, "last_comment", false, "LAST_COMMENT");
+        public final static Property External_name = new Property(2, String.class, "external_name", false, "EXTERNAL_NAME");
         public final static Property Email = new Property(3, String.class, "email", false, "EMAIL");
         public final static Property Phone = new Property(4, String.class, "phone", false, "PHONE");
         public final static Property Contact = new Property(5, String.class, "contact", false, "CONTACT");
-        public final static Property Address = new Property(6, String.class, "address", false, "ADDRESS");
+        public final static Property Address_legal = new Property(6, String.class, "address_legal", false, "ADDRESS_LEGAL");
+        public final static Property Address_actual = new Property(7, String.class, "address_actual", false, "ADDRESS_ACTUAL");
+        public final static Property Extended_address = new Property(8, String.class, "extended_address", false, "EXTENDED_ADDRESS");
+        public final static Property Priority_group = new Property(9, String.class, "priority_group", false, "PRIORITY_GROUP");
+        public final static Property Manager = new Property(10, String.class, "manager", false, "MANAGER");
+        public final static Property Inn = new Property(11, String.class, "inn", false, "INN");
+        public final static Property Kpp = new Property(12, String.class, "kpp", false, "KPP");
     };
 
 
@@ -47,11 +53,17 @@ public class ClientDao extends AbstractDao<Client, String> {
         db.execSQL("CREATE TABLE " + constraint + "\"CLIENT\" (" + //
                 "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 0: id
                 "\"NAME\" TEXT," + // 1: name
-                "\"LAST_COMMENT\" TEXT," + // 2: last_comment
+                "\"EXTERNAL_NAME\" TEXT," + // 2: external_name
                 "\"EMAIL\" TEXT," + // 3: email
                 "\"PHONE\" TEXT," + // 4: phone
                 "\"CONTACT\" TEXT," + // 5: contact
-                "\"ADDRESS\" TEXT);"); // 6: address
+                "\"ADDRESS_LEGAL\" TEXT," + // 6: address_legal
+                "\"ADDRESS_ACTUAL\" TEXT," + // 7: address_actual
+                "\"EXTENDED_ADDRESS\" TEXT," + // 8: extended_address
+                "\"PRIORITY_GROUP\" TEXT," + // 9: priority_group
+                "\"MANAGER\" TEXT," + // 10: manager
+                "\"INN\" TEXT," + // 11: inn
+                "\"KPP\" TEXT);"); // 12: kpp
     }
 
     /** Drops the underlying database table. */
@@ -75,9 +87,9 @@ public class ClientDao extends AbstractDao<Client, String> {
             stmt.bindString(2, name);
         }
  
-        String last_comment = entity.getLast_comment();
-        if (last_comment != null) {
-            stmt.bindString(3, last_comment);
+        String external_name = entity.getExternal_name();
+        if (external_name != null) {
+            stmt.bindString(3, external_name);
         }
  
         String email = entity.getEmail();
@@ -95,9 +107,39 @@ public class ClientDao extends AbstractDao<Client, String> {
             stmt.bindString(6, contact);
         }
  
-        String address = entity.getAddress();
-        if (address != null) {
-            stmt.bindString(7, address);
+        String address_legal = entity.getAddress_legal();
+        if (address_legal != null) {
+            stmt.bindString(7, address_legal);
+        }
+ 
+        String address_actual = entity.getAddress_actual();
+        if (address_actual != null) {
+            stmt.bindString(8, address_actual);
+        }
+ 
+        String extended_address = entity.getExtended_address();
+        if (extended_address != null) {
+            stmt.bindString(9, extended_address);
+        }
+ 
+        String priority_group = entity.getPriority_group();
+        if (priority_group != null) {
+            stmt.bindString(10, priority_group);
+        }
+ 
+        String manager = entity.getManager();
+        if (manager != null) {
+            stmt.bindString(11, manager);
+        }
+ 
+        String inn = entity.getInn();
+        if (inn != null) {
+            stmt.bindString(12, inn);
+        }
+ 
+        String kpp = entity.getKpp();
+        if (kpp != null) {
+            stmt.bindString(13, kpp);
         }
     }
 
@@ -113,11 +155,17 @@ public class ClientDao extends AbstractDao<Client, String> {
         Client entity = new Client( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // last_comment
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // external_name
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // email
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // phone
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // contact
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // address
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // address_legal
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // address_actual
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // extended_address
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // priority_group
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // manager
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // inn
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // kpp
         );
         return entity;
     }
@@ -127,11 +175,17 @@ public class ClientDao extends AbstractDao<Client, String> {
     public void readEntity(Cursor cursor, Client entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setLast_comment(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setExternal_name(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setEmail(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setPhone(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setContact(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setAddress(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setAddress_legal(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setAddress_actual(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setExtended_address(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setPriority_group(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setManager(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setInn(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setKpp(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
      }
     
     /** @inheritdoc */

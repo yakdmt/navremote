@@ -5,6 +5,7 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 
+import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 
 /**
@@ -12,12 +13,19 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class Comment implements Saveable {
 
+     @Column(name = "Запись Но.")
     private String id;
+     @Column(name = "Объект ID")
     private String object_id;
+     @Column(name = "Тип Объекта")
     private String object_type;
+     @Column(name = "Дата")
     private String date;
+     @Column(name = "Комментарий")
     private String text;
+     @Column(name = "Автор")
     private String author;
+     @Column(name = "Отдел")
     private String department;
 
     // KEEP FIELDS - put your custom fields here

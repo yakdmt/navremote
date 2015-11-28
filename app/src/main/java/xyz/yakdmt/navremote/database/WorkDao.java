@@ -36,8 +36,7 @@ public class WorkDao extends AbstractDao<Work, String> {
         public final static Property Cargo_id = new Property(10, String.class, "cargo_id", false, "CARGO_ID");
         public final static Property Actual_finish_date = new Property(11, String.class, "actual_finish_date", false, "ACTUAL_FINISH_DATE");
         public final static Property Actual_finish_time = new Property(12, String.class, "actual_finish_time", false, "ACTUAL_FINISH_TIME");
-        public final static Property Creator = new Property(13, String.class, "creator", false, "CREATOR");
-        public final static Property Responsible_department = new Property(14, String.class, "responsible_department", false, "RESPONSIBLE_DEPARTMENT");
+        public final static Property Responsible_department = new Property(13, String.class, "responsible_department", false, "RESPONSIBLE_DEPARTMENT");
     };
 
 
@@ -66,8 +65,7 @@ public class WorkDao extends AbstractDao<Work, String> {
                 "\"CARGO_ID\" TEXT," + // 10: cargo_id
                 "\"ACTUAL_FINISH_DATE\" TEXT," + // 11: actual_finish_date
                 "\"ACTUAL_FINISH_TIME\" TEXT," + // 12: actual_finish_time
-                "\"CREATOR\" TEXT," + // 13: creator
-                "\"RESPONSIBLE_DEPARTMENT\" TEXT);"); // 14: responsible_department
+                "\"RESPONSIBLE_DEPARTMENT\" TEXT);"); // 13: responsible_department
     }
 
     /** Drops the underlying database table. */
@@ -146,14 +144,9 @@ public class WorkDao extends AbstractDao<Work, String> {
             stmt.bindString(13, actual_finish_time);
         }
  
-        String creator = entity.getCreator();
-        if (creator != null) {
-            stmt.bindString(14, creator);
-        }
- 
         String responsible_department = entity.getResponsible_department();
         if (responsible_department != null) {
-            stmt.bindString(15, responsible_department);
+            stmt.bindString(14, responsible_department);
         }
     }
 
@@ -180,8 +173,7 @@ public class WorkDao extends AbstractDao<Work, String> {
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // cargo_id
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // actual_finish_date
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // actual_finish_time
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // creator
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // responsible_department
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // responsible_department
         );
         return entity;
     }
@@ -202,8 +194,7 @@ public class WorkDao extends AbstractDao<Work, String> {
         entity.setCargo_id(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setActual_finish_date(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setActual_finish_time(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setCreator(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setResponsible_department(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setResponsible_department(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     /** @inheritdoc */

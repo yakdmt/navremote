@@ -47,7 +47,6 @@ public class ClientFragment extends Fragment {
         mId.setText(TextUtil.removeNulls(client.getId()));
         mName.setText(TextUtil.removeNulls(client.getName()));
         mExtName.setText(TextUtil.removeNulls(client.getName()));
-        mLastComment.setText(TextUtil.removeNulls(client.getLast_comment()));
         mEmail.setText(TextUtil.removeNulls("Email: "+client.getEmail()));
         mPhone.setText(TextUtil.removeNulls("Телефон: "+client.getPhone()));
         mContact.setText(TextUtil.removeNulls("Контакт: "+client.getContact()));

@@ -33,6 +33,7 @@ public class ContactDao extends AbstractDao<Contact, String> {
         public final static Property Phone = new Property(7, String.class, "phone", false, "PHONE");
         public final static Property Mobile_phone = new Property(8, String.class, "mobile_phone", false, "MOBILE_PHONE");
         public final static Property Manager_code = new Property(9, String.class, "manager_code", false, "MANAGER_CODE");
+        public final static Property Fax = new Property(10, String.class, "fax", false, "FAX");
     };
 
 
@@ -57,7 +58,8 @@ public class ContactDao extends AbstractDao<Contact, String> {
                 "\"FIRM_NAME\" TEXT," + // 6: firm_name
                 "\"PHONE\" TEXT," + // 7: phone
                 "\"MOBILE_PHONE\" TEXT," + // 8: mobile_phone
-                "\"MANAGER_CODE\" TEXT);"); // 9: manager_code
+                "\"MANAGER_CODE\" TEXT," + // 9: manager_code
+                "\"FAX\" TEXT);"); // 10: fax
     }
 
     /** Drops the underlying database table. */
@@ -120,6 +122,11 @@ public class ContactDao extends AbstractDao<Contact, String> {
         if (manager_code != null) {
             stmt.bindString(10, manager_code);
         }
+ 
+        String fax = entity.getFax();
+        if (fax != null) {
+            stmt.bindString(11, fax);
+        }
     }
 
     /** @inheritdoc */
@@ -141,7 +148,8 @@ public class ContactDao extends AbstractDao<Contact, String> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // firm_name
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // phone
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // mobile_phone
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // manager_code
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // manager_code
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // fax
         );
         return entity;
     }
@@ -159,6 +167,7 @@ public class ContactDao extends AbstractDao<Contact, String> {
         entity.setPhone(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setMobile_phone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setManager_code(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setFax(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     /** @inheritdoc */

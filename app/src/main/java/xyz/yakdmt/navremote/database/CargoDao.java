@@ -37,48 +37,33 @@ public class CargoDao extends AbstractDao<Cargo, String> {
         public final static Property Transport_line_name = new Property(8, String.class, "transport_line_name", false, "TRANSPORT_LINE_NAME");
         public final static Property Client_name = new Property(9, String.class, "client_name", false, "CLIENT_NAME");
         public final static Property Description = new Property(10, String.class, "description", false, "DESCRIPTION");
-        public final static Property Insurance_amount = new Property(11, String.class, "insurance_amount", false, "INSURANCE_AMOUNT");
-        public final static Property Insurance = new Property(12, String.class, "insurance", false, "INSURANCE");
-        public final static Property Count = new Property(13, String.class, "count", false, "COUNT");
-        public final static Property Weight = new Property(14, String.class, "weight", false, "WEIGHT");
-        public final static Property Volume = new Property(15, String.class, "volume", false, "VOLUME");
-        public final static Property Occurence_checkpoint_type = new Property(16, String.class, "occurence_checkpoint_type", false, "OCCURENCE_CHECKPOINT_TYPE");
-        public final static Property Occurence_checkpoint_code = new Property(17, String.class, "occurence_checkpoint_code", false, "OCCURENCE_CHECKPOINT_CODE");
-        public final static Property Destination_checkpoint_type = new Property(18, String.class, "destination_checkpoint_type", false, "DESTINATION_CHECKPOINT_TYPE");
-        public final static Property Currency_code = new Property(19, String.class, "currency_code", false, "CURRENCY_CODE");
-        public final static Property Cost = new Property(20, String.class, "cost", false, "COST");
-        public final static Property Customs_clearance = new Property(21, String.class, "customs_clearance", false, "CUSTOMS_CLEARANCE");
-        public final static Property Broker_code = new Property(22, String.class, "broker_code", false, "BROKER_CODE");
-        public final static Property Broker_name = new Property(23, String.class, "broker_name", false, "BROKER_NAME");
-        public final static Property Delivery_conditions = new Property(24, String.class, "delivery_conditions", false, "DELIVERY_CONDITIONS");
-        public final static Property Priority = new Property(25, String.class, "priority", false, "PRIORITY");
-        public final static Property Processing_mode = new Property(26, String.class, "processing_mode", false, "PROCESSING_MODE");
-        public final static Property Consignee_code = new Property(27, String.class, "consignee_code", false, "CONSIGNEE_CODE");
-        public final static Property Consignee_name = new Property(28, String.class, "consignee_name", false, "CONSIGNEE_NAME");
-        public final static Property Route = new Property(29, String.class, "route", false, "ROUTE");
-        public final static Property Contract_number = new Property(30, String.class, "contract_number", false, "CONTRACT_NUMBER");
-        public final static Property Performer_type = new Property(31, String.class, "performer_type", false, "PERFORMER_TYPE");
-        public final static Property Performer_id = new Property(32, String.class, "performer_id", false, "PERFORMER_ID");
-        public final static Property Performer_name = new Property(33, String.class, "performer_name", false, "PERFORMER_NAME");
-        public final static Property Status = new Property(34, String.class, "status", false, "STATUS");
-        public final static Property Expected_departure_date = new Property(35, String.class, "expected_departure_date", false, "EXPECTED_DEPARTURE_DATE");
-        public final static Property Expected_arrival_date = new Property(36, String.class, "expected_arrival_date", false, "EXPECTED_ARRIVAL_DATE");
-        public final static Property Ready_state = new Property(37, String.class, "ready_state", false, "READY_STATE");
-        public final static Property Container_number = new Property(38, String.class, "container_number", false, "CONTAINER_NUMBER");
-        public final static Property Department_name = new Property(39, String.class, "department_name", false, "DEPARTMENT_NAME");
-        public final static Property Product_count = new Property(40, String.class, "product_count", false, "PRODUCT_COUNT");
-        public final static Property Dt_registration_date = new Property(41, String.class, "dt_registration_date", false, "DT_REGISTRATION_DATE");
-        public final static Property Documents_check_date = new Property(42, String.class, "documents_check_date", false, "DOCUMENTS_CHECK_DATE");
-        public final static Property Customs_payment_date = new Property(43, String.class, "customs_payment_date", false, "CUSTOMS_PAYMENT_DATE");
-        public final static Property Release_date = new Property(44, String.class, "release_date", false, "RELEASE_DATE");
-        public final static Property Inspectial_date = new Property(45, String.class, "inspectial_date", false, "INSPECTIAL_DATE");
-        public final static Property Terminal = new Property(46, String.class, "terminal", false, "TERMINAL");
-        public final static Property Extradited_from_stock = new Property(47, String.class, "extradited_from_stock", false, "EXTRADITED_FROM_STOCK");
-        public final static Property Customs_start_date = new Property(48, String.class, "customs_start_date", false, "CUSTOMS_START_DATE");
-        public final static Property Customs_end_date = new Property(49, String.class, "customs_end_date", false, "CUSTOMS_END_DATE");
-        public final static Property Executed_works = new Property(50, String.class, "executed_works", false, "EXECUTED_WORKS");
-        public final static Property Client_id = new Property(51, String.class, "client_id", false, "CLIENT_ID");
-        public final static Property Order_id = new Property(52, String.class, "order_id", false, "ORDER_ID");
+        public final static Property Standard_description = new Property(11, String.class, "standard_description", false, "STANDARD_DESCRIPTION");
+        public final static Property Insurance_amount = new Property(12, String.class, "insurance_amount", false, "INSURANCE_AMOUNT");
+        public final static Property Insurance = new Property(13, String.class, "insurance", false, "INSURANCE");
+        public final static Property Count = new Property(14, String.class, "count", false, "COUNT");
+        public final static Property Weight = new Property(15, String.class, "weight", false, "WEIGHT");
+        public final static Property Volume = new Property(16, String.class, "volume", false, "VOLUME");
+        public final static Property Occurence_checkpoint_type = new Property(17, String.class, "occurence_checkpoint_type", false, "OCCURENCE_CHECKPOINT_TYPE");
+        public final static Property Occurence_checkpoint_code = new Property(18, String.class, "occurence_checkpoint_code", false, "OCCURENCE_CHECKPOINT_CODE");
+        public final static Property Destination_checkpoint_type = new Property(19, String.class, "destination_checkpoint_type", false, "DESTINATION_CHECKPOINT_TYPE");
+        public final static Property Currency_code = new Property(20, String.class, "currency_code", false, "CURRENCY_CODE");
+        public final static Property Cost = new Property(21, String.class, "cost", false, "COST");
+        public final static Property Customs_clearance = new Property(22, String.class, "customs_clearance", false, "CUSTOMS_CLEARANCE");
+        public final static Property Broker_code = new Property(23, String.class, "broker_code", false, "BROKER_CODE");
+        public final static Property Broker_name = new Property(24, String.class, "broker_name", false, "BROKER_NAME");
+        public final static Property Delivery_conditions = new Property(25, String.class, "delivery_conditions", false, "DELIVERY_CONDITIONS");
+        public final static Property Consignee_code = new Property(26, String.class, "consignee_code", false, "CONSIGNEE_CODE");
+        public final static Property Consignee_name = new Property(27, String.class, "consignee_name", false, "CONSIGNEE_NAME");
+        public final static Property Container_number = new Property(28, String.class, "container_number", false, "CONTAINER_NUMBER");
+        public final static Property Department_name = new Property(29, String.class, "department_name", false, "DEPARTMENT_NAME");
+        public final static Property Product_count = new Property(30, String.class, "product_count", false, "PRODUCT_COUNT");
+        public final static Property Dt_registration_date = new Property(31, String.class, "dt_registration_date", false, "DT_REGISTRATION_DATE");
+        public final static Property Release_date = new Property(32, String.class, "release_date", false, "RELEASE_DATE");
+        public final static Property Terminal = new Property(33, String.class, "terminal", false, "TERMINAL");
+        public final static Property Dt_number = new Property(34, String.class, "dt_number", false, "DT_NUMBER");
+        public final static Property Wagon_number = new Property(35, String.class, "wagon_number", false, "WAGON_NUMBER");
+        public final static Property Client_id = new Property(36, String.class, "client_id", false, "CLIENT_ID");
+        public final static Property Order_id = new Property(37, String.class, "order_id", false, "ORDER_ID");
     };
 
     private DaoSession daoSession;
@@ -108,48 +93,33 @@ public class CargoDao extends AbstractDao<Cargo, String> {
                 "\"TRANSPORT_LINE_NAME\" TEXT," + // 8: transport_line_name
                 "\"CLIENT_NAME\" TEXT," + // 9: client_name
                 "\"DESCRIPTION\" TEXT," + // 10: description
-                "\"INSURANCE_AMOUNT\" TEXT," + // 11: insurance_amount
-                "\"INSURANCE\" TEXT," + // 12: insurance
-                "\"COUNT\" TEXT," + // 13: count
-                "\"WEIGHT\" TEXT," + // 14: weight
-                "\"VOLUME\" TEXT," + // 15: volume
-                "\"OCCURENCE_CHECKPOINT_TYPE\" TEXT," + // 16: occurence_checkpoint_type
-                "\"OCCURENCE_CHECKPOINT_CODE\" TEXT," + // 17: occurence_checkpoint_code
-                "\"DESTINATION_CHECKPOINT_TYPE\" TEXT," + // 18: destination_checkpoint_type
-                "\"CURRENCY_CODE\" TEXT," + // 19: currency_code
-                "\"COST\" TEXT," + // 20: cost
-                "\"CUSTOMS_CLEARANCE\" TEXT," + // 21: customs_clearance
-                "\"BROKER_CODE\" TEXT," + // 22: broker_code
-                "\"BROKER_NAME\" TEXT," + // 23: broker_name
-                "\"DELIVERY_CONDITIONS\" TEXT," + // 24: delivery_conditions
-                "\"PRIORITY\" TEXT," + // 25: priority
-                "\"PROCESSING_MODE\" TEXT," + // 26: processing_mode
-                "\"CONSIGNEE_CODE\" TEXT," + // 27: consignee_code
-                "\"CONSIGNEE_NAME\" TEXT," + // 28: consignee_name
-                "\"ROUTE\" TEXT," + // 29: route
-                "\"CONTRACT_NUMBER\" TEXT," + // 30: contract_number
-                "\"PERFORMER_TYPE\" TEXT," + // 31: performer_type
-                "\"PERFORMER_ID\" TEXT," + // 32: performer_id
-                "\"PERFORMER_NAME\" TEXT," + // 33: performer_name
-                "\"STATUS\" TEXT," + // 34: status
-                "\"EXPECTED_DEPARTURE_DATE\" TEXT," + // 35: expected_departure_date
-                "\"EXPECTED_ARRIVAL_DATE\" TEXT," + // 36: expected_arrival_date
-                "\"READY_STATE\" TEXT," + // 37: ready_state
-                "\"CONTAINER_NUMBER\" TEXT," + // 38: container_number
-                "\"DEPARTMENT_NAME\" TEXT," + // 39: department_name
-                "\"PRODUCT_COUNT\" TEXT," + // 40: product_count
-                "\"DT_REGISTRATION_DATE\" TEXT," + // 41: dt_registration_date
-                "\"DOCUMENTS_CHECK_DATE\" TEXT," + // 42: documents_check_date
-                "\"CUSTOMS_PAYMENT_DATE\" TEXT," + // 43: customs_payment_date
-                "\"RELEASE_DATE\" TEXT," + // 44: release_date
-                "\"INSPECTIAL_DATE\" TEXT," + // 45: inspectial_date
-                "\"TERMINAL\" TEXT," + // 46: terminal
-                "\"EXTRADITED_FROM_STOCK\" TEXT," + // 47: extradited_from_stock
-                "\"CUSTOMS_START_DATE\" TEXT," + // 48: customs_start_date
-                "\"CUSTOMS_END_DATE\" TEXT," + // 49: customs_end_date
-                "\"EXECUTED_WORKS\" TEXT," + // 50: executed_works
-                "\"CLIENT_ID\" TEXT," + // 51: client_id
-                "\"ORDER_ID\" TEXT);"); // 52: order_id
+                "\"STANDARD_DESCRIPTION\" TEXT," + // 11: standard_description
+                "\"INSURANCE_AMOUNT\" TEXT," + // 12: insurance_amount
+                "\"INSURANCE\" TEXT," + // 13: insurance
+                "\"COUNT\" TEXT," + // 14: count
+                "\"WEIGHT\" TEXT," + // 15: weight
+                "\"VOLUME\" TEXT," + // 16: volume
+                "\"OCCURENCE_CHECKPOINT_TYPE\" TEXT," + // 17: occurence_checkpoint_type
+                "\"OCCURENCE_CHECKPOINT_CODE\" TEXT," + // 18: occurence_checkpoint_code
+                "\"DESTINATION_CHECKPOINT_TYPE\" TEXT," + // 19: destination_checkpoint_type
+                "\"CURRENCY_CODE\" TEXT," + // 20: currency_code
+                "\"COST\" TEXT," + // 21: cost
+                "\"CUSTOMS_CLEARANCE\" TEXT," + // 22: customs_clearance
+                "\"BROKER_CODE\" TEXT," + // 23: broker_code
+                "\"BROKER_NAME\" TEXT," + // 24: broker_name
+                "\"DELIVERY_CONDITIONS\" TEXT," + // 25: delivery_conditions
+                "\"CONSIGNEE_CODE\" TEXT," + // 26: consignee_code
+                "\"CONSIGNEE_NAME\" TEXT," + // 27: consignee_name
+                "\"CONTAINER_NUMBER\" TEXT," + // 28: container_number
+                "\"DEPARTMENT_NAME\" TEXT," + // 29: department_name
+                "\"PRODUCT_COUNT\" TEXT," + // 30: product_count
+                "\"DT_REGISTRATION_DATE\" TEXT," + // 31: dt_registration_date
+                "\"RELEASE_DATE\" TEXT," + // 32: release_date
+                "\"TERMINAL\" TEXT," + // 33: terminal
+                "\"DT_NUMBER\" TEXT," + // 34: dt_number
+                "\"WAGON_NUMBER\" TEXT," + // 35: wagon_number
+                "\"CLIENT_ID\" TEXT," + // 36: client_id
+                "\"ORDER_ID\" TEXT);"); // 37: order_id
     }
 
     /** Drops the underlying database table. */
@@ -218,214 +188,139 @@ public class CargoDao extends AbstractDao<Cargo, String> {
             stmt.bindString(11, description);
         }
  
+        String standard_description = entity.getStandard_description();
+        if (standard_description != null) {
+            stmt.bindString(12, standard_description);
+        }
+ 
         String insurance_amount = entity.getInsurance_amount();
         if (insurance_amount != null) {
-            stmt.bindString(12, insurance_amount);
+            stmt.bindString(13, insurance_amount);
         }
  
         String insurance = entity.getInsurance();
         if (insurance != null) {
-            stmt.bindString(13, insurance);
+            stmt.bindString(14, insurance);
         }
  
         String count = entity.getCount();
         if (count != null) {
-            stmt.bindString(14, count);
+            stmt.bindString(15, count);
         }
  
         String weight = entity.getWeight();
         if (weight != null) {
-            stmt.bindString(15, weight);
+            stmt.bindString(16, weight);
         }
  
         String volume = entity.getVolume();
         if (volume != null) {
-            stmt.bindString(16, volume);
+            stmt.bindString(17, volume);
         }
  
         String occurence_checkpoint_type = entity.getOccurence_checkpoint_type();
         if (occurence_checkpoint_type != null) {
-            stmt.bindString(17, occurence_checkpoint_type);
+            stmt.bindString(18, occurence_checkpoint_type);
         }
  
         String occurence_checkpoint_code = entity.getOccurence_checkpoint_code();
         if (occurence_checkpoint_code != null) {
-            stmt.bindString(18, occurence_checkpoint_code);
+            stmt.bindString(19, occurence_checkpoint_code);
         }
  
         String destination_checkpoint_type = entity.getDestination_checkpoint_type();
         if (destination_checkpoint_type != null) {
-            stmt.bindString(19, destination_checkpoint_type);
+            stmt.bindString(20, destination_checkpoint_type);
         }
  
         String currency_code = entity.getCurrency_code();
         if (currency_code != null) {
-            stmt.bindString(20, currency_code);
+            stmt.bindString(21, currency_code);
         }
  
         String cost = entity.getCost();
         if (cost != null) {
-            stmt.bindString(21, cost);
+            stmt.bindString(22, cost);
         }
  
         String customs_clearance = entity.getCustoms_clearance();
         if (customs_clearance != null) {
-            stmt.bindString(22, customs_clearance);
+            stmt.bindString(23, customs_clearance);
         }
  
         String broker_code = entity.getBroker_code();
         if (broker_code != null) {
-            stmt.bindString(23, broker_code);
+            stmt.bindString(24, broker_code);
         }
  
         String broker_name = entity.getBroker_name();
         if (broker_name != null) {
-            stmt.bindString(24, broker_name);
+            stmt.bindString(25, broker_name);
         }
  
         String delivery_conditions = entity.getDelivery_conditions();
         if (delivery_conditions != null) {
-            stmt.bindString(25, delivery_conditions);
-        }
- 
-        String priority = entity.getPriority();
-        if (priority != null) {
-            stmt.bindString(26, priority);
-        }
- 
-        String processing_mode = entity.getProcessing_mode();
-        if (processing_mode != null) {
-            stmt.bindString(27, processing_mode);
+            stmt.bindString(26, delivery_conditions);
         }
  
         String consignee_code = entity.getConsignee_code();
         if (consignee_code != null) {
-            stmt.bindString(28, consignee_code);
+            stmt.bindString(27, consignee_code);
         }
  
         String consignee_name = entity.getConsignee_name();
         if (consignee_name != null) {
-            stmt.bindString(29, consignee_name);
-        }
- 
-        String route = entity.getRoute();
-        if (route != null) {
-            stmt.bindString(30, route);
-        }
- 
-        String contract_number = entity.getContract_number();
-        if (contract_number != null) {
-            stmt.bindString(31, contract_number);
-        }
- 
-        String performer_type = entity.getPerformer_type();
-        if (performer_type != null) {
-            stmt.bindString(32, performer_type);
-        }
- 
-        String performer_id = entity.getPerformer_id();
-        if (performer_id != null) {
-            stmt.bindString(33, performer_id);
-        }
- 
-        String performer_name = entity.getPerformer_name();
-        if (performer_name != null) {
-            stmt.bindString(34, performer_name);
-        }
- 
-        String status = entity.getStatus();
-        if (status != null) {
-            stmt.bindString(35, status);
-        }
- 
-        String expected_departure_date = entity.getExpected_departure_date();
-        if (expected_departure_date != null) {
-            stmt.bindString(36, expected_departure_date);
-        }
- 
-        String expected_arrival_date = entity.getExpected_arrival_date();
-        if (expected_arrival_date != null) {
-            stmt.bindString(37, expected_arrival_date);
-        }
- 
-        String ready_state = entity.getReady_state();
-        if (ready_state != null) {
-            stmt.bindString(38, ready_state);
+            stmt.bindString(28, consignee_name);
         }
  
         String container_number = entity.getContainer_number();
         if (container_number != null) {
-            stmt.bindString(39, container_number);
+            stmt.bindString(29, container_number);
         }
  
         String department_name = entity.getDepartment_name();
         if (department_name != null) {
-            stmt.bindString(40, department_name);
+            stmt.bindString(30, department_name);
         }
  
         String product_count = entity.getProduct_count();
         if (product_count != null) {
-            stmt.bindString(41, product_count);
+            stmt.bindString(31, product_count);
         }
  
         String dt_registration_date = entity.getDt_registration_date();
         if (dt_registration_date != null) {
-            stmt.bindString(42, dt_registration_date);
-        }
- 
-        String documents_check_date = entity.getDocuments_check_date();
-        if (documents_check_date != null) {
-            stmt.bindString(43, documents_check_date);
-        }
- 
-        String customs_payment_date = entity.getCustoms_payment_date();
-        if (customs_payment_date != null) {
-            stmt.bindString(44, customs_payment_date);
+            stmt.bindString(32, dt_registration_date);
         }
  
         String release_date = entity.getRelease_date();
         if (release_date != null) {
-            stmt.bindString(45, release_date);
-        }
- 
-        String inspectial_date = entity.getInspectial_date();
-        if (inspectial_date != null) {
-            stmt.bindString(46, inspectial_date);
+            stmt.bindString(33, release_date);
         }
  
         String terminal = entity.getTerminal();
         if (terminal != null) {
-            stmt.bindString(47, terminal);
+            stmt.bindString(34, terminal);
         }
  
-        String extradited_from_stock = entity.getExtradited_from_stock();
-        if (extradited_from_stock != null) {
-            stmt.bindString(48, extradited_from_stock);
+        String dt_number = entity.getDt_number();
+        if (dt_number != null) {
+            stmt.bindString(35, dt_number);
         }
  
-        String customs_start_date = entity.getCustoms_start_date();
-        if (customs_start_date != null) {
-            stmt.bindString(49, customs_start_date);
-        }
- 
-        String customs_end_date = entity.getCustoms_end_date();
-        if (customs_end_date != null) {
-            stmt.bindString(50, customs_end_date);
-        }
- 
-        String executed_works = entity.getExecuted_works();
-        if (executed_works != null) {
-            stmt.bindString(51, executed_works);
+        String wagon_number = entity.getWagon_number();
+        if (wagon_number != null) {
+            stmt.bindString(36, wagon_number);
         }
  
         String client_id = entity.getClient_id();
         if (client_id != null) {
-            stmt.bindString(52, client_id);
+            stmt.bindString(37, client_id);
         }
  
         String order_id = entity.getOrder_id();
         if (order_id != null) {
-            stmt.bindString(53, order_id);
+            stmt.bindString(38, order_id);
         }
     }
 
@@ -456,48 +351,33 @@ public class CargoDao extends AbstractDao<Cargo, String> {
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // transport_line_name
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // client_name
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // description
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // insurance_amount
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // insurance
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // count
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // weight
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // volume
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // occurence_checkpoint_type
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // occurence_checkpoint_code
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // destination_checkpoint_type
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // currency_code
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // cost
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // customs_clearance
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // broker_code
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // broker_name
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // delivery_conditions
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // priority
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // processing_mode
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // consignee_code
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // consignee_name
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // route
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // contract_number
-            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // performer_type
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // performer_id
-            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // performer_name
-            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // status
-            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // expected_departure_date
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // expected_arrival_date
-            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // ready_state
-            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // container_number
-            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // department_name
-            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40), // product_count
-            cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41), // dt_registration_date
-            cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42), // documents_check_date
-            cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43), // customs_payment_date
-            cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44), // release_date
-            cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45), // inspectial_date
-            cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46), // terminal
-            cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47), // extradited_from_stock
-            cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48), // customs_start_date
-            cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49), // customs_end_date
-            cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50), // executed_works
-            cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51), // client_id
-            cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52) // order_id
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // standard_description
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // insurance_amount
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // insurance
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // count
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // weight
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // volume
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // occurence_checkpoint_type
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // occurence_checkpoint_code
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // destination_checkpoint_type
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // currency_code
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // cost
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // customs_clearance
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // broker_code
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // broker_name
+            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // delivery_conditions
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // consignee_code
+            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // consignee_name
+            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // container_number
+            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // department_name
+            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // product_count
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // dt_registration_date
+            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // release_date
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // terminal
+            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // dt_number
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // wagon_number
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // client_id
+            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37) // order_id
         );
         return entity;
     }
@@ -516,48 +396,33 @@ public class CargoDao extends AbstractDao<Cargo, String> {
         entity.setTransport_line_name(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setClient_name(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setDescription(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setInsurance_amount(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setInsurance(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setCount(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setWeight(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setVolume(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setOccurence_checkpoint_type(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setOccurence_checkpoint_code(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setDestination_checkpoint_type(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setCurrency_code(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setCost(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setCustoms_clearance(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setBroker_code(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setBroker_name(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setDelivery_conditions(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setPriority(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
-        entity.setProcessing_mode(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
-        entity.setConsignee_code(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
-        entity.setConsignee_name(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setRoute(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setContract_number(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setPerformer_type(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
-        entity.setPerformer_id(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setPerformer_name(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
-        entity.setStatus(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
-        entity.setExpected_departure_date(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
-        entity.setExpected_arrival_date(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setReady_state(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
-        entity.setContainer_number(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
-        entity.setDepartment_name(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
-        entity.setProduct_count(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
-        entity.setDt_registration_date(cursor.isNull(offset + 41) ? null : cursor.getString(offset + 41));
-        entity.setDocuments_check_date(cursor.isNull(offset + 42) ? null : cursor.getString(offset + 42));
-        entity.setCustoms_payment_date(cursor.isNull(offset + 43) ? null : cursor.getString(offset + 43));
-        entity.setRelease_date(cursor.isNull(offset + 44) ? null : cursor.getString(offset + 44));
-        entity.setInspectial_date(cursor.isNull(offset + 45) ? null : cursor.getString(offset + 45));
-        entity.setTerminal(cursor.isNull(offset + 46) ? null : cursor.getString(offset + 46));
-        entity.setExtradited_from_stock(cursor.isNull(offset + 47) ? null : cursor.getString(offset + 47));
-        entity.setCustoms_start_date(cursor.isNull(offset + 48) ? null : cursor.getString(offset + 48));
-        entity.setCustoms_end_date(cursor.isNull(offset + 49) ? null : cursor.getString(offset + 49));
-        entity.setExecuted_works(cursor.isNull(offset + 50) ? null : cursor.getString(offset + 50));
-        entity.setClient_id(cursor.isNull(offset + 51) ? null : cursor.getString(offset + 51));
-        entity.setOrder_id(cursor.isNull(offset + 52) ? null : cursor.getString(offset + 52));
+        entity.setStandard_description(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setInsurance_amount(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setInsurance(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setCount(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setWeight(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setVolume(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setOccurence_checkpoint_type(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setOccurence_checkpoint_code(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setDestination_checkpoint_type(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setCurrency_code(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setCost(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setCustoms_clearance(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setBroker_code(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setBroker_name(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setDelivery_conditions(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
+        entity.setConsignee_code(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
+        entity.setConsignee_name(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
+        entity.setContainer_number(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
+        entity.setDepartment_name(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
+        entity.setProduct_count(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
+        entity.setDt_registration_date(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setRelease_date(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
+        entity.setTerminal(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
+        entity.setDt_number(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
+        entity.setWagon_number(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setClient_id(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setOrder_id(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
      }
     
     /** @inheritdoc */

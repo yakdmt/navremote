@@ -174,8 +174,6 @@ public class DetailActivity  extends AppCompatActivity {
         countryCode.setText(TextUtil.removeNulls(checkpoint.getCountry_code()));
         TextView type = (TextView) view.findViewById(R.id.type);
         type.setText(TextUtil.removeNulls(checkpoint.getType()));
-        TextView cityName = (TextView) view.findViewById(R.id.city_name);
-        cityName.setText(TextUtil.removeNulls(checkpoint.getCity_name()));
         TextView info = (TextView) view.findViewById(R.id.info);
         info.setText(TextUtil.removeNulls(checkpoint.getInfo()));
         adb.create().show();

@@ -5,6 +5,7 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 
+import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 
 /**
@@ -12,12 +13,16 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class Checkpoint implements Saveable {
 
+     @Column(name = "Код")
     private String id;
+     @Column(name = "Название")
     private String name;
+     @Column(name = "Код страны")
     private String country_code;
+     @Column(name = "Доп. Информация")
     private String info;
+     @Column(name = "Тип")
     private String type;
-    private String city_name;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -29,13 +34,12 @@ public class Checkpoint implements Saveable {
         this.id = id;
     }
 
-    public Checkpoint(String id, String name, String country_code, String info, String type, String city_name) {
+    public Checkpoint(String id, String name, String country_code, String info, String type) {
         this.id = id;
         this.name = name;
         this.country_code = country_code;
         this.info = info;
         this.type = type;
-        this.city_name = city_name;
     }
 
     public String getId() {
@@ -76,14 +80,6 @@ public class Checkpoint implements Saveable {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getCity_name() {
-        return city_name;
-    }
-
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
     }
 
     // KEEP METHODS - put your custom methods here

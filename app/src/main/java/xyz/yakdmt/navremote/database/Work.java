@@ -5,6 +5,7 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 
+import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 
 /**
@@ -12,20 +13,33 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class Work implements Saveable {
 
+     @Column(name = "Операция Но.")
     private String id;
+     @Column(name = "Работа Код")
     private String work_code;
+     @Column(name = "Работа Тип")
     private String work_type;
+     @Column(name = "Единица Измерения Код")
     private String measure_unit;
+     @Column(name = "Количество")
     private String count;
+     @Column(name = "Ответственный Работник")
     private String responsible_worker;
+     @Column(name = "Комментарий")
     private String comment;
+     @Column(name = "Место выполнения работы")
     private String working_place;
+     @Column(name = "Работа Описание")
     private String description;
+     @Column(name = "Доставка Но.")
     private String delivery_id;
+     @Column(name = "Груз ID")
     private String cargo_id;
+     @Column(name = "Факт. Дата Завершения")
     private String actual_finish_date;
+     @Column(name = "Факт. Время Завершения")
     private String actual_finish_time;
-    private String creator;
+     @Column(name = "Ответствен. Отдел")
     private String responsible_department;
 
     // KEEP FIELDS - put your custom fields here
@@ -38,7 +52,7 @@ public class Work implements Saveable {
         this.id = id;
     }
 
-    public Work(String id, String work_code, String work_type, String measure_unit, String count, String responsible_worker, String comment, String working_place, String description, String delivery_id, String cargo_id, String actual_finish_date, String actual_finish_time, String creator, String responsible_department) {
+    public Work(String id, String work_code, String work_type, String measure_unit, String count, String responsible_worker, String comment, String working_place, String description, String delivery_id, String cargo_id, String actual_finish_date, String actual_finish_time, String responsible_department) {
         this.id = id;
         this.work_code = work_code;
         this.work_type = work_type;
@@ -52,7 +66,6 @@ public class Work implements Saveable {
         this.cargo_id = cargo_id;
         this.actual_finish_date = actual_finish_date;
         this.actual_finish_time = actual_finish_time;
-        this.creator = creator;
         this.responsible_department = responsible_department;
     }
 
@@ -160,14 +173,6 @@ public class Work implements Saveable {
         this.actual_finish_time = actual_finish_time;
     }
 
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
     public String getResponsible_department() {
         return responsible_department;
     }
@@ -179,7 +184,12 @@ public class Work implements Saveable {
     // KEEP METHODS - put your custom methods here
     @Override
     public void save() {
-        DaoTask.getInstance().getSession().getWorkDao().insertOrReplace(this);
+        try {
+            DaoTask.getInstance().getSession().getWorkDao().insertOrReplace(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     // KEEP METHODS END
 

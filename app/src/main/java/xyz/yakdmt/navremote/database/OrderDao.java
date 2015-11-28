@@ -61,10 +61,9 @@ public class OrderDao extends AbstractDao<Order, String> {
         public final static Property Cargo_description = new Property(32, String.class, "cargo_description", false, "CARGO_DESCRIPTION");
         public final static Property Client_name = new Property(33, String.class, "client_name", false, "CLIENT_NAME");
         public final static Property Comment = new Property(34, String.class, "comment", false, "COMMENT");
-        public final static Property Client_id = new Property(35, String.class, "client_id", false, "CLIENT_ID");
-        public final static Property Contact_id = new Property(36, String.class, "contact_id", false, "CONTACT_ID");
-        public final static Property Cargo_id = new Property(37, String.class, "cargo_id", false, "CARGO_ID");
-        public final static Property DeliveryId = new Property(38, String.class, "deliveryId", false, "DELIVERY_ID");
+        public final static Property Contact_id = new Property(35, String.class, "contact_id", false, "CONTACT_ID");
+        public final static Property Cargo_id = new Property(36, String.class, "cargo_id", false, "CARGO_ID");
+        public final static Property DeliveryId = new Property(37, String.class, "deliveryId", false, "DELIVERY_ID");
     };
 
     private DaoSession daoSession;
@@ -118,10 +117,9 @@ public class OrderDao extends AbstractDao<Order, String> {
                 "\"CARGO_DESCRIPTION\" TEXT," + // 32: cargo_description
                 "\"CLIENT_NAME\" TEXT," + // 33: client_name
                 "\"COMMENT\" TEXT," + // 34: comment
-                "\"CLIENT_ID\" TEXT," + // 35: client_id
-                "\"CONTACT_ID\" TEXT," + // 36: contact_id
-                "\"CARGO_ID\" TEXT," + // 37: cargo_id
-                "\"DELIVERY_ID\" TEXT);"); // 38: deliveryId
+                "\"CONTACT_ID\" TEXT," + // 35: contact_id
+                "\"CARGO_ID\" TEXT," + // 36: cargo_id
+                "\"DELIVERY_ID\" TEXT);"); // 37: deliveryId
     }
 
     /** Drops the underlying database table. */
@@ -310,24 +308,19 @@ public class OrderDao extends AbstractDao<Order, String> {
             stmt.bindString(35, comment);
         }
  
-        String client_id = entity.getClient_id();
-        if (client_id != null) {
-            stmt.bindString(36, client_id);
-        }
- 
         String contact_id = entity.getContact_id();
         if (contact_id != null) {
-            stmt.bindString(37, contact_id);
+            stmt.bindString(36, contact_id);
         }
  
         String cargo_id = entity.getCargo_id();
         if (cargo_id != null) {
-            stmt.bindString(38, cargo_id);
+            stmt.bindString(37, cargo_id);
         }
  
         String deliveryId = entity.getDeliveryId();
         if (deliveryId != null) {
-            stmt.bindString(39, deliveryId);
+            stmt.bindString(38, deliveryId);
         }
     }
 
@@ -382,10 +375,9 @@ public class OrderDao extends AbstractDao<Order, String> {
             cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // cargo_description
             cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // client_name
             cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // comment
-            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // client_id
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // contact_id
-            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // cargo_id
-            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38) // deliveryId
+            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // contact_id
+            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // cargo_id
+            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37) // deliveryId
         );
         return entity;
     }
@@ -428,10 +420,9 @@ public class OrderDao extends AbstractDao<Order, String> {
         entity.setCargo_description(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
         entity.setClient_name(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
         entity.setComment(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
-        entity.setClient_id(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
-        entity.setContact_id(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setCargo_id(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
-        entity.setDeliveryId(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
+        entity.setContact_id(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
+        entity.setCargo_id(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
+        entity.setDeliveryId(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
      }
     
     /** @inheritdoc */
@@ -463,18 +454,15 @@ public class OrderDao extends AbstractDao<Order, String> {
             StringBuilder builder = new StringBuilder("SELECT ");
             SqlUtils.appendColumns(builder, "T", getAllColumns());
             builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getClientDao().getAllColumns());
+            SqlUtils.appendColumns(builder, "T0", daoSession.getContactDao().getAllColumns());
             builder.append(',');
-            SqlUtils.appendColumns(builder, "T1", daoSession.getContactDao().getAllColumns());
+            SqlUtils.appendColumns(builder, "T1", daoSession.getCargoDao().getAllColumns());
             builder.append(',');
-            SqlUtils.appendColumns(builder, "T2", daoSession.getCargoDao().getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T3", daoSession.getDeliveryDao().getAllColumns());
+            SqlUtils.appendColumns(builder, "T2", daoSession.getDeliveryDao().getAllColumns());
             builder.append(" FROM ORDER T");
-            builder.append(" LEFT JOIN CLIENT T0 ON T.\"CLIENT_ID\"=T0.\"ID\"");
-            builder.append(" LEFT JOIN CONTACT T1 ON T.\"CONTACT_ID\"=T1.\"ID\"");
-            builder.append(" LEFT JOIN CARGO T2 ON T.\"CARGO_ID\"=T2.\"ID\"");
-            builder.append(" LEFT JOIN DELIVERY T3 ON T.\"DELIVERY_ID\"=T3.\"ID\"");
+            builder.append(" LEFT JOIN CONTACT T0 ON T.\"CONTACT_ID\"=T0.\"ID\"");
+            builder.append(" LEFT JOIN CARGO T1 ON T.\"CARGO_ID\"=T1.\"ID\"");
+            builder.append(" LEFT JOIN DELIVERY T2 ON T.\"DELIVERY_ID\"=T2.\"ID\"");
             builder.append(' ');
             selectDeep = builder.toString();
         }
@@ -484,10 +472,6 @@ public class OrderDao extends AbstractDao<Order, String> {
     protected Order loadCurrentDeep(Cursor cursor, boolean lock) {
         Order entity = loadCurrent(cursor, 0, lock);
         int offset = getAllColumns().length;
-
-        Client client = loadCurrentOther(daoSession.getClientDao(), cursor, offset);
-        entity.setClient(client);
-        offset += daoSession.getClientDao().getAllColumns().length;
 
         Contact contact = loadCurrentOther(daoSession.getContactDao(), cursor, offset);
         entity.setContact(contact);

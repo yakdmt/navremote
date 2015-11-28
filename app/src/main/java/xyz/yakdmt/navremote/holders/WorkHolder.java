@@ -55,7 +55,6 @@ public class WorkHolder extends RecyclerView.ViewHolder {
             dept= "("+work.getResponsible_department()+")";
         }
         mResponsible.setText(TextUtil.removeNulls("Отв.: "+work.getResponsible_worker()+dept));
-        mCreator.setText(TextUtil.removeNulls("Создал: "+work.getCreator()));
     }
 
 

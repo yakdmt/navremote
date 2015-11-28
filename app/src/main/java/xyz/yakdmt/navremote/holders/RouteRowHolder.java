@@ -8,9 +8,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
-import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
-import xyz.yakdmt.navremote.database.Checkpoint;
 import xyz.yakdmt.navremote.database.RouteRow;
 import xyz.yakdmt.navremote.utils.TextUtil;
 
@@ -35,8 +33,8 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(final RouteRow routeRow) {
-        final Checkpoint checkpoint = routeRow.getCheckpoint();
-        if (checkpoint!=null) {
+        //final Checkpoint checkpoint = routeRow.getCheckpoint();
+        /*if (checkpoint!=null) {
             mCheckpointRef.setText(TextUtil.removeNulls("Пункт: " + checkpoint.getName()));
             mCheckpointRef.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -44,7 +42,7 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
                     ((DetailActivity)mContext).showCheckpointDialog(checkpoint);
                 }
             });
-        }
+        }*/
         if (!App.bindViews) {
             return;
         }

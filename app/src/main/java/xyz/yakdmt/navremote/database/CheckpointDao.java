@@ -28,7 +28,6 @@ public class CheckpointDao extends AbstractDao<Checkpoint, String> {
         public final static Property Country_code = new Property(2, String.class, "country_code", false, "COUNTRY_CODE");
         public final static Property Info = new Property(3, String.class, "info", false, "INFO");
         public final static Property Type = new Property(4, String.class, "type", false, "TYPE");
-        public final static Property City_name = new Property(5, String.class, "city_name", false, "CITY_NAME");
     };
 
 
@@ -48,8 +47,7 @@ public class CheckpointDao extends AbstractDao<Checkpoint, String> {
                 "\"NAME\" TEXT," + // 1: name
                 "\"COUNTRY_CODE\" TEXT," + // 2: country_code
                 "\"INFO\" TEXT," + // 3: info
-                "\"TYPE\" TEXT," + // 4: type
-                "\"CITY_NAME\" TEXT);"); // 5: city_name
+                "\"TYPE\" TEXT);"); // 4: type
     }
 
     /** Drops the underlying database table. */
@@ -87,11 +85,6 @@ public class CheckpointDao extends AbstractDao<Checkpoint, String> {
         if (type != null) {
             stmt.bindString(5, type);
         }
- 
-        String city_name = entity.getCity_name();
-        if (city_name != null) {
-            stmt.bindString(6, city_name);
-        }
     }
 
     /** @inheritdoc */
@@ -108,8 +101,7 @@ public class CheckpointDao extends AbstractDao<Checkpoint, String> {
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // country_code
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // info
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // type
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // city_name
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // type
         );
         return entity;
     }
@@ -122,7 +114,6 @@ public class CheckpointDao extends AbstractDao<Checkpoint, String> {
         entity.setCountry_code(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setInfo(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setType(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setCity_name(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }
     
     /** @inheritdoc */

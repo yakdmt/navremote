@@ -50,7 +50,10 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
         public final static Property Gtd_number = new Property(21, String.class, "gtd_number", false, "GTD_NUMBER");
         public final static Property Container_number = new Property(22, String.class, "container_number", false, "CONTAINER_NUMBER");
         public final static Property Wagon_number = new Property(23, String.class, "wagon_number", false, "WAGON_NUMBER");
-        public final static Property Cargo_id = new Property(24, String.class, "cargo_id", false, "CARGO_ID");
+        public final static Property Tl_number = new Property(24, String.class, "tl_number", false, "TL_NUMBER");
+        public final static Property Tl_transport_type = new Property(25, String.class, "tl_transport_type", false, "TL_TRANSPORT_TYPE");
+        public final static Property Tl_transport_number = new Property(26, String.class, "tl_transport_number", false, "TL_TRANSPORT_NUMBER");
+        public final static Property Cargo_id = new Property(27, String.class, "cargo_id", false, "CARGO_ID");
     };
 
     private DaoSession daoSession;
@@ -93,7 +96,10 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
                 "\"GTD_NUMBER\" TEXT," + // 21: gtd_number
                 "\"CONTAINER_NUMBER\" TEXT," + // 22: container_number
                 "\"WAGON_NUMBER\" TEXT," + // 23: wagon_number
-                "\"CARGO_ID\" TEXT);"); // 24: cargo_id
+                "\"TL_NUMBER\" TEXT," + // 24: tl_number
+                "\"TL_TRANSPORT_TYPE\" TEXT," + // 25: tl_transport_type
+                "\"TL_TRANSPORT_NUMBER\" TEXT," + // 26: tl_transport_number
+                "\"CARGO_ID\" TEXT);"); // 27: cargo_id
     }
 
     /** Drops the underlying database table. */
@@ -227,9 +233,24 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
             stmt.bindString(24, wagon_number);
         }
  
+        String tl_number = entity.getTl_number();
+        if (tl_number != null) {
+            stmt.bindString(25, tl_number);
+        }
+ 
+        String tl_transport_type = entity.getTl_transport_type();
+        if (tl_transport_type != null) {
+            stmt.bindString(26, tl_transport_type);
+        }
+ 
+        String tl_transport_number = entity.getTl_transport_number();
+        if (tl_transport_number != null) {
+            stmt.bindString(27, tl_transport_number);
+        }
+ 
         String cargo_id = entity.getCargo_id();
         if (cargo_id != null) {
-            stmt.bindString(25, cargo_id);
+            stmt.bindString(28, cargo_id);
         }
     }
 
@@ -273,7 +294,10 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
             cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // gtd_number
             cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // container_number
             cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // wagon_number
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // cargo_id
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // tl_number
+            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // tl_transport_type
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // tl_transport_number
+            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27) // cargo_id
         );
         return entity;
     }
@@ -305,7 +329,10 @@ public class DeliveryDao extends AbstractDao<Delivery, String> {
         entity.setGtd_number(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
         entity.setContainer_number(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
         entity.setWagon_number(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setCargo_id(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setTl_number(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setTl_transport_type(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
+        entity.setTl_transport_number(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
+        entity.setCargo_id(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
      }
     
     /** @inheritdoc */

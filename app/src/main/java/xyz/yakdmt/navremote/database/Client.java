@@ -5,6 +5,7 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 
+import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 
 /**
@@ -12,13 +13,32 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class Client implements Saveable, java.io.Serializable {
 
+     @Column(name = "Но.")
     private String id;
+     @Column(name = "Название")
     private String name;
-    private String last_comment;
+     @Column(name = "Расш. Название")
+    private String external_name;
+     @Column(name = "E-Mail")
     private String email;
+     @Column(name = "Телефон")
     private String phone;
+     @Column(name = "Контакт")
     private String contact;
-    private String address;
+     @Column(name = "Адрес(юрид.)")
+    private String address_legal;
+     @Column(name = "Адрес (факт.) ")
+    private String address_actual;
+     @Column(name = "Расш. Адрес")
+    private String extended_address;
+     @Column(name = "Приоритет Группа")
+    private String priority_group;
+     @Column(name = "Персонал.  Менеджер")
+    private String manager;
+     @Column(name = "ИНН")
+    private String inn;
+     @Column(name = "КПП")
+    private String kpp;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -30,14 +50,20 @@ public class Client implements Saveable, java.io.Serializable {
         this.id = id;
     }
 
-    public Client(String id, String name, String last_comment, String email, String phone, String contact, String address) {
+    public Client(String id, String name, String external_name, String email, String phone, String contact, String address_legal, String address_actual, String extended_address, String priority_group, String manager, String inn, String kpp) {
         this.id = id;
         this.name = name;
-        this.last_comment = last_comment;
+        this.external_name = external_name;
         this.email = email;
         this.phone = phone;
         this.contact = contact;
-        this.address = address;
+        this.address_legal = address_legal;
+        this.address_actual = address_actual;
+        this.extended_address = extended_address;
+        this.priority_group = priority_group;
+        this.manager = manager;
+        this.inn = inn;
+        this.kpp = kpp;
     }
 
     public String getId() {
@@ -56,12 +82,12 @@ public class Client implements Saveable, java.io.Serializable {
         this.name = name;
     }
 
-    public String getLast_comment() {
-        return last_comment;
+    public String getExternal_name() {
+        return external_name;
     }
 
-    public void setLast_comment(String last_comment) {
-        this.last_comment = last_comment;
+    public void setExternal_name(String external_name) {
+        this.external_name = external_name;
     }
 
     public String getEmail() {
@@ -88,12 +114,60 @@ public class Client implements Saveable, java.io.Serializable {
         this.contact = contact;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress_legal() {
+        return address_legal;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress_legal(String address_legal) {
+        this.address_legal = address_legal;
+    }
+
+    public String getAddress_actual() {
+        return address_actual;
+    }
+
+    public void setAddress_actual(String address_actual) {
+        this.address_actual = address_actual;
+    }
+
+    public String getExtended_address() {
+        return extended_address;
+    }
+
+    public void setExtended_address(String extended_address) {
+        this.extended_address = extended_address;
+    }
+
+    public String getPriority_group() {
+        return priority_group;
+    }
+
+    public void setPriority_group(String priority_group) {
+        this.priority_group = priority_group;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    public String getInn() {
+        return inn;
+    }
+
+    public void setInn(String inn) {
+        this.inn = inn;
+    }
+
+    public String getKpp() {
+        return kpp;
+    }
+
+    public void setKpp(String kpp) {
+        this.kpp = kpp;
     }
 
     // KEEP METHODS - put your custom methods here

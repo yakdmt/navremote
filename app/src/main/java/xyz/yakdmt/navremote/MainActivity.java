@@ -120,7 +120,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        addTestData();
+        refreshData();
+        //addTestData();
     }
 
     @Override
@@ -214,7 +215,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
      public void addTestData() {
-         refreshData();
+
          Client client1 = new Client("cl10001");
          Client client2 = new Client("cl10002");
          DaoTask.getInstance().getSession().getClientDao().insertOrReplace(client1);
@@ -254,10 +255,10 @@ public class MainActivity extends AppCompatActivity
              mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date());
              */
              if (i<5) {
-                 order.setClient(client1);
+                 //order.setClient(client1);
                  order.setContact(contact1);
              } else {
-                 order.setClient(client2);
+                 //order.setClient(client2);
                  order.setContact(contact2);
              }
              DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(order);
@@ -305,7 +306,7 @@ public class MainActivity extends AppCompatActivity
                  routeRow.setPosition(String.valueOf(10 - j));
                  routeRow.setAddress("address");
                  Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq("point" + j)).unique();
-                 routeRow.setCheckpoint(checkpoint);
+
                  DaoTask.getInstance().getSession().getRouteRowDao().insertOrReplace(routeRow);
              }
              DaoTask.getInstance().getSession().getDeliveryDao().insertOrReplace(delivery);

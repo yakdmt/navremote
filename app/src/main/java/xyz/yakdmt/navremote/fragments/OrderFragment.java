@@ -96,7 +96,7 @@ public class OrderFragment extends Fragment {
         mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description()));
         mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date()));
         //additional views
-        if (order.getClient()!=null) {
+        /*if (order.getClient()!=null) {
             SpannableString clientId = new SpannableString(order.getClient().getId());
             clientId.setSpan(new UnderlineSpan(), 0, clientId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             mClientRef.setText(TextUtil.removeNulls("Клиент:" + clientId));
@@ -106,7 +106,7 @@ public class OrderFragment extends Fragment {
                     ((DetailActivity)getActivity()).openClientFragment(order.getClient());
                 }
             });
-        }
+        }*/
         if (order.getContact()!=null) {
             SpannableString contactId = new SpannableString(order.getContact().getId());
             contactId.setSpan(new UnderlineSpan(), 0, contactId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

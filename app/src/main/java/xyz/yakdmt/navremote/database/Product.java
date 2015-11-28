@@ -5,6 +5,7 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
 
+import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 
 /**
@@ -13,11 +14,17 @@ import xyz.yakdmt.navremote.utils.Saveable;
 public class Product implements Saveable {
 
     /** Not-null value. */
+     @Column(name = "йййййййй")
     private String id;
+     @Column(name = "йййййййй")
     private String order_id;
+     @Column(name = "йййййййй")
     private String string_number;
+     @Column(name = "йййййййй")
     private String brutto_weight;
+     @Column(name = "йййййййй")
     private String count;
+     @Column(name = "йййййййй")
     private String description;
 
     // KEEP FIELDS - put your custom fields here
