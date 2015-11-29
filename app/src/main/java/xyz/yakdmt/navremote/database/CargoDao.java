@@ -1,14 +1,11 @@
 package xyz.yakdmt.navremote.database;
 
-import java.util.List;
-import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
 
 import xyz.yakdmt.navremote.database.Cargo;
@@ -66,8 +63,6 @@ public class CargoDao extends AbstractDao<Cargo, String> {
         public final static Property Order_id = new Property(37, String.class, "order_id", false, "ORDER_ID");
     };
 
-    private DaoSession daoSession;
-
 
     public CargoDao(DaoConfig config) {
         super(config);
@@ -75,7 +70,6 @@ public class CargoDao extends AbstractDao<Cargo, String> {
     
     public CargoDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -324,12 +318,6 @@ public class CargoDao extends AbstractDao<Cargo, String> {
         }
     }
 
-    @Override
-    protected void attachEntity(Cargo entity) {
-        super.attachEntity(entity);
-        entity.__setDaoSession(daoSession);
-    }
-
     /** @inheritdoc */
     @Override
     public String readKey(Cursor cursor, int offset) {
@@ -447,102 +435,4 @@ public class CargoDao extends AbstractDao<Cargo, String> {
         return true;
     }
     
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getClientDao().getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T1", daoSession.getOrderDao().getAllColumns());
-            builder.append(" FROM CARGO T");
-            builder.append(" LEFT JOIN CLIENT T0 ON T.\"CLIENT_ID\"=T0.\"ID\"");
-            builder.append(" LEFT JOIN ORDER T1 ON T.\"ORDER_ID\"=T1.\"ID\"");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected Cargo loadCurrentDeep(Cursor cursor, boolean lock) {
-        Cargo entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        Client client = loadCurrentOther(daoSession.getClientDao(), cursor, offset);
-        entity.setClient(client);
-        offset += daoSession.getClientDao().getAllColumns().length;
-
-        Order order = loadCurrentOther(daoSession.getOrderDao(), cursor, offset);
-        entity.setOrder(order);
-
-        return entity;    
-    }
-
-    public Cargo loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<Cargo> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<Cargo> list = new ArrayList<Cargo>(count);
-        
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-    
-    protected List<Cargo> loadDeepAllAndCloseCursor(Cursor cursor) {
-        try {
-            return loadAllDeepFromCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-
-    /** A raw-style query where you can pass any WHERE clause and arguments. */
-    public List<Cargo> queryDeep(String where, String... selectionArg) {
-        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
-        return loadDeepAllAndCloseCursor(cursor);
-    }
- 
 }

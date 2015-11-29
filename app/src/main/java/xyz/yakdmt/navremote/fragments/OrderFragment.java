@@ -58,9 +58,6 @@ public class OrderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         order = (Order) getArguments().getSerializable("order");
-        if (order!=null) {
-            order.__setDaoSession(DaoTask.getInstance().getSession());
-        }
     }
 
     @Override

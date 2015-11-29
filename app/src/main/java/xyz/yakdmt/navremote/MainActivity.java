@@ -120,8 +120,9 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        refreshData();
-        //addTestData();
+        if (!checkFiles()) {
+            refreshData(true);
+        }
     }
 
     @Override
@@ -149,7 +150,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sync) {
+            refreshData(true);
             return true;
         }
 
@@ -254,13 +256,6 @@ public class MainActivity extends AppCompatActivity
              mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description());
              mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date());
              */
-             if (i<5) {
-                 //order.setClient(client1);
-                 order.setContact(contact1);
-             } else {
-                 //order.setClient(client2);
-                 order.setContact(contact2);
-             }
              DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(order);
          }
 
@@ -272,10 +267,7 @@ public class MainActivity extends AppCompatActivity
                      .queryBuilder()
                      .where(OrderDao.Properties.Id.eq("10000"+String.valueOf(i)))
                      .unique();
-             if (order != null) {
-                 order.setCargo(cargo);
-                 cargo.setOrder(order);
-             }
+
 
              DaoTask.getInstance().getSession().getCargoDao().insertOrReplace(cargo);
          }
@@ -295,9 +287,7 @@ public class MainActivity extends AppCompatActivity
                      .queryBuilder()
                      .where(CargoDao.Properties.Id.eq("20000"+String.valueOf(i)))
                      .unique();
-             if (cargo!=null) {
-                 delivery.setCargo(cargo);
-             }
+
              for (int j=0; j<5; j++) {
                  RouteRow routeRow = new RouteRow();
                  routeRow.setDelivery_id("30000" + i);
@@ -360,14 +350,15 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void refreshData(){
+    public void refreshData(boolean downloadNewFiles){
         ProgressDialog progress = new ProgressDialog(this);
         progress.setCancelable(false);
         progress.setMessage("Загрузка...");
-        if (checkFiles()) {
-            new ParseTask(this, progress).execute();
-        } else {
+        if (downloadNewFiles || !checkFiles()) {
             new GetFilesTask(this, progress).execute();
+        } else {
+            new ParseTask(this, progress).execute();
+
         }
     }
 

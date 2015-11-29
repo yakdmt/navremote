@@ -50,4 +50,8 @@ public class Events {
         }
 
     }
+
+    public static class OnDataUpdated {
+
+    }
 }

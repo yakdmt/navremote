@@ -59,10 +59,14 @@ public class AllOrdersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        refreshData();
+        return view;
+    }
+
+    private void refreshData(){
         ArrayList<Order> orders = (ArrayList<Order>) DaoTask.getInstance().getSession().getOrderDao().queryBuilder().list();
         mAdapter = new OrderAdapter(getActivity(), orders);
         mList.setAdapter(mAdapter);
-        return view;
     }
 
     @SuppressWarnings("unused")
@@ -72,6 +76,9 @@ public class AllOrdersFragment extends Fragment {
         startActivity(intent);
     }
 
-
+    @SuppressWarnings("unused")
+    public void onEvent(Events.OnDataUpdated event) {
+        refreshData();
+    }
 
 }

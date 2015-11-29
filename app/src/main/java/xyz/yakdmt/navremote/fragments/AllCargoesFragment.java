@@ -59,10 +59,14 @@ public class AllCargoesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        refreshData();
+        return view;
+    }
+
+    private void refreshData(){
         ArrayList<Cargo> cargoes = (ArrayList<Cargo>) DaoTask.getInstance().getSession().getCargoDao().queryBuilder().list();
         mAdapter = new CargoAdapter(getActivity(), cargoes);
         mList.setAdapter(mAdapter);
-        return view;
     }
 
     @SuppressWarnings("unused")
@@ -72,4 +76,8 @@ public class AllCargoesFragment extends Fragment {
         startActivity(intent);
     }
 
+    @SuppressWarnings("unused")
+    public void onEvent(Events.OnDataUpdated event) {
+        refreshData();
+    }
 }

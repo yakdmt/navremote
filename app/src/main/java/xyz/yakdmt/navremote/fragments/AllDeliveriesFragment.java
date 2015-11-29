@@ -59,10 +59,14 @@ public class AllDeliveriesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_items, container, false);
         mList = (RecyclerView) view.findViewById(R.id.recycler_view);
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        refreshData();
+        return view;
+    }
+
+    private void refreshData(){
         ArrayList<Delivery> deliveries = (ArrayList<Delivery>) DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder().list();
         mAdapter = new DeliveryAdapter(getActivity(), deliveries);
         mList.setAdapter(mAdapter);
-        return view;
     }
 
     @SuppressWarnings("unused")
@@ -70,6 +74,11 @@ public class AllDeliveriesFragment extends Fragment {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("delivery", event.getDelivery());
         startActivity(intent);
+    }
+
+    @SuppressWarnings("unused")
+    public void onEvent(Events.OnDataUpdated event) {
+        refreshData();
     }
 
 }
