@@ -119,7 +119,7 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                                             DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
                                             value = dateFormat.format(date);
                                         }
-                                        
+
                                         if (value==null) {
                                             value = "";
                                         }

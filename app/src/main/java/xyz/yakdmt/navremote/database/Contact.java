@@ -27,6 +27,8 @@ public class Contact implements java.io.Serializable, Saveable {
     private String firm_name;
      @Column(name = "Телефон")
     private String phone;
+     @Column(name = "Но.")
+    private String password;
      @Column(name = "Мобильный Телефон")
     private String mobile_phone;
      @Column(name = "Код Менеджера")
@@ -44,7 +46,7 @@ public class Contact implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public Contact(String id, String client_id, String name, String client_name, String postal_index, String region_code, String firm_name, String phone, String mobile_phone, String manager_code, String fax) {
+    public Contact(String id, String client_id, String name, String client_name, String postal_index, String region_code, String firm_name, String phone, String password, String mobile_phone, String manager_code, String fax) {
         this.id = id;
         this.client_id = client_id;
         this.name = name;
@@ -53,6 +55,7 @@ public class Contact implements java.io.Serializable, Saveable {
         this.region_code = region_code;
         this.firm_name = firm_name;
         this.phone = phone;
+        this.password = password;
         this.mobile_phone = mobile_phone;
         this.manager_code = manager_code;
         this.fax = fax;
@@ -120,6 +123,14 @@ public class Contact implements java.io.Serializable, Saveable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getMobile_phone() {

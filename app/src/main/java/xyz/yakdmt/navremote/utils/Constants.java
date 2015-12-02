@@ -19,6 +19,8 @@ public class Constants {
 
     public final static String SERVER_PATH = "/public_html/base/";
 
+    public final static String AUTH_FILE = "Credentials";
+
     public final static String[] FILENAME_ARRAY = {"Пример Грузы", "Пример Доставки", "Пример Заявки","Пример Клиенты", "Пример Комментарии",
             "Пример Контакты", "Пример Маршруты", "Пример Пункты", "Пример Работы" };
 

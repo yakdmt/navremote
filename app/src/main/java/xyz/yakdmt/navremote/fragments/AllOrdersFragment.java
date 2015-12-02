@@ -13,11 +13,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.adapters.OrderAdapter;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.database.OrderDao;
 import xyz.yakdmt.navremote.utils.Events;
 
 /**
@@ -64,7 +66,7 @@ public class AllOrdersFragment extends Fragment {
     }
 
     private void refreshData(){
-        ArrayList<Order> orders = (ArrayList<Order>) DaoTask.getInstance().getSession().getOrderDao().queryBuilder().list();
+        ArrayList<Order> orders = (ArrayList<Order>) DaoTask.getInstance().getSession().getOrderDao().queryBuilder().where(OrderDao.Properties.Client_id.eq(App.currentClientId)).list();
         mAdapter = new OrderAdapter(getActivity(), orders);
         mList.setAdapter(mAdapter);
     }

@@ -31,9 +31,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
         public final static Property Region_code = new Property(5, String.class, "region_code", false, "REGION_CODE");
         public final static Property Firm_name = new Property(6, String.class, "firm_name", false, "FIRM_NAME");
         public final static Property Phone = new Property(7, String.class, "phone", false, "PHONE");
-        public final static Property Mobile_phone = new Property(8, String.class, "mobile_phone", false, "MOBILE_PHONE");
-        public final static Property Manager_code = new Property(9, String.class, "manager_code", false, "MANAGER_CODE");
-        public final static Property Fax = new Property(10, String.class, "fax", false, "FAX");
+        public final static Property Password = new Property(8, String.class, "password", false, "PASSWORD");
+        public final static Property Mobile_phone = new Property(9, String.class, "mobile_phone", false, "MOBILE_PHONE");
+        public final static Property Manager_code = new Property(10, String.class, "manager_code", false, "MANAGER_CODE");
+        public final static Property Fax = new Property(11, String.class, "fax", false, "FAX");
     };
 
 
@@ -57,9 +58,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
                 "\"REGION_CODE\" TEXT," + // 5: region_code
                 "\"FIRM_NAME\" TEXT," + // 6: firm_name
                 "\"PHONE\" TEXT," + // 7: phone
-                "\"MOBILE_PHONE\" TEXT," + // 8: mobile_phone
-                "\"MANAGER_CODE\" TEXT," + // 9: manager_code
-                "\"FAX\" TEXT);"); // 10: fax
+                "\"PASSWORD\" TEXT," + // 8: password
+                "\"MOBILE_PHONE\" TEXT," + // 9: mobile_phone
+                "\"MANAGER_CODE\" TEXT," + // 10: manager_code
+                "\"FAX\" TEXT);"); // 11: fax
     }
 
     /** Drops the underlying database table. */
@@ -113,19 +115,24 @@ public class ContactDao extends AbstractDao<Contact, String> {
             stmt.bindString(8, phone);
         }
  
+        String password = entity.getPassword();
+        if (password != null) {
+            stmt.bindString(9, password);
+        }
+ 
         String mobile_phone = entity.getMobile_phone();
         if (mobile_phone != null) {
-            stmt.bindString(9, mobile_phone);
+            stmt.bindString(10, mobile_phone);
         }
  
         String manager_code = entity.getManager_code();
         if (manager_code != null) {
-            stmt.bindString(10, manager_code);
+            stmt.bindString(11, manager_code);
         }
  
         String fax = entity.getFax();
         if (fax != null) {
-            stmt.bindString(11, fax);
+            stmt.bindString(12, fax);
         }
     }
 
@@ -147,9 +154,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // region_code
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // firm_name
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // phone
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // mobile_phone
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // manager_code
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // fax
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // password
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // mobile_phone
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // manager_code
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // fax
         );
         return entity;
     }
@@ -165,9 +173,10 @@ public class ContactDao extends AbstractDao<Contact, String> {
         entity.setRegion_code(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setFirm_name(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setPhone(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setMobile_phone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setManager_code(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setFax(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setPassword(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setMobile_phone(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setManager_code(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setFax(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     /** @inheritdoc */

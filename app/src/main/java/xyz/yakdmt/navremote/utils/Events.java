@@ -54,4 +54,17 @@ public class Events {
     public static class OnDataUpdated {
 
     }
+
+    public static class OnAuthCompleted {
+
+        private boolean isOk;
+
+        public OnAuthCompleted(boolean ok) {
+            isOk = ok;
+        }
+
+        public boolean getIsOk(){
+            return isOk;
+        }
+    }
 }

@@ -28,6 +28,7 @@ public class GetFilesTask extends AsyncTask<String, Void, Boolean> {
     private final static String LOG_TAG = "GetFilesTask";
     private Context mContext;
     private  ProgressDialog mProgress;
+    private String[] filenameArray;
 
     public GetFilesTask(Context pContext, @NonNull ProgressDialog pProgress) {
         mContext = pContext;

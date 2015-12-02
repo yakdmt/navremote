@@ -64,7 +64,9 @@ public class AllDeliveriesFragment extends Fragment {
     }
 
     private void refreshData(){
-        ArrayList<Delivery> deliveries = (ArrayList<Delivery>) DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder().list();
+
+        ArrayList<Delivery> deliveries = (ArrayList<Delivery>) DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder()
+                .list();
         mAdapter = new DeliveryAdapter(getActivity(), deliveries);
         mList.setAdapter(mAdapter);
     }

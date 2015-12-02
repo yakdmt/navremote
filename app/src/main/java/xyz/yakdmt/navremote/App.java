@@ -11,6 +11,8 @@ import android.view.inputmethod.InputMethodManager;
 public class App extends Application {
     private static Context context;
     public static boolean bindViews = true;
+    public static String currentClientId = "";
+    public static String currentContactId = "";
 
     @Override public void onCreate() {
         super.onCreate();

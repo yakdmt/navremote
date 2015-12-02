@@ -92,6 +92,7 @@ public class NavDaoGenerator {
         contact.addStringProperty("region_code").codeBeforeField(getAnnotation("Код страны/региона"));
         contact.addStringProperty("firm_name").codeBeforeField(getAnnotation("Название Фирмы"));
         contact.addStringProperty("phone").codeBeforeField(getAnnotation("Телефон"));
+        contact.addStringProperty("password").codeBeforeField(getAnnotation("Но."));
         contact.addStringProperty("mobile_phone").codeBeforeField(getAnnotation("Мобильный Телефон"));
         contact.addStringProperty("manager_code").codeBeforeField(getAnnotation("Код Менеджера"));
         contact.addStringProperty("fax").codeBeforeField(getAnnotation("Факс"));
