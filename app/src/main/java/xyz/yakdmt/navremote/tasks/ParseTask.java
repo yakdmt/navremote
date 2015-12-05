@@ -100,7 +100,7 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                                     if (method != null) {
                                         String value = "";
                                         if (cell.getCellType() == 0 || cell.getCellType() == 2) {
-                                            value = String.valueOf(cell.getNumericCellValue());
+                                            value = String.valueOf((int)cell.getNumericCellValue());
                                         } else {
                                             try {
                                                 value = cell.getStringCellValue();

@@ -46,6 +46,7 @@ import xyz.yakdmt.navremote.fragments.AllOrdersFragment;
 import xyz.yakdmt.navremote.tasks.GetFilesTask;
 import xyz.yakdmt.navremote.tasks.ParseTask;
 import xyz.yakdmt.navremote.utils.Constants;
+import xyz.yakdmt.navremote.utils.SchemeParser;
 import xyz.yakdmt.navremote.utils.TextUtil;
 
 public class MainActivity extends AppCompatActivity
@@ -156,6 +157,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        SchemeParser.getInstance().createXml();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -17,47 +17,39 @@ public class NavDaoGenerator {
         Entity order = schema.addEntity("Order");
         order.implementsSerializable();
         order.implementsInterface("Saveable");
+        //checked
         order.addStringProperty("id").codeBeforeField(getAnnotation("Заявка Но.")).unique().primaryKey();
-        order.addStringProperty("document_type").codeBeforeField(getAnnotation("Тип Документа"));
-        order.addStringProperty("from_preliminary").codeBeforeField(getAnnotation("Создана из Предварительной"));
         order.addStringProperty("date").codeBeforeField(getAnnotation("Дата Документа"));
         order.addStringProperty("time").codeBeforeField(getAnnotation("Время Документа"));
-        order.addStringProperty("manager").codeBeforeField(getAnnotation("Менеджер"));
-        ///order.addStringProperty("client_id").codeBeforeField(getAnnotation("йййййййй"));
-        //order.addStringProperty("contact_id").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("document_path").codeBeforeField(getAnnotation("Внешний Документ"));
+
+        order.addStringProperty("client_id").codeBeforeField(getAnnotation("Клиент Но."));
+        order.addStringProperty("contact_id").codeBeforeField(getAnnotation("Контакт"));
+
+        order.addStringProperty("arrival_date").codeBeforeField(getAnnotation("Требуемая Дата Доставки"));
         order.addStringProperty("performer_code").codeBeforeField(getAnnotation("Исполнитель"));
-        order.addStringProperty("performer_name").codeBeforeField(getAnnotation("Имя Исполнителя"));
         order.addStringProperty("state").codeBeforeField(getAnnotation("Состояние"));
-        order.addStringProperty("dangerous").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("receiver_code").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("receiver_name").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("declarant_code").codeBeforeField(getAnnotation("Заявитель"));
-        order.addStringProperty("declarant_name").codeBeforeField(getAnnotation("Имя Заявителя"));
-        order.addStringProperty("declarant_department").codeBeforeField(getAnnotation("йййййййй"));
         order.addStringProperty("transport").codeBeforeField(getAnnotation("Вид Транспорта"));
         order.addStringProperty("departure_date").codeBeforeField(getAnnotation("Дата отправки"));
         order.addStringProperty("departure_country_code").codeBeforeField(getAnnotation("Отправление Код Страны"));
-        order.addStringProperty("departure_country_name").codeBeforeField(getAnnotation("Отправление Страна Название"));
         order.addStringProperty("departure_checkpoint_type").codeBeforeField(getAnnotation("Отправление  Тип Пункта"));
-        order.addStringProperty("departure_checkpoint_code").codeBeforeField(getAnnotation("Отправление Код Пункта"));
+        order.addStringProperty("destination_checkpoint_type").codeBeforeField(getAnnotation("Назначение Тип Пункта"));
+        order.addStringProperty("departure_country_name").codeBeforeField(getAnnotation("Отправление Страна Название"));
         order.addStringProperty("departure_checkpoint_name").codeBeforeField(getAnnotation("Место Отправления"));
         order.addStringProperty("departure_checkpoint_address").codeBeforeField(getAnnotation("Отправление Адрес"));
+        order.addStringProperty("destination_checkpoint_code").codeBeforeField(getAnnotation("Назначение Код Пункта"));
+        order.addStringProperty("destination_checkpoint_name").codeBeforeField(getAnnotation("Назначение Название Пункта"));
+        order.addStringProperty("destination_checkpoint_address").codeBeforeField(getAnnotation("Назначение Название Пункта"));
         order.addStringProperty("destination_country_code").codeBeforeField(getAnnotation("Назначение Код Страны"));
         order.addStringProperty("destination_country_name").codeBeforeField(getAnnotation("Назначение Название Страны"));
-        order.addStringProperty("destination_checkpoint_type").codeBeforeField(getAnnotation("Назначение Тип Пункта"));
-        order.addStringProperty("destination_checkpoint_code").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("destination_checkpoint_name").codeBeforeField(getAnnotation("йййййййй"));
-        order.addStringProperty("destination_checkpoint_address").codeBeforeField(getAnnotation("йййййййй"));
-        //order.addStringProperty("cargo_id").codeBeforeField(getAnnotation("йййййййй"));
-        //order.addStringProperty("delivery_id").codeBeforeField(getAnnotation("йййййййй"));
+
         order.addStringProperty("brutto_weight").codeBeforeField(getAnnotation("Вес брутто(кг)"));
-        order.addStringProperty("netto_weight").codeBeforeField(getAnnotation("йййййййй"));
         order.addStringProperty("volume").codeBeforeField(getAnnotation("Объем (м3)"));
         order.addStringProperty("count").codeBeforeField(getAnnotation("Кол-во Мест"));
+
         order.addStringProperty("cargo_description").codeBeforeField(getAnnotation("Описание Груза"));
         order.addStringProperty("client_name").codeBeforeField(getAnnotation("Клиент Название"));
-        order.addStringProperty("comment").codeBeforeField(getAnnotation("Комментарий"));
+        order.addStringProperty("performer_name").codeBeforeField(getAnnotation("Имя Исполнителя"));
+
 
         ///finished
         Entity client = schema.addEntity("Client");
@@ -77,7 +69,7 @@ public class NavDaoGenerator {
         client.addStringProperty("inn").codeBeforeField(getAnnotation("ИНН"));
         client.addStringProperty("kpp").codeBeforeField(getAnnotation("КПП"));
 
-        Property clientId = order.addStringProperty("client_id").codeBeforeField(getAnnotation("Клиент Но.")).getProperty();
+
         //order.addToOne(client, clientId);
 
         //finished
@@ -97,7 +89,6 @@ public class NavDaoGenerator {
         contact.addStringProperty("manager_code").codeBeforeField(getAnnotation("Код Менеджера"));
         contact.addStringProperty("fax").codeBeforeField(getAnnotation("Факс"));
 
-        Property contactId = order.addStringProperty("contact_id").codeBeforeField(getAnnotation("Контакт")).getProperty();
         //order.addToOne(contact, contactId);
 
         ///////////xlsx columns implemented
@@ -295,6 +286,7 @@ public class NavDaoGenerator {
         //ToMany podcastToUrls = podcast.addToMany(podcastUrl, podcastId);
 
         new DaoGenerator().generateAll(schema, "../navremote/app/src/main/java/");
+
     }
 
     public static String getAnnotation(String entityName) {
