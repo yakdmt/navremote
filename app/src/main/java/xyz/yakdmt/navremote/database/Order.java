@@ -51,7 +51,7 @@ public class Order implements java.io.Serializable, Saveable {
     private String destination_checkpoint_code;
      @Column(name = "Назначение Название Пункта")
     private String destination_checkpoint_name;
-     @Column(name = "Назначение Название Пункта")
+     @Column(name = "Назначение Адрес Пункта")
     private String destination_checkpoint_address;
      @Column(name = "Назначение Код Страны")
     private String destination_country_code;

@@ -38,7 +38,7 @@ public class NavDaoGenerator {
         order.addStringProperty("departure_checkpoint_address").codeBeforeField(getAnnotation("Отправление Адрес"));
         order.addStringProperty("destination_checkpoint_code").codeBeforeField(getAnnotation("Назначение Код Пункта"));
         order.addStringProperty("destination_checkpoint_name").codeBeforeField(getAnnotation("Назначение Название Пункта"));
-        order.addStringProperty("destination_checkpoint_address").codeBeforeField(getAnnotation("Назначение Название Пункта"));
+        order.addStringProperty("destination_checkpoint_address").codeBeforeField(getAnnotation("Назначение Адрес Пункта"));
         order.addStringProperty("destination_country_code").codeBeforeField(getAnnotation("Назначение Код Страны"));
         order.addStringProperty("destination_country_name").codeBeforeField(getAnnotation("Назначение Название Страны"));
 
@@ -83,7 +83,6 @@ public class NavDaoGenerator {
         contact.addStringProperty("client_name").codeBeforeField(getAnnotation("Название Фирмы"));
         contact.addStringProperty("postal_index").codeBeforeField(getAnnotation("Почтовый Индекс"));
         contact.addStringProperty("region_code").codeBeforeField(getAnnotation("Код страны/региона"));
-        contact.addStringProperty("password").codeBeforeField(getAnnotation("Но."));
         contact.addStringProperty("phone").codeBeforeField(getAnnotation("Телефон"));
         contact.addStringProperty("mobile_phone").codeBeforeField(getAnnotation("Мобильный Телефон"));
         contact.addStringProperty("fax").codeBeforeField(getAnnotation("Факс"));
