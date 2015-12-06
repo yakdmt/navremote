@@ -16,6 +16,7 @@ import android.widget.Toast;
 import de.greenrobot.event.EventBus;
 import xyz.yakdmt.navremote.tasks.AuthTask;
 import xyz.yakdmt.navremote.utils.Events;
+import xyz.yakdmt.navremote.utils.SchemeParser;
 
 /**
  * Created by yakdmt on 29/11/15.
@@ -27,9 +28,15 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (App.skipLogin) {
+
+            openMainActivity();
+            finish();
+        }
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);

@@ -78,7 +78,6 @@ public class OrderFragment extends Fragment {
         departureBuilder.append(order.getDeparture_checkpoint_address());
         mDeparture.setText(TextUtil.removeNulls(departureBuilder));
         mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime()));
-        mDeclarant.setText(TextUtil.removeNulls(order.getDeclarant_code()));
         StringBuilder arrivalBuilder = new StringBuilder();
         arrivalBuilder.append(order.getDestination_country_name());
         arrivalBuilder.append(", ");
@@ -126,19 +125,7 @@ public class OrderFragment extends Fragment {
                 }
             });
         }
-        if (order.getDelivery()!=null) {
-            SpannableString deliveryId = new SpannableString(order.getDelivery().getId());
-            deliveryId.setSpan(new UnderlineSpan(), 0, deliveryId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mDeliveryRef.setText(TextUtil.removeNulls("Доставка:" + deliveryId));
-            mDeliveryRef.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((DetailActivity)getActivity()).openDeliveryFragment(order.getDelivery());
-                }
-            });
-        }
 
-        mManager.setText(TextUtil.removeNulls(order.getManager()));
         mPerformer.setText(TextUtil.removeNulls(order.getPerformer_name()));
 
         final ArrayList<Product> products = (ArrayList<Product>) DaoTask.getInstance().getSession().getProductDao().queryBuilder().where(ProductDao.Properties.Order_id.eq(order.getId())).list();
@@ -151,7 +138,7 @@ public class OrderFragment extends Fragment {
                 }
             });
         }
-        final Document document = DaoTask.getInstance().getSession().getDocumentDao().queryBuilder().where(DocumentDao.Properties.OrderId.eq(order.getId())).unique();
+        final Document document = DaoTask.getInstance().getSession().getDocumentDao().queryBuilder().where(DocumentDao.Properties.Order_id.eq(order.getId())).unique();
         if (document!=null) {
             mDocumentsRef.setText(TextUtil.removeNulls("Документ: "+document.getDocument_name()));
             mDocumentsRef.setOnClickListener(new View.OnClickListener() {

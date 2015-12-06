@@ -12,18 +12,19 @@ import xyz.yakdmt.navremote.utils.Saveable;
 public class Product implements Saveable {
 
     /** Not-null value. */
-     @Column(name = "йййййййй")
     private String id;
-     @Column(name = "йййййййй")
+     @Column(name = "Заявка Но.")
     private String order_id;
-     @Column(name = "йййййййй")
+     @Column(name = "Строка Но.")
     private String string_number;
-     @Column(name = "йййййййй")
+     @Column(name = "Вес Брутто(кг)")
     private String brutto_weight;
-     @Column(name = "йййййййй")
+     @Column(name = "Количество")
     private String count;
-     @Column(name = "йййййййй")
+     @Column(name = "Описание/Комментарий")
     private String description;
+     @Column(name = "Ед. Измерения")
+    private String measure_unit;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -35,13 +36,14 @@ public class Product implements Saveable {
         this.id = id;
     }
 
-    public Product(String id, String order_id, String string_number, String brutto_weight, String count, String description) {
+    public Product(String id, String order_id, String string_number, String brutto_weight, String count, String description, String measure_unit) {
         this.id = id;
         this.order_id = order_id;
         this.string_number = string_number;
         this.brutto_weight = brutto_weight;
         this.count = count;
         this.description = description;
+        this.measure_unit = measure_unit;
     }
 
     /** Not-null value. */
@@ -92,6 +94,14 @@ public class Product implements Saveable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getMeasure_unit() {
+        return measure_unit;
+    }
+
+    public void setMeasure_unit(String measure_unit) {
+        this.measure_unit = measure_unit;
     }
 
     // KEEP METHODS - put your custom methods here

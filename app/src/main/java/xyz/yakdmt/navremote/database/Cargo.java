@@ -31,16 +31,18 @@ public class Cargo implements java.io.Serializable, Saveable {
     private String transport_line_code;
      @Column(name = "Транспортная Линия Имя")
     private String transport_line_name;
+     @Column(name = "Клиент Но.")
+    private String client_id;
      @Column(name = "Клиент Имя")
     private String client_name;
-     @Column(name = "Общее Описание")
-    private String description;
      @Column(name = "Станд. Описание")
     private String standard_description;
-     @Column(name = "Страховая Сумма")
-    private String insurance_amount;
+     @Column(name = "Общее Описание")
+    private String description;
      @Column(name = "Страховка")
     private String insurance;
+     @Column(name = "Страховая Сумма")
+    private String insurance_amount;
      @Column(name = "Кол-во Мест")
     private String count;
      @Column(name = "Вес (кг)")
@@ -63,32 +65,30 @@ public class Cargo implements java.io.Serializable, Saveable {
     private String broker_code;
      @Column(name = "Брокер Название")
     private String broker_name;
-     @Column(name = "Условия Поставки")
-    private String delivery_conditions;
      @Column(name = "Получатель Код")
     private String consignee_code;
      @Column(name = "Получатель Название")
     private String consignee_name;
+     @Column(name = "Условия Поставки")
+    private String delivery_conditions;
+     @Column(name = "Терминал")
+    private String terminal;
+     @Column(name = "Заявка Клиента")
+    private String order_id;
      @Column(name = "Контейнер Но.")
     private String container_number;
+     @Column(name = "ДТ Но.")
+    private String dt_number;
      @Column(name = "Отдел")
     private String department_name;
+     @Column(name = "Вагон Но.")
+    private String wagon_number;
+     @Column(name = "Выпуск ДТ")
+    private String release_date;
      @Column(name = "Количество Товаров")
     private String product_count;
      @Column(name = "Регистрация ДТ")
     private String dt_registration_date;
-     @Column(name = "Выпуск ДТ")
-    private String release_date;
-     @Column(name = "Терминал")
-    private String terminal;
-     @Column(name = "ДТ Но.")
-    private String dt_number;
-     @Column(name = "Вагон Но.")
-    private String wagon_number;
-     @Column(name = "Клиент Но.")
-    private String client_id;
-     @Column(name = "Заявка Клиента")
-    private String order_id;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -100,7 +100,7 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public Cargo(String id, String transport, String master_document, String sender_code, String sender_name, String appearance_date, String destination_checkpoint_code, String transport_line_code, String transport_line_name, String client_name, String description, String standard_description, String insurance_amount, String insurance, String count, String weight, String volume, String occurence_checkpoint_type, String occurence_checkpoint_code, String destination_checkpoint_type, String currency_code, String cost, String customs_clearance, String broker_code, String broker_name, String delivery_conditions, String consignee_code, String consignee_name, String container_number, String department_name, String product_count, String dt_registration_date, String release_date, String terminal, String dt_number, String wagon_number, String client_id, String order_id) {
+    public Cargo(String id, String transport, String master_document, String sender_code, String sender_name, String appearance_date, String destination_checkpoint_code, String transport_line_code, String transport_line_name, String client_id, String client_name, String standard_description, String description, String insurance, String insurance_amount, String count, String weight, String volume, String occurence_checkpoint_type, String occurence_checkpoint_code, String destination_checkpoint_type, String currency_code, String cost, String customs_clearance, String broker_code, String broker_name, String consignee_code, String consignee_name, String delivery_conditions, String terminal, String order_id, String container_number, String dt_number, String department_name, String wagon_number, String release_date, String product_count, String dt_registration_date) {
         this.id = id;
         this.transport = transport;
         this.master_document = master_document;
@@ -110,11 +110,12 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.destination_checkpoint_code = destination_checkpoint_code;
         this.transport_line_code = transport_line_code;
         this.transport_line_name = transport_line_name;
+        this.client_id = client_id;
         this.client_name = client_name;
-        this.description = description;
         this.standard_description = standard_description;
-        this.insurance_amount = insurance_amount;
+        this.description = description;
         this.insurance = insurance;
+        this.insurance_amount = insurance_amount;
         this.count = count;
         this.weight = weight;
         this.volume = volume;
@@ -126,19 +127,18 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.customs_clearance = customs_clearance;
         this.broker_code = broker_code;
         this.broker_name = broker_name;
-        this.delivery_conditions = delivery_conditions;
         this.consignee_code = consignee_code;
         this.consignee_name = consignee_name;
+        this.delivery_conditions = delivery_conditions;
+        this.terminal = terminal;
+        this.order_id = order_id;
         this.container_number = container_number;
+        this.dt_number = dt_number;
         this.department_name = department_name;
+        this.wagon_number = wagon_number;
+        this.release_date = release_date;
         this.product_count = product_count;
         this.dt_registration_date = dt_registration_date;
-        this.release_date = release_date;
-        this.terminal = terminal;
-        this.dt_number = dt_number;
-        this.wagon_number = wagon_number;
-        this.client_id = client_id;
-        this.order_id = order_id;
     }
 
     public String getId() {
@@ -213,20 +213,20 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.transport_line_name = transport_line_name;
     }
 
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
     public String getClient_name() {
         return client_name;
     }
 
     public void setClient_name(String client_name) {
         this.client_name = client_name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getStandard_description() {
@@ -237,12 +237,12 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.standard_description = standard_description;
     }
 
-    public String getInsurance_amount() {
-        return insurance_amount;
+    public String getDescription() {
+        return description;
     }
 
-    public void setInsurance_amount(String insurance_amount) {
-        this.insurance_amount = insurance_amount;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getInsurance() {
@@ -251,6 +251,14 @@ public class Cargo implements java.io.Serializable, Saveable {
 
     public void setInsurance(String insurance) {
         this.insurance = insurance;
+    }
+
+    public String getInsurance_amount() {
+        return insurance_amount;
+    }
+
+    public void setInsurance_amount(String insurance_amount) {
+        this.insurance_amount = insurance_amount;
     }
 
     public String getCount() {
@@ -341,14 +349,6 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.broker_name = broker_name;
     }
 
-    public String getDelivery_conditions() {
-        return delivery_conditions;
-    }
-
-    public void setDelivery_conditions(String delivery_conditions) {
-        this.delivery_conditions = delivery_conditions;
-    }
-
     public String getConsignee_code() {
         return consignee_code;
     }
@@ -365,6 +365,30 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.consignee_name = consignee_name;
     }
 
+    public String getDelivery_conditions() {
+        return delivery_conditions;
+    }
+
+    public void setDelivery_conditions(String delivery_conditions) {
+        this.delivery_conditions = delivery_conditions;
+    }
+
+    public String getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+
     public String getContainer_number() {
         return container_number;
     }
@@ -373,12 +397,36 @@ public class Cargo implements java.io.Serializable, Saveable {
         this.container_number = container_number;
     }
 
+    public String getDt_number() {
+        return dt_number;
+    }
+
+    public void setDt_number(String dt_number) {
+        this.dt_number = dt_number;
+    }
+
     public String getDepartment_name() {
         return department_name;
     }
 
     public void setDepartment_name(String department_name) {
         this.department_name = department_name;
+    }
+
+    public String getWagon_number() {
+        return wagon_number;
+    }
+
+    public void setWagon_number(String wagon_number) {
+        this.wagon_number = wagon_number;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
     public String getProduct_count() {
@@ -395,54 +443,6 @@ public class Cargo implements java.io.Serializable, Saveable {
 
     public void setDt_registration_date(String dt_registration_date) {
         this.dt_registration_date = dt_registration_date;
-    }
-
-    public String getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
-    }
-
-    public String getTerminal() {
-        return terminal;
-    }
-
-    public void setTerminal(String terminal) {
-        this.terminal = terminal;
-    }
-
-    public String getDt_number() {
-        return dt_number;
-    }
-
-    public void setDt_number(String dt_number) {
-        this.dt_number = dt_number;
-    }
-
-    public String getWagon_number() {
-        return wagon_number;
-    }
-
-    public void setWagon_number(String wagon_number) {
-        this.wagon_number = wagon_number;
-    }
-
-    public String getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
-    }
-
-    public String getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(String order_id) {
-        this.order_id = order_id;
     }
 
     // KEEP METHODS - put your custom methods here

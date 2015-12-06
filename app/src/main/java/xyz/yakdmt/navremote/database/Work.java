@@ -29,10 +29,10 @@ public class Work implements Saveable {
     private String working_place;
      @Column(name = "Работа Описание")
     private String description;
-     @Column(name = "Доставка Но.")
-    private String delivery_id;
      @Column(name = "Груз ID")
     private String cargo_id;
+     @Column(name = "Доставка Но.")
+    private String delivery_id;
      @Column(name = "Факт. Дата Завершения")
     private String actual_finish_date;
      @Column(name = "Факт. Время Завершения")
@@ -50,7 +50,7 @@ public class Work implements Saveable {
         this.id = id;
     }
 
-    public Work(String id, String work_code, String work_type, String measure_unit, String count, String responsible_worker, String comment, String working_place, String description, String delivery_id, String cargo_id, String actual_finish_date, String actual_finish_time, String responsible_department) {
+    public Work(String id, String work_code, String work_type, String measure_unit, String count, String responsible_worker, String comment, String working_place, String description, String cargo_id, String delivery_id, String actual_finish_date, String actual_finish_time, String responsible_department) {
         this.id = id;
         this.work_code = work_code;
         this.work_type = work_type;
@@ -60,8 +60,8 @@ public class Work implements Saveable {
         this.comment = comment;
         this.working_place = working_place;
         this.description = description;
-        this.delivery_id = delivery_id;
         this.cargo_id = cargo_id;
+        this.delivery_id = delivery_id;
         this.actual_finish_date = actual_finish_date;
         this.actual_finish_time = actual_finish_time;
         this.responsible_department = responsible_department;
@@ -139,20 +139,20 @@ public class Work implements Saveable {
         this.description = description;
     }
 
-    public String getDelivery_id() {
-        return delivery_id;
-    }
-
-    public void setDelivery_id(String delivery_id) {
-        this.delivery_id = delivery_id;
-    }
-
     public String getCargo_id() {
         return cargo_id;
     }
 
     public void setCargo_id(String cargo_id) {
         this.cargo_id = cargo_id;
+    }
+
+    public String getDelivery_id() {
+        return delivery_id;
+    }
+
+    public void setDelivery_id(String delivery_id) {
+        this.delivery_id = delivery_id;
     }
 
     public String getActual_finish_date() {

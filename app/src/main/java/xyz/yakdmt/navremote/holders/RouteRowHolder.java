@@ -46,7 +46,7 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
         if (!App.bindViews) {
             return;
         }
-        mAddress.setText(TextUtil.removeNulls(routeRow.getCountry_name()+", "+routeRow.getAddress()));
+        mAddress.setText(TextUtil.removeNulls(routeRow.getCountry_code()+", "+routeRow.getAddress()));
         mProcedureType.setText(TextUtil.removeNulls("Тип процедуры: "+routeRow.getProcedure_type()));
         mExpectedArrival.setText(TextUtil.removeNulls("Ожид.: "+routeRow.getExpected_arrival_date()));
         mActualArrival.setText(TextUtil.removeNulls("Факт.: "+routeRow.getActual_arrival_date()+" "+routeRow.getActual_arrival_time()));

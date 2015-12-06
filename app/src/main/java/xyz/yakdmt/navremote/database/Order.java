@@ -5,6 +5,8 @@ package xyz.yakdmt.navremote.database;
 // KEEP INCLUDES - put your custom includes here
 import android.text.TextUtils;
 
+import java.util.ArrayList;
+
 import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Saveable;
 // KEEP INCLUDES END
@@ -15,68 +17,48 @@ public class Order implements java.io.Serializable, Saveable {
 
      @Column(name = "Заявка Но.")
     private String id;
-     @Column(name = "Тип Документа")
-    private String document_type;
-     @Column(name = "Создана из Предварительной")
-    private String from_preliminary;
      @Column(name = "Дата Документа")
     private String date;
      @Column(name = "Время Документа")
     private String time;
-     @Column(name = "Менеджер")
-    private String manager;
-     @Column(name = "Внешний Документ")
-    private String document_path;
+     @Column(name = "Клиент Но.")
+    private String client_id;
+     @Column(name = "Контакт")
+    private String contact_id;
+     @Column(name = "Требуемая Дата Доставки")
+    private String arrival_date;
      @Column(name = "Исполнитель")
     private String performer_code;
-     @Column(name = "Имя Исполнителя")
-    private String performer_name;
      @Column(name = "Состояние")
     private String state;
-     @Column(name = "йййййййй")
-    private String dangerous;
-     @Column(name = "йййййййй")
-    private String receiver_code;
-     @Column(name = "йййййййй")
-    private String receiver_name;
-     @Column(name = "Заявитель")
-    private String declarant_code;
-     @Column(name = "Имя Заявителя")
-    private String declarant_name;
-     @Column(name = "йййййййй")
-    private String declarant_department;
      @Column(name = "Вид Транспорта")
     private String transport;
      @Column(name = "Дата отправки")
     private String departure_date;
      @Column(name = "Отправление Код Страны")
     private String departure_country_code;
-     @Column(name = "Отправление Страна Название")
-    private String departure_country_name;
      @Column(name = "Отправление  Тип Пункта")
     private String departure_checkpoint_type;
-     @Column(name = "Отправление Код Пункта")
-    private String departure_checkpoint_code;
+     @Column(name = "Назначение Тип Пункта")
+    private String destination_checkpoint_type;
+     @Column(name = "Отправление Страна Название")
+    private String departure_country_name;
      @Column(name = "Место Отправления")
     private String departure_checkpoint_name;
      @Column(name = "Отправление Адрес")
     private String departure_checkpoint_address;
+     @Column(name = "Назначение Код Пункта")
+    private String destination_checkpoint_code;
+     @Column(name = "Назначение Название Пункта")
+    private String destination_checkpoint_name;
+     @Column(name = "Назначение Название Пункта")
+    private String destination_checkpoint_address;
      @Column(name = "Назначение Код Страны")
     private String destination_country_code;
      @Column(name = "Назначение Название Страны")
     private String destination_country_name;
-     @Column(name = "Назначение Тип Пункта")
-    private String destination_checkpoint_type;
-     @Column(name = "йййййййй")
-    private String destination_checkpoint_code;
-     @Column(name = "йййййййй")
-    private String destination_checkpoint_name;
-     @Column(name = "йййййййй")
-    private String destination_checkpoint_address;
      @Column(name = "Вес брутто(кг)")
     private String brutto_weight;
-     @Column(name = "йййййййй")
-    private String netto_weight;
      @Column(name = "Объем (м3)")
     private String volume;
      @Column(name = "Кол-во Мест")
@@ -85,16 +67,8 @@ public class Order implements java.io.Serializable, Saveable {
     private String cargo_description;
      @Column(name = "Клиент Название")
     private String client_name;
-     @Column(name = "Комментарий")
-    private String comment;
-     @Column(name = "Клиент Но.")
-    private String client_id;
-     @Column(name = "Контакт")
-    private String contact_id;
-     @Column(name = "Груз ID")
-    private String cargo_id;
-     @Column(name = "Доставка Но.")
-    private String delivery_id;
+     @Column(name = "Имя Исполнителя")
+    private String performer_name;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -106,48 +80,34 @@ public class Order implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public Order(String id, String document_type, String from_preliminary, String date, String time, String manager, String document_path, String performer_code, String performer_name, String state, String dangerous, String receiver_code, String receiver_name, String declarant_code, String declarant_name, String declarant_department, String transport, String departure_date, String departure_country_code, String departure_country_name, String departure_checkpoint_type, String departure_checkpoint_code, String departure_checkpoint_name, String departure_checkpoint_address, String destination_country_code, String destination_country_name, String destination_checkpoint_type, String destination_checkpoint_code, String destination_checkpoint_name, String destination_checkpoint_address, String brutto_weight, String netto_weight, String volume, String count, String cargo_description, String client_name, String comment, String client_id, String contact_id, String cargo_id, String delivery_id) {
+    public Order(String id, String date, String time, String client_id, String contact_id, String arrival_date, String performer_code, String state, String transport, String departure_date, String departure_country_code, String departure_checkpoint_type, String destination_checkpoint_type, String departure_country_name, String departure_checkpoint_name, String departure_checkpoint_address, String destination_checkpoint_code, String destination_checkpoint_name, String destination_checkpoint_address, String destination_country_code, String destination_country_name, String brutto_weight, String volume, String count, String cargo_description, String client_name, String performer_name) {
         this.id = id;
-        this.document_type = document_type;
-        this.from_preliminary = from_preliminary;
         this.date = date;
         this.time = time;
-        this.manager = manager;
-        this.document_path = document_path;
+        this.client_id = client_id;
+        this.contact_id = contact_id;
+        this.arrival_date = arrival_date;
         this.performer_code = performer_code;
-        this.performer_name = performer_name;
         this.state = state;
-        this.dangerous = dangerous;
-        this.receiver_code = receiver_code;
-        this.receiver_name = receiver_name;
-        this.declarant_code = declarant_code;
-        this.declarant_name = declarant_name;
-        this.declarant_department = declarant_department;
         this.transport = transport;
         this.departure_date = departure_date;
         this.departure_country_code = departure_country_code;
-        this.departure_country_name = departure_country_name;
         this.departure_checkpoint_type = departure_checkpoint_type;
-        this.departure_checkpoint_code = departure_checkpoint_code;
+        this.destination_checkpoint_type = destination_checkpoint_type;
+        this.departure_country_name = departure_country_name;
         this.departure_checkpoint_name = departure_checkpoint_name;
         this.departure_checkpoint_address = departure_checkpoint_address;
-        this.destination_country_code = destination_country_code;
-        this.destination_country_name = destination_country_name;
-        this.destination_checkpoint_type = destination_checkpoint_type;
         this.destination_checkpoint_code = destination_checkpoint_code;
         this.destination_checkpoint_name = destination_checkpoint_name;
         this.destination_checkpoint_address = destination_checkpoint_address;
+        this.destination_country_code = destination_country_code;
+        this.destination_country_name = destination_country_name;
         this.brutto_weight = brutto_weight;
-        this.netto_weight = netto_weight;
         this.volume = volume;
         this.count = count;
         this.cargo_description = cargo_description;
         this.client_name = client_name;
-        this.comment = comment;
-        this.client_id = client_id;
-        this.contact_id = contact_id;
-        this.cargo_id = cargo_id;
-        this.delivery_id = delivery_id;
+        this.performer_name = performer_name;
     }
 
     public String getId() {
@@ -156,22 +116,6 @@ public class Order implements java.io.Serializable, Saveable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDocument_type() {
-        return document_type;
-    }
-
-    public void setDocument_type(String document_type) {
-        this.document_type = document_type;
-    }
-
-    public String getFrom_preliminary() {
-        return from_preliminary;
-    }
-
-    public void setFrom_preliminary(String from_preliminary) {
-        this.from_preliminary = from_preliminary;
     }
 
     public String getDate() {
@@ -190,20 +134,28 @@ public class Order implements java.io.Serializable, Saveable {
         this.time = time;
     }
 
-    public String getManager() {
-        return manager;
+    public String getClient_id() {
+        return client_id;
     }
 
-    public void setManager(String manager) {
-        this.manager = manager;
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
     }
 
-    public String getDocument_path() {
-        return document_path;
+    public String getContact_id() {
+        return contact_id;
     }
 
-    public void setDocument_path(String document_path) {
-        this.document_path = document_path;
+    public void setContact_id(String contact_id) {
+        this.contact_id = contact_id;
+    }
+
+    public String getArrival_date() {
+        return arrival_date;
+    }
+
+    public void setArrival_date(String arrival_date) {
+        this.arrival_date = arrival_date;
     }
 
     public String getPerformer_code() {
@@ -214,68 +166,12 @@ public class Order implements java.io.Serializable, Saveable {
         this.performer_code = performer_code;
     }
 
-    public String getPerformer_name() {
-        return performer_name;
-    }
-
-    public void setPerformer_name(String performer_name) {
-        this.performer_name = performer_name;
-    }
-
     public String getState() {
         return state;
     }
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public String getDangerous() {
-        return dangerous;
-    }
-
-    public void setDangerous(String dangerous) {
-        this.dangerous = dangerous;
-    }
-
-    public String getReceiver_code() {
-        return receiver_code;
-    }
-
-    public void setReceiver_code(String receiver_code) {
-        this.receiver_code = receiver_code;
-    }
-
-    public String getReceiver_name() {
-        return receiver_name;
-    }
-
-    public void setReceiver_name(String receiver_name) {
-        this.receiver_name = receiver_name;
-    }
-
-    public String getDeclarant_code() {
-        return declarant_code;
-    }
-
-    public void setDeclarant_code(String declarant_code) {
-        this.declarant_code = declarant_code;
-    }
-
-    public String getDeclarant_name() {
-        return declarant_name;
-    }
-
-    public void setDeclarant_name(String declarant_name) {
-        this.declarant_name = declarant_name;
-    }
-
-    public String getDeclarant_department() {
-        return declarant_department;
-    }
-
-    public void setDeclarant_department(String declarant_department) {
-        this.declarant_department = declarant_department;
     }
 
     public String getTransport() {
@@ -302,14 +198,6 @@ public class Order implements java.io.Serializable, Saveable {
         this.departure_country_code = departure_country_code;
     }
 
-    public String getDeparture_country_name() {
-        return departure_country_name;
-    }
-
-    public void setDeparture_country_name(String departure_country_name) {
-        this.departure_country_name = departure_country_name;
-    }
-
     public String getDeparture_checkpoint_type() {
         return departure_checkpoint_type;
     }
@@ -318,12 +206,20 @@ public class Order implements java.io.Serializable, Saveable {
         this.departure_checkpoint_type = departure_checkpoint_type;
     }
 
-    public String getDeparture_checkpoint_code() {
-        return departure_checkpoint_code;
+    public String getDestination_checkpoint_type() {
+        return destination_checkpoint_type;
     }
 
-    public void setDeparture_checkpoint_code(String departure_checkpoint_code) {
-        this.departure_checkpoint_code = departure_checkpoint_code;
+    public void setDestination_checkpoint_type(String destination_checkpoint_type) {
+        this.destination_checkpoint_type = destination_checkpoint_type;
+    }
+
+    public String getDeparture_country_name() {
+        return departure_country_name;
+    }
+
+    public void setDeparture_country_name(String departure_country_name) {
+        this.departure_country_name = departure_country_name;
     }
 
     public String getDeparture_checkpoint_name() {
@@ -340,30 +236,6 @@ public class Order implements java.io.Serializable, Saveable {
 
     public void setDeparture_checkpoint_address(String departure_checkpoint_address) {
         this.departure_checkpoint_address = departure_checkpoint_address;
-    }
-
-    public String getDestination_country_code() {
-        return destination_country_code;
-    }
-
-    public void setDestination_country_code(String destination_country_code) {
-        this.destination_country_code = destination_country_code;
-    }
-
-    public String getDestination_country_name() {
-        return destination_country_name;
-    }
-
-    public void setDestination_country_name(String destination_country_name) {
-        this.destination_country_name = destination_country_name;
-    }
-
-    public String getDestination_checkpoint_type() {
-        return destination_checkpoint_type;
-    }
-
-    public void setDestination_checkpoint_type(String destination_checkpoint_type) {
-        this.destination_checkpoint_type = destination_checkpoint_type;
     }
 
     public String getDestination_checkpoint_code() {
@@ -390,20 +262,28 @@ public class Order implements java.io.Serializable, Saveable {
         this.destination_checkpoint_address = destination_checkpoint_address;
     }
 
+    public String getDestination_country_code() {
+        return destination_country_code;
+    }
+
+    public void setDestination_country_code(String destination_country_code) {
+        this.destination_country_code = destination_country_code;
+    }
+
+    public String getDestination_country_name() {
+        return destination_country_name;
+    }
+
+    public void setDestination_country_name(String destination_country_name) {
+        this.destination_country_name = destination_country_name;
+    }
+
     public String getBrutto_weight() {
         return brutto_weight;
     }
 
     public void setBrutto_weight(String brutto_weight) {
         this.brutto_weight = brutto_weight;
-    }
-
-    public String getNetto_weight() {
-        return netto_weight;
-    }
-
-    public void setNetto_weight(String netto_weight) {
-        this.netto_weight = netto_weight;
     }
 
     public String getVolume() {
@@ -438,44 +318,12 @@ public class Order implements java.io.Serializable, Saveable {
         this.client_name = client_name;
     }
 
-    public String getComment() {
-        return comment;
+    public String getPerformer_name() {
+        return performer_name;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
-    }
-
-    public String getContact_id() {
-        return contact_id;
-    }
-
-    public void setContact_id(String contact_id) {
-        this.contact_id = contact_id;
-    }
-
-    public String getCargo_id() {
-        return cargo_id;
-    }
-
-    public void setCargo_id(String cargo_id) {
-        this.cargo_id = cargo_id;
-    }
-
-    public String getDelivery_id() {
-        return delivery_id;
-    }
-
-    public void setDelivery_id(String delivery_id) {
-        this.delivery_id = delivery_id;
+    public void setPerformer_name(String performer_name) {
+        this.performer_name = performer_name;
     }
 
     // KEEP METHODS - put your custom methods here
@@ -492,17 +340,11 @@ public class Order implements java.io.Serializable, Saveable {
     }
 
     public Cargo getCargo() {
-        if (TextUtils.isEmpty(getCargo_id())) {
+        ArrayList<Cargo> list = new ArrayList<Cargo>(DaoTask.getInstance().getSession().getCargoDao().queryBuilder().where(CargoDao.Properties.Order_id.eq(getId())).limit(1).list());
+        if (list.size()==0) {
             return null;
         }
-        return DaoTask.getInstance().getSession().getCargoDao().queryBuilder().where(CargoDao.Properties.Id.eq(getCargo_id())).unique();
-    }
-
-    public Delivery getDelivery() {
-        if (TextUtils.isEmpty(getDelivery_id())) {
-            return null;
-        }
-        return DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder().where(DeliveryDao.Properties.Id.eq(getDelivery_id())).unique();
+        return list.get(0);
     }
     // KEEP METHODS END
 

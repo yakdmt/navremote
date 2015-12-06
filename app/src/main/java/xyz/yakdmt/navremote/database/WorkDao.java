@@ -32,8 +32,8 @@ public class WorkDao extends AbstractDao<Work, String> {
         public final static Property Comment = new Property(6, String.class, "comment", false, "COMMENT");
         public final static Property Working_place = new Property(7, String.class, "working_place", false, "WORKING_PLACE");
         public final static Property Description = new Property(8, String.class, "description", false, "DESCRIPTION");
-        public final static Property Delivery_id = new Property(9, String.class, "delivery_id", false, "DELIVERY_ID");
-        public final static Property Cargo_id = new Property(10, String.class, "cargo_id", false, "CARGO_ID");
+        public final static Property Cargo_id = new Property(9, String.class, "cargo_id", false, "CARGO_ID");
+        public final static Property Delivery_id = new Property(10, String.class, "delivery_id", false, "DELIVERY_ID");
         public final static Property Actual_finish_date = new Property(11, String.class, "actual_finish_date", false, "ACTUAL_FINISH_DATE");
         public final static Property Actual_finish_time = new Property(12, String.class, "actual_finish_time", false, "ACTUAL_FINISH_TIME");
         public final static Property Responsible_department = new Property(13, String.class, "responsible_department", false, "RESPONSIBLE_DEPARTMENT");
@@ -61,8 +61,8 @@ public class WorkDao extends AbstractDao<Work, String> {
                 "\"COMMENT\" TEXT," + // 6: comment
                 "\"WORKING_PLACE\" TEXT," + // 7: working_place
                 "\"DESCRIPTION\" TEXT," + // 8: description
-                "\"DELIVERY_ID\" TEXT," + // 9: delivery_id
-                "\"CARGO_ID\" TEXT," + // 10: cargo_id
+                "\"CARGO_ID\" TEXT," + // 9: cargo_id
+                "\"DELIVERY_ID\" TEXT," + // 10: delivery_id
                 "\"ACTUAL_FINISH_DATE\" TEXT," + // 11: actual_finish_date
                 "\"ACTUAL_FINISH_TIME\" TEXT," + // 12: actual_finish_time
                 "\"RESPONSIBLE_DEPARTMENT\" TEXT);"); // 13: responsible_department
@@ -124,14 +124,14 @@ public class WorkDao extends AbstractDao<Work, String> {
             stmt.bindString(9, description);
         }
  
-        String delivery_id = entity.getDelivery_id();
-        if (delivery_id != null) {
-            stmt.bindString(10, delivery_id);
-        }
- 
         String cargo_id = entity.getCargo_id();
         if (cargo_id != null) {
-            stmt.bindString(11, cargo_id);
+            stmt.bindString(10, cargo_id);
+        }
+ 
+        String delivery_id = entity.getDelivery_id();
+        if (delivery_id != null) {
+            stmt.bindString(11, delivery_id);
         }
  
         String actual_finish_date = entity.getActual_finish_date();
@@ -169,8 +169,8 @@ public class WorkDao extends AbstractDao<Work, String> {
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // comment
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // working_place
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // description
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // delivery_id
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // cargo_id
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // cargo_id
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // delivery_id
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // actual_finish_date
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // actual_finish_time
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // responsible_department
@@ -190,8 +190,8 @@ public class WorkDao extends AbstractDao<Work, String> {
         entity.setComment(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setWorking_place(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setDescription(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setDelivery_id(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setCargo_id(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setCargo_id(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setDelivery_id(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setActual_finish_date(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setActual_finish_time(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
         entity.setResponsible_department(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));

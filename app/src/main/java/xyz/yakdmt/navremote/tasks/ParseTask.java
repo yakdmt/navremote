@@ -26,6 +26,7 @@ import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Constants;
 import xyz.yakdmt.navremote.utils.Events;
+import xyz.yakdmt.navremote.utils.SchemeParser;
 
 /**
  * Created by yakdmt on 26/11/15.
@@ -125,6 +126,7 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                                         }
                                         method.invoke(object, value);
                                     }
+                                    count++;
                                 }
                             }
                         }
@@ -148,6 +150,7 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                 e.printStackTrace();
             }
         }
+        SchemeParser.getInstance().createXml();
         return true;
     }
 

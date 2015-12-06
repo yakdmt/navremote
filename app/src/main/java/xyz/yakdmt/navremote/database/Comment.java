@@ -15,10 +15,10 @@ public class Comment implements Saveable {
     private String id;
      @Column(name = "Объект ID")
     private String object_id;
-     @Column(name = "Тип Объекта")
-    private String object_type;
      @Column(name = "Дата")
     private String date;
+     @Column(name = "Тип Объекта")
+    private String object_type;
      @Column(name = "Комментарий")
     private String text;
      @Column(name = "Автор")
@@ -36,11 +36,11 @@ public class Comment implements Saveable {
         this.id = id;
     }
 
-    public Comment(String id, String object_id, String object_type, String date, String text, String author, String department) {
+    public Comment(String id, String object_id, String date, String object_type, String text, String author, String department) {
         this.id = id;
         this.object_id = object_id;
-        this.object_type = object_type;
         this.date = date;
+        this.object_type = object_type;
         this.text = text;
         this.author = author;
         this.department = department;
@@ -62,20 +62,20 @@ public class Comment implements Saveable {
         this.object_id = object_id;
     }
 
-    public String getObject_type() {
-        return object_type;
-    }
-
-    public void setObject_type(String object_type) {
-        this.object_type = object_type;
-    }
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getObject_type() {
+        return object_type;
+    }
+
+    public void setObject_type(String object_type) {
+        this.object_type = object_type;
     }
 
     public String getText() {

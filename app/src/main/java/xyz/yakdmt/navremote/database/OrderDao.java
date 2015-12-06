@@ -24,46 +24,32 @@ public class OrderDao extends AbstractDao<Order, String> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, String.class, "id", true, "ID");
-        public final static Property Document_type = new Property(1, String.class, "document_type", false, "DOCUMENT_TYPE");
-        public final static Property From_preliminary = new Property(2, String.class, "from_preliminary", false, "FROM_PRELIMINARY");
-        public final static Property Date = new Property(3, String.class, "date", false, "DATE");
-        public final static Property Time = new Property(4, String.class, "time", false, "TIME");
-        public final static Property Manager = new Property(5, String.class, "manager", false, "MANAGER");
-        public final static Property Document_path = new Property(6, String.class, "document_path", false, "DOCUMENT_PATH");
-        public final static Property Performer_code = new Property(7, String.class, "performer_code", false, "PERFORMER_CODE");
-        public final static Property Performer_name = new Property(8, String.class, "performer_name", false, "PERFORMER_NAME");
-        public final static Property State = new Property(9, String.class, "state", false, "STATE");
-        public final static Property Dangerous = new Property(10, String.class, "dangerous", false, "DANGEROUS");
-        public final static Property Receiver_code = new Property(11, String.class, "receiver_code", false, "RECEIVER_CODE");
-        public final static Property Receiver_name = new Property(12, String.class, "receiver_name", false, "RECEIVER_NAME");
-        public final static Property Declarant_code = new Property(13, String.class, "declarant_code", false, "DECLARANT_CODE");
-        public final static Property Declarant_name = new Property(14, String.class, "declarant_name", false, "DECLARANT_NAME");
-        public final static Property Declarant_department = new Property(15, String.class, "declarant_department", false, "DECLARANT_DEPARTMENT");
-        public final static Property Transport = new Property(16, String.class, "transport", false, "TRANSPORT");
-        public final static Property Departure_date = new Property(17, String.class, "departure_date", false, "DEPARTURE_DATE");
-        public final static Property Departure_country_code = new Property(18, String.class, "departure_country_code", false, "DEPARTURE_COUNTRY_CODE");
-        public final static Property Departure_country_name = new Property(19, String.class, "departure_country_name", false, "DEPARTURE_COUNTRY_NAME");
-        public final static Property Departure_checkpoint_type = new Property(20, String.class, "departure_checkpoint_type", false, "DEPARTURE_CHECKPOINT_TYPE");
-        public final static Property Departure_checkpoint_code = new Property(21, String.class, "departure_checkpoint_code", false, "DEPARTURE_CHECKPOINT_CODE");
-        public final static Property Departure_checkpoint_name = new Property(22, String.class, "departure_checkpoint_name", false, "DEPARTURE_CHECKPOINT_NAME");
-        public final static Property Departure_checkpoint_address = new Property(23, String.class, "departure_checkpoint_address", false, "DEPARTURE_CHECKPOINT_ADDRESS");
-        public final static Property Destination_country_code = new Property(24, String.class, "destination_country_code", false, "DESTINATION_COUNTRY_CODE");
-        public final static Property Destination_country_name = new Property(25, String.class, "destination_country_name", false, "DESTINATION_COUNTRY_NAME");
-        public final static Property Destination_checkpoint_type = new Property(26, String.class, "destination_checkpoint_type", false, "DESTINATION_CHECKPOINT_TYPE");
-        public final static Property Destination_checkpoint_code = new Property(27, String.class, "destination_checkpoint_code", false, "DESTINATION_CHECKPOINT_CODE");
-        public final static Property Destination_checkpoint_name = new Property(28, String.class, "destination_checkpoint_name", false, "DESTINATION_CHECKPOINT_NAME");
-        public final static Property Destination_checkpoint_address = new Property(29, String.class, "destination_checkpoint_address", false, "DESTINATION_CHECKPOINT_ADDRESS");
-        public final static Property Brutto_weight = new Property(30, String.class, "brutto_weight", false, "BRUTTO_WEIGHT");
-        public final static Property Netto_weight = new Property(31, String.class, "netto_weight", false, "NETTO_WEIGHT");
-        public final static Property Volume = new Property(32, String.class, "volume", false, "VOLUME");
-        public final static Property Count = new Property(33, String.class, "count", false, "COUNT");
-        public final static Property Cargo_description = new Property(34, String.class, "cargo_description", false, "CARGO_DESCRIPTION");
-        public final static Property Client_name = new Property(35, String.class, "client_name", false, "CLIENT_NAME");
-        public final static Property Comment = new Property(36, String.class, "comment", false, "COMMENT");
-        public final static Property Client_id = new Property(37, String.class, "client_id", false, "CLIENT_ID");
-        public final static Property Contact_id = new Property(38, String.class, "contact_id", false, "CONTACT_ID");
-        public final static Property Cargo_id = new Property(39, String.class, "cargo_id", false, "CARGO_ID");
-        public final static Property Delivery_id = new Property(40, String.class, "delivery_id", false, "DELIVERY_ID");
+        public final static Property Date = new Property(1, String.class, "date", false, "DATE");
+        public final static Property Time = new Property(2, String.class, "time", false, "TIME");
+        public final static Property Client_id = new Property(3, String.class, "client_id", false, "CLIENT_ID");
+        public final static Property Contact_id = new Property(4, String.class, "contact_id", false, "CONTACT_ID");
+        public final static Property Arrival_date = new Property(5, String.class, "arrival_date", false, "ARRIVAL_DATE");
+        public final static Property Performer_code = new Property(6, String.class, "performer_code", false, "PERFORMER_CODE");
+        public final static Property State = new Property(7, String.class, "state", false, "STATE");
+        public final static Property Transport = new Property(8, String.class, "transport", false, "TRANSPORT");
+        public final static Property Departure_date = new Property(9, String.class, "departure_date", false, "DEPARTURE_DATE");
+        public final static Property Departure_country_code = new Property(10, String.class, "departure_country_code", false, "DEPARTURE_COUNTRY_CODE");
+        public final static Property Departure_checkpoint_type = new Property(11, String.class, "departure_checkpoint_type", false, "DEPARTURE_CHECKPOINT_TYPE");
+        public final static Property Destination_checkpoint_type = new Property(12, String.class, "destination_checkpoint_type", false, "DESTINATION_CHECKPOINT_TYPE");
+        public final static Property Departure_country_name = new Property(13, String.class, "departure_country_name", false, "DEPARTURE_COUNTRY_NAME");
+        public final static Property Departure_checkpoint_name = new Property(14, String.class, "departure_checkpoint_name", false, "DEPARTURE_CHECKPOINT_NAME");
+        public final static Property Departure_checkpoint_address = new Property(15, String.class, "departure_checkpoint_address", false, "DEPARTURE_CHECKPOINT_ADDRESS");
+        public final static Property Destination_checkpoint_code = new Property(16, String.class, "destination_checkpoint_code", false, "DESTINATION_CHECKPOINT_CODE");
+        public final static Property Destination_checkpoint_name = new Property(17, String.class, "destination_checkpoint_name", false, "DESTINATION_CHECKPOINT_NAME");
+        public final static Property Destination_checkpoint_address = new Property(18, String.class, "destination_checkpoint_address", false, "DESTINATION_CHECKPOINT_ADDRESS");
+        public final static Property Destination_country_code = new Property(19, String.class, "destination_country_code", false, "DESTINATION_COUNTRY_CODE");
+        public final static Property Destination_country_name = new Property(20, String.class, "destination_country_name", false, "DESTINATION_COUNTRY_NAME");
+        public final static Property Brutto_weight = new Property(21, String.class, "brutto_weight", false, "BRUTTO_WEIGHT");
+        public final static Property Volume = new Property(22, String.class, "volume", false, "VOLUME");
+        public final static Property Count = new Property(23, String.class, "count", false, "COUNT");
+        public final static Property Cargo_description = new Property(24, String.class, "cargo_description", false, "CARGO_DESCRIPTION");
+        public final static Property Client_name = new Property(25, String.class, "client_name", false, "CLIENT_NAME");
+        public final static Property Performer_name = new Property(26, String.class, "performer_name", false, "PERFORMER_NAME");
     };
 
 
@@ -80,46 +66,32 @@ public class OrderDao extends AbstractDao<Order, String> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"ORDER\" (" + //
                 "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 0: id
-                "\"DOCUMENT_TYPE\" TEXT," + // 1: document_type
-                "\"FROM_PRELIMINARY\" TEXT," + // 2: from_preliminary
-                "\"DATE\" TEXT," + // 3: date
-                "\"TIME\" TEXT," + // 4: time
-                "\"MANAGER\" TEXT," + // 5: manager
-                "\"DOCUMENT_PATH\" TEXT," + // 6: document_path
-                "\"PERFORMER_CODE\" TEXT," + // 7: performer_code
-                "\"PERFORMER_NAME\" TEXT," + // 8: performer_name
-                "\"STATE\" TEXT," + // 9: state
-                "\"DANGEROUS\" TEXT," + // 10: dangerous
-                "\"RECEIVER_CODE\" TEXT," + // 11: receiver_code
-                "\"RECEIVER_NAME\" TEXT," + // 12: receiver_name
-                "\"DECLARANT_CODE\" TEXT," + // 13: declarant_code
-                "\"DECLARANT_NAME\" TEXT," + // 14: declarant_name
-                "\"DECLARANT_DEPARTMENT\" TEXT," + // 15: declarant_department
-                "\"TRANSPORT\" TEXT," + // 16: transport
-                "\"DEPARTURE_DATE\" TEXT," + // 17: departure_date
-                "\"DEPARTURE_COUNTRY_CODE\" TEXT," + // 18: departure_country_code
-                "\"DEPARTURE_COUNTRY_NAME\" TEXT," + // 19: departure_country_name
-                "\"DEPARTURE_CHECKPOINT_TYPE\" TEXT," + // 20: departure_checkpoint_type
-                "\"DEPARTURE_CHECKPOINT_CODE\" TEXT," + // 21: departure_checkpoint_code
-                "\"DEPARTURE_CHECKPOINT_NAME\" TEXT," + // 22: departure_checkpoint_name
-                "\"DEPARTURE_CHECKPOINT_ADDRESS\" TEXT," + // 23: departure_checkpoint_address
-                "\"DESTINATION_COUNTRY_CODE\" TEXT," + // 24: destination_country_code
-                "\"DESTINATION_COUNTRY_NAME\" TEXT," + // 25: destination_country_name
-                "\"DESTINATION_CHECKPOINT_TYPE\" TEXT," + // 26: destination_checkpoint_type
-                "\"DESTINATION_CHECKPOINT_CODE\" TEXT," + // 27: destination_checkpoint_code
-                "\"DESTINATION_CHECKPOINT_NAME\" TEXT," + // 28: destination_checkpoint_name
-                "\"DESTINATION_CHECKPOINT_ADDRESS\" TEXT," + // 29: destination_checkpoint_address
-                "\"BRUTTO_WEIGHT\" TEXT," + // 30: brutto_weight
-                "\"NETTO_WEIGHT\" TEXT," + // 31: netto_weight
-                "\"VOLUME\" TEXT," + // 32: volume
-                "\"COUNT\" TEXT," + // 33: count
-                "\"CARGO_DESCRIPTION\" TEXT," + // 34: cargo_description
-                "\"CLIENT_NAME\" TEXT," + // 35: client_name
-                "\"COMMENT\" TEXT," + // 36: comment
-                "\"CLIENT_ID\" TEXT," + // 37: client_id
-                "\"CONTACT_ID\" TEXT," + // 38: contact_id
-                "\"CARGO_ID\" TEXT," + // 39: cargo_id
-                "\"DELIVERY_ID\" TEXT);"); // 40: delivery_id
+                "\"DATE\" TEXT," + // 1: date
+                "\"TIME\" TEXT," + // 2: time
+                "\"CLIENT_ID\" TEXT," + // 3: client_id
+                "\"CONTACT_ID\" TEXT," + // 4: contact_id
+                "\"ARRIVAL_DATE\" TEXT," + // 5: arrival_date
+                "\"PERFORMER_CODE\" TEXT," + // 6: performer_code
+                "\"STATE\" TEXT," + // 7: state
+                "\"TRANSPORT\" TEXT," + // 8: transport
+                "\"DEPARTURE_DATE\" TEXT," + // 9: departure_date
+                "\"DEPARTURE_COUNTRY_CODE\" TEXT," + // 10: departure_country_code
+                "\"DEPARTURE_CHECKPOINT_TYPE\" TEXT," + // 11: departure_checkpoint_type
+                "\"DESTINATION_CHECKPOINT_TYPE\" TEXT," + // 12: destination_checkpoint_type
+                "\"DEPARTURE_COUNTRY_NAME\" TEXT," + // 13: departure_country_name
+                "\"DEPARTURE_CHECKPOINT_NAME\" TEXT," + // 14: departure_checkpoint_name
+                "\"DEPARTURE_CHECKPOINT_ADDRESS\" TEXT," + // 15: departure_checkpoint_address
+                "\"DESTINATION_CHECKPOINT_CODE\" TEXT," + // 16: destination_checkpoint_code
+                "\"DESTINATION_CHECKPOINT_NAME\" TEXT," + // 17: destination_checkpoint_name
+                "\"DESTINATION_CHECKPOINT_ADDRESS\" TEXT," + // 18: destination_checkpoint_address
+                "\"DESTINATION_COUNTRY_CODE\" TEXT," + // 19: destination_country_code
+                "\"DESTINATION_COUNTRY_NAME\" TEXT," + // 20: destination_country_name
+                "\"BRUTTO_WEIGHT\" TEXT," + // 21: brutto_weight
+                "\"VOLUME\" TEXT," + // 22: volume
+                "\"COUNT\" TEXT," + // 23: count
+                "\"CARGO_DESCRIPTION\" TEXT," + // 24: cargo_description
+                "\"CLIENT_NAME\" TEXT," + // 25: client_name
+                "\"PERFORMER_NAME\" TEXT);"); // 26: performer_name
     }
 
     /** Drops the underlying database table. */
@@ -138,204 +110,134 @@ public class OrderDao extends AbstractDao<Order, String> {
             stmt.bindString(1, id);
         }
  
-        String document_type = entity.getDocument_type();
-        if (document_type != null) {
-            stmt.bindString(2, document_type);
-        }
- 
-        String from_preliminary = entity.getFrom_preliminary();
-        if (from_preliminary != null) {
-            stmt.bindString(3, from_preliminary);
-        }
- 
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(4, date);
+            stmt.bindString(2, date);
         }
  
         String time = entity.getTime();
         if (time != null) {
-            stmt.bindString(5, time);
-        }
- 
-        String manager = entity.getManager();
-        if (manager != null) {
-            stmt.bindString(6, manager);
-        }
- 
-        String document_path = entity.getDocument_path();
-        if (document_path != null) {
-            stmt.bindString(7, document_path);
-        }
- 
-        String performer_code = entity.getPerformer_code();
-        if (performer_code != null) {
-            stmt.bindString(8, performer_code);
-        }
- 
-        String performer_name = entity.getPerformer_name();
-        if (performer_name != null) {
-            stmt.bindString(9, performer_name);
-        }
- 
-        String state = entity.getState();
-        if (state != null) {
-            stmt.bindString(10, state);
-        }
- 
-        String dangerous = entity.getDangerous();
-        if (dangerous != null) {
-            stmt.bindString(11, dangerous);
-        }
- 
-        String receiver_code = entity.getReceiver_code();
-        if (receiver_code != null) {
-            stmt.bindString(12, receiver_code);
-        }
- 
-        String receiver_name = entity.getReceiver_name();
-        if (receiver_name != null) {
-            stmt.bindString(13, receiver_name);
-        }
- 
-        String declarant_code = entity.getDeclarant_code();
-        if (declarant_code != null) {
-            stmt.bindString(14, declarant_code);
-        }
- 
-        String declarant_name = entity.getDeclarant_name();
-        if (declarant_name != null) {
-            stmt.bindString(15, declarant_name);
-        }
- 
-        String declarant_department = entity.getDeclarant_department();
-        if (declarant_department != null) {
-            stmt.bindString(16, declarant_department);
-        }
- 
-        String transport = entity.getTransport();
-        if (transport != null) {
-            stmt.bindString(17, transport);
-        }
- 
-        String departure_date = entity.getDeparture_date();
-        if (departure_date != null) {
-            stmt.bindString(18, departure_date);
-        }
- 
-        String departure_country_code = entity.getDeparture_country_code();
-        if (departure_country_code != null) {
-            stmt.bindString(19, departure_country_code);
-        }
- 
-        String departure_country_name = entity.getDeparture_country_name();
-        if (departure_country_name != null) {
-            stmt.bindString(20, departure_country_name);
-        }
- 
-        String departure_checkpoint_type = entity.getDeparture_checkpoint_type();
-        if (departure_checkpoint_type != null) {
-            stmt.bindString(21, departure_checkpoint_type);
-        }
- 
-        String departure_checkpoint_code = entity.getDeparture_checkpoint_code();
-        if (departure_checkpoint_code != null) {
-            stmt.bindString(22, departure_checkpoint_code);
-        }
- 
-        String departure_checkpoint_name = entity.getDeparture_checkpoint_name();
-        if (departure_checkpoint_name != null) {
-            stmt.bindString(23, departure_checkpoint_name);
-        }
- 
-        String departure_checkpoint_address = entity.getDeparture_checkpoint_address();
-        if (departure_checkpoint_address != null) {
-            stmt.bindString(24, departure_checkpoint_address);
-        }
- 
-        String destination_country_code = entity.getDestination_country_code();
-        if (destination_country_code != null) {
-            stmt.bindString(25, destination_country_code);
-        }
- 
-        String destination_country_name = entity.getDestination_country_name();
-        if (destination_country_name != null) {
-            stmt.bindString(26, destination_country_name);
-        }
- 
-        String destination_checkpoint_type = entity.getDestination_checkpoint_type();
-        if (destination_checkpoint_type != null) {
-            stmt.bindString(27, destination_checkpoint_type);
-        }
- 
-        String destination_checkpoint_code = entity.getDestination_checkpoint_code();
-        if (destination_checkpoint_code != null) {
-            stmt.bindString(28, destination_checkpoint_code);
-        }
- 
-        String destination_checkpoint_name = entity.getDestination_checkpoint_name();
-        if (destination_checkpoint_name != null) {
-            stmt.bindString(29, destination_checkpoint_name);
-        }
- 
-        String destination_checkpoint_address = entity.getDestination_checkpoint_address();
-        if (destination_checkpoint_address != null) {
-            stmt.bindString(30, destination_checkpoint_address);
-        }
- 
-        String brutto_weight = entity.getBrutto_weight();
-        if (brutto_weight != null) {
-            stmt.bindString(31, brutto_weight);
-        }
- 
-        String netto_weight = entity.getNetto_weight();
-        if (netto_weight != null) {
-            stmt.bindString(32, netto_weight);
-        }
- 
-        String volume = entity.getVolume();
-        if (volume != null) {
-            stmt.bindString(33, volume);
-        }
- 
-        String count = entity.getCount();
-        if (count != null) {
-            stmt.bindString(34, count);
-        }
- 
-        String cargo_description = entity.getCargo_description();
-        if (cargo_description != null) {
-            stmt.bindString(35, cargo_description);
-        }
- 
-        String client_name = entity.getClient_name();
-        if (client_name != null) {
-            stmt.bindString(36, client_name);
-        }
- 
-        String comment = entity.getComment();
-        if (comment != null) {
-            stmt.bindString(37, comment);
+            stmt.bindString(3, time);
         }
  
         String client_id = entity.getClient_id();
         if (client_id != null) {
-            stmt.bindString(38, client_id);
+            stmt.bindString(4, client_id);
         }
  
         String contact_id = entity.getContact_id();
         if (contact_id != null) {
-            stmt.bindString(39, contact_id);
+            stmt.bindString(5, contact_id);
         }
  
-        String cargo_id = entity.getCargo_id();
-        if (cargo_id != null) {
-            stmt.bindString(40, cargo_id);
+        String arrival_date = entity.getArrival_date();
+        if (arrival_date != null) {
+            stmt.bindString(6, arrival_date);
         }
  
-        String delivery_id = entity.getDelivery_id();
-        if (delivery_id != null) {
-            stmt.bindString(41, delivery_id);
+        String performer_code = entity.getPerformer_code();
+        if (performer_code != null) {
+            stmt.bindString(7, performer_code);
+        }
+ 
+        String state = entity.getState();
+        if (state != null) {
+            stmt.bindString(8, state);
+        }
+ 
+        String transport = entity.getTransport();
+        if (transport != null) {
+            stmt.bindString(9, transport);
+        }
+ 
+        String departure_date = entity.getDeparture_date();
+        if (departure_date != null) {
+            stmt.bindString(10, departure_date);
+        }
+ 
+        String departure_country_code = entity.getDeparture_country_code();
+        if (departure_country_code != null) {
+            stmt.bindString(11, departure_country_code);
+        }
+ 
+        String departure_checkpoint_type = entity.getDeparture_checkpoint_type();
+        if (departure_checkpoint_type != null) {
+            stmt.bindString(12, departure_checkpoint_type);
+        }
+ 
+        String destination_checkpoint_type = entity.getDestination_checkpoint_type();
+        if (destination_checkpoint_type != null) {
+            stmt.bindString(13, destination_checkpoint_type);
+        }
+ 
+        String departure_country_name = entity.getDeparture_country_name();
+        if (departure_country_name != null) {
+            stmt.bindString(14, departure_country_name);
+        }
+ 
+        String departure_checkpoint_name = entity.getDeparture_checkpoint_name();
+        if (departure_checkpoint_name != null) {
+            stmt.bindString(15, departure_checkpoint_name);
+        }
+ 
+        String departure_checkpoint_address = entity.getDeparture_checkpoint_address();
+        if (departure_checkpoint_address != null) {
+            stmt.bindString(16, departure_checkpoint_address);
+        }
+ 
+        String destination_checkpoint_code = entity.getDestination_checkpoint_code();
+        if (destination_checkpoint_code != null) {
+            stmt.bindString(17, destination_checkpoint_code);
+        }
+ 
+        String destination_checkpoint_name = entity.getDestination_checkpoint_name();
+        if (destination_checkpoint_name != null) {
+            stmt.bindString(18, destination_checkpoint_name);
+        }
+ 
+        String destination_checkpoint_address = entity.getDestination_checkpoint_address();
+        if (destination_checkpoint_address != null) {
+            stmt.bindString(19, destination_checkpoint_address);
+        }
+ 
+        String destination_country_code = entity.getDestination_country_code();
+        if (destination_country_code != null) {
+            stmt.bindString(20, destination_country_code);
+        }
+ 
+        String destination_country_name = entity.getDestination_country_name();
+        if (destination_country_name != null) {
+            stmt.bindString(21, destination_country_name);
+        }
+ 
+        String brutto_weight = entity.getBrutto_weight();
+        if (brutto_weight != null) {
+            stmt.bindString(22, brutto_weight);
+        }
+ 
+        String volume = entity.getVolume();
+        if (volume != null) {
+            stmt.bindString(23, volume);
+        }
+ 
+        String count = entity.getCount();
+        if (count != null) {
+            stmt.bindString(24, count);
+        }
+ 
+        String cargo_description = entity.getCargo_description();
+        if (cargo_description != null) {
+            stmt.bindString(25, cargo_description);
+        }
+ 
+        String client_name = entity.getClient_name();
+        if (client_name != null) {
+            stmt.bindString(26, client_name);
+        }
+ 
+        String performer_name = entity.getPerformer_name();
+        if (performer_name != null) {
+            stmt.bindString(27, performer_name);
         }
     }
 
@@ -350,46 +252,32 @@ public class OrderDao extends AbstractDao<Order, String> {
     public Order readEntity(Cursor cursor, int offset) {
         Order entity = new Order( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // document_type
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // from_preliminary
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // date
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // time
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // manager
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // document_path
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // performer_code
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // performer_name
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // state
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // dangerous
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // receiver_code
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // receiver_name
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // declarant_code
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // declarant_name
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // declarant_department
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // transport
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // departure_date
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // departure_country_code
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // departure_country_name
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // departure_checkpoint_type
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // departure_checkpoint_code
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // departure_checkpoint_name
-            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // departure_checkpoint_address
-            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // destination_country_code
-            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // destination_country_name
-            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // destination_checkpoint_type
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // destination_checkpoint_code
-            cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28), // destination_checkpoint_name
-            cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29), // destination_checkpoint_address
-            cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30), // brutto_weight
-            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // netto_weight
-            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // volume
-            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33), // count
-            cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34), // cargo_description
-            cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35), // client_name
-            cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36), // comment
-            cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37), // client_id
-            cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38), // contact_id
-            cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39), // cargo_id
-            cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40) // delivery_id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // date
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // time
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // client_id
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // contact_id
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // arrival_date
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // performer_code
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // state
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // transport
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // departure_date
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // departure_country_code
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // departure_checkpoint_type
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // destination_checkpoint_type
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // departure_country_name
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // departure_checkpoint_name
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // departure_checkpoint_address
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // destination_checkpoint_code
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // destination_checkpoint_name
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // destination_checkpoint_address
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // destination_country_code
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // destination_country_name
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // brutto_weight
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // volume
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // count
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // cargo_description
+            cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25), // client_name
+            cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26) // performer_name
         );
         return entity;
     }
@@ -398,46 +286,32 @@ public class OrderDao extends AbstractDao<Order, String> {
     @Override
     public void readEntity(Cursor cursor, Order entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setDocument_type(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setFrom_preliminary(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDate(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setTime(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setManager(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setDocument_path(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setPerformer_code(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setPerformer_name(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setState(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setDangerous(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setReceiver_code(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setReceiver_name(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setDeclarant_code(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setDeclarant_name(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setDeclarant_department(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setTransport(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setDeparture_date(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setDeparture_country_code(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setDeparture_country_name(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setDeparture_checkpoint_type(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setDeparture_checkpoint_code(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
-        entity.setDeparture_checkpoint_name(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
-        entity.setDeparture_checkpoint_address(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
-        entity.setDestination_country_code(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
-        entity.setDestination_country_name(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
-        entity.setDestination_checkpoint_type(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
-        entity.setDestination_checkpoint_code(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
-        entity.setDestination_checkpoint_name(cursor.isNull(offset + 28) ? null : cursor.getString(offset + 28));
-        entity.setDestination_checkpoint_address(cursor.isNull(offset + 29) ? null : cursor.getString(offset + 29));
-        entity.setBrutto_weight(cursor.isNull(offset + 30) ? null : cursor.getString(offset + 30));
-        entity.setNetto_weight(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
-        entity.setVolume(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
-        entity.setCount(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
-        entity.setCargo_description(cursor.isNull(offset + 34) ? null : cursor.getString(offset + 34));
-        entity.setClient_name(cursor.isNull(offset + 35) ? null : cursor.getString(offset + 35));
-        entity.setComment(cursor.isNull(offset + 36) ? null : cursor.getString(offset + 36));
-        entity.setClient_id(cursor.isNull(offset + 37) ? null : cursor.getString(offset + 37));
-        entity.setContact_id(cursor.isNull(offset + 38) ? null : cursor.getString(offset + 38));
-        entity.setCargo_id(cursor.isNull(offset + 39) ? null : cursor.getString(offset + 39));
-        entity.setDelivery_id(cursor.isNull(offset + 40) ? null : cursor.getString(offset + 40));
+        entity.setDate(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setTime(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setClient_id(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setContact_id(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setArrival_date(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setPerformer_code(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setState(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTransport(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setDeparture_date(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setDeparture_country_code(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setDeparture_checkpoint_type(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setDestination_checkpoint_type(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setDeparture_country_name(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setDeparture_checkpoint_name(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setDeparture_checkpoint_address(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setDestination_checkpoint_code(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setDestination_checkpoint_name(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setDestination_checkpoint_address(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setDestination_country_code(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setDestination_country_name(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setBrutto_weight(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setVolume(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setCount(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setCargo_description(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
+        entity.setClient_name(cursor.isNull(offset + 25) ? null : cursor.getString(offset + 25));
+        entity.setPerformer_name(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
      }
     
     /** @inheritdoc */

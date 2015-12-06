@@ -16,28 +16,28 @@ public class Client implements Saveable, java.io.Serializable {
     private String id;
      @Column(name = "Название")
     private String name;
-     @Column(name = "Расш. Название")
-    private String external_name;
-     @Column(name = "E-Mail")
-    private String email;
-     @Column(name = "Телефон")
-    private String phone;
-     @Column(name = "Контакт")
-    private String contact;
-     @Column(name = "Адрес(юрид.)")
-    private String address_legal;
      @Column(name = "Адрес (факт.) ")
     private String address_actual;
-     @Column(name = "Расш. Адрес")
-    private String extended_address;
+     @Column(name = "Адрес(юрид.)")
+    private String address_legal;
+     @Column(name = "Контакт")
+    private String contact;
+     @Column(name = "Телефон")
+    private String phone;
      @Column(name = "Приоритет Группа")
     private String priority_group;
-     @Column(name = "Персонал.  Менеджер")
-    private String manager;
      @Column(name = "ИНН")
     private String inn;
+     @Column(name = "E-Mail")
+    private String email;
      @Column(name = "КПП")
     private String kpp;
+     @Column(name = "Персонал.  Менеджер")
+    private String manager;
+     @Column(name = "Расш. Название")
+    private String external_name;
+     @Column(name = "Расш. Адрес")
+    private String extended_address;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -49,20 +49,20 @@ public class Client implements Saveable, java.io.Serializable {
         this.id = id;
     }
 
-    public Client(String id, String name, String external_name, String email, String phone, String contact, String address_legal, String address_actual, String extended_address, String priority_group, String manager, String inn, String kpp) {
+    public Client(String id, String name, String address_actual, String address_legal, String contact, String phone, String priority_group, String inn, String email, String kpp, String manager, String external_name, String extended_address) {
         this.id = id;
         this.name = name;
-        this.external_name = external_name;
-        this.email = email;
-        this.phone = phone;
-        this.contact = contact;
-        this.address_legal = address_legal;
         this.address_actual = address_actual;
-        this.extended_address = extended_address;
+        this.address_legal = address_legal;
+        this.contact = contact;
+        this.phone = phone;
         this.priority_group = priority_group;
-        this.manager = manager;
         this.inn = inn;
+        this.email = email;
         this.kpp = kpp;
+        this.manager = manager;
+        this.external_name = external_name;
+        this.extended_address = extended_address;
     }
 
     public String getId() {
@@ -81,36 +81,12 @@ public class Client implements Saveable, java.io.Serializable {
         this.name = name;
     }
 
-    public String getExternal_name() {
-        return external_name;
+    public String getAddress_actual() {
+        return address_actual;
     }
 
-    public void setExternal_name(String external_name) {
-        this.external_name = external_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setAddress_actual(String address_actual) {
+        this.address_actual = address_actual;
     }
 
     public String getAddress_legal() {
@@ -121,20 +97,20 @@ public class Client implements Saveable, java.io.Serializable {
         this.address_legal = address_legal;
     }
 
-    public String getAddress_actual() {
-        return address_actual;
+    public String getContact() {
+        return contact;
     }
 
-    public void setAddress_actual(String address_actual) {
-        this.address_actual = address_actual;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
-    public String getExtended_address() {
-        return extended_address;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setExtended_address(String extended_address) {
-        this.extended_address = extended_address;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPriority_group() {
@@ -145,14 +121,6 @@ public class Client implements Saveable, java.io.Serializable {
         this.priority_group = priority_group;
     }
 
-    public String getManager() {
-        return manager;
-    }
-
-    public void setManager(String manager) {
-        this.manager = manager;
-    }
-
     public String getInn() {
         return inn;
     }
@@ -161,12 +129,44 @@ public class Client implements Saveable, java.io.Serializable {
         this.inn = inn;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getKpp() {
         return kpp;
     }
 
     public void setKpp(String kpp) {
         this.kpp = kpp;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
+    public String getExternal_name() {
+        return external_name;
+    }
+
+    public void setExternal_name(String external_name) {
+        this.external_name = external_name;
+    }
+
+    public String getExtended_address() {
+        return extended_address;
+    }
+
+    public void setExtended_address(String extended_address) {
+        this.extended_address = extended_address;
     }
 
     // KEEP METHODS - put your custom methods here

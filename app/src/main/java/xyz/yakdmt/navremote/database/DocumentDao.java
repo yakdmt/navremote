@@ -14,7 +14,7 @@ import xyz.yakdmt.navremote.database.Document;
 /** 
  * DAO for table "DOCUMENT".
 */
-public class DocumentDao extends AbstractDao<Document, Long> {
+public class DocumentDao extends AbstractDao<Document, String> {
 
     public static final String TABLENAME = "DOCUMENT";
 
@@ -23,11 +23,14 @@ public class DocumentDao extends AbstractDao<Document, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property OrderId = new Property(0, String.class, "orderId", false, "ORDER_ID");
-        public final static Property Id = new Property(1, Long.class, "id", true, "_id");
-        public final static Property Document_name = new Property(2, String.class, "document_name", false, "DOCUMENT_NAME");
-        public final static Property Document_path = new Property(3, String.class, "document_path", false, "DOCUMENT_PATH");
-        public final static Property Creator = new Property(4, String.class, "creator", false, "CREATOR");
+        public final static Property Id = new Property(0, String.class, "id", true, "ID");
+        public final static Property Order_id = new Property(1, String.class, "order_id", false, "ORDER_ID");
+        public final static Property String_number = new Property(2, String.class, "string_number", false, "STRING_NUMBER");
+        public final static Property Type = new Property(3, String.class, "type", false, "TYPE");
+        public final static Property Document_name = new Property(4, String.class, "document_name", false, "DOCUMENT_NAME");
+        public final static Property Comment = new Property(5, String.class, "comment", false, "COMMENT");
+        public final static Property Document_path = new Property(6, String.class, "document_path", false, "DOCUMENT_PATH");
+        public final static Property Creator = new Property(7, String.class, "creator", false, "CREATOR");
     };
 
 
@@ -43,11 +46,14 @@ public class DocumentDao extends AbstractDao<Document, Long> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"DOCUMENT\" (" + //
-                "\"ORDER_ID\" TEXT UNIQUE ," + // 0: orderId
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 1: id
-                "\"DOCUMENT_NAME\" TEXT," + // 2: document_name
-                "\"DOCUMENT_PATH\" TEXT," + // 3: document_path
-                "\"CREATOR\" TEXT);"); // 4: creator
+                "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 0: id
+                "\"ORDER_ID\" TEXT," + // 1: order_id
+                "\"STRING_NUMBER\" TEXT," + // 2: string_number
+                "\"TYPE\" TEXT," + // 3: type
+                "\"DOCUMENT_NAME\" TEXT," + // 4: document_name
+                "\"COMMENT\" TEXT," + // 5: comment
+                "\"DOCUMENT_PATH\" TEXT," + // 6: document_path
+                "\"CREATOR\" TEXT);"); // 7: creator
     }
 
     /** Drops the underlying database table. */
@@ -60,48 +66,62 @@ public class DocumentDao extends AbstractDao<Document, Long> {
     @Override
     protected void bindValues(SQLiteStatement stmt, Document entity) {
         stmt.clearBindings();
+        stmt.bindString(1, entity.getId());
  
-        String orderId = entity.getOrderId();
-        if (orderId != null) {
-            stmt.bindString(1, orderId);
+        String order_id = entity.getOrder_id();
+        if (order_id != null) {
+            stmt.bindString(2, order_id);
         }
  
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(2, id);
+        String string_number = entity.getString_number();
+        if (string_number != null) {
+            stmt.bindString(3, string_number);
+        }
+ 
+        String type = entity.getType();
+        if (type != null) {
+            stmt.bindString(4, type);
         }
  
         String document_name = entity.getDocument_name();
         if (document_name != null) {
-            stmt.bindString(3, document_name);
+            stmt.bindString(5, document_name);
+        }
+ 
+        String comment = entity.getComment();
+        if (comment != null) {
+            stmt.bindString(6, comment);
         }
  
         String document_path = entity.getDocument_path();
         if (document_path != null) {
-            stmt.bindString(4, document_path);
+            stmt.bindString(7, document_path);
         }
  
         String creator = entity.getCreator();
         if (creator != null) {
-            stmt.bindString(5, creator);
+            stmt.bindString(8, creator);
         }
     }
 
     /** @inheritdoc */
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1);
+    public String readKey(Cursor cursor, int offset) {
+        return cursor.getString(offset + 0);
     }    
 
     /** @inheritdoc */
     @Override
     public Document readEntity(Cursor cursor, int offset) {
         Document entity = new Document( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // orderId
-            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // id
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // document_name
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // document_path
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4) // creator
+            cursor.getString(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // order_id
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // string_number
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // type
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // document_name
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // comment
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // document_path
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // creator
         );
         return entity;
     }
@@ -109,23 +129,25 @@ public class DocumentDao extends AbstractDao<Document, Long> {
     /** @inheritdoc */
     @Override
     public void readEntity(Cursor cursor, Document entity, int offset) {
-        entity.setOrderId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setId(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
-        entity.setDocument_name(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDocument_path(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setCreator(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setId(cursor.getString(offset + 0));
+        entity.setOrder_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setString_number(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setType(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setDocument_name(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setComment(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDocument_path(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCreator(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     /** @inheritdoc */
     @Override
-    protected Long updateKeyAfterInsert(Document entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+    protected String updateKeyAfterInsert(Document entity, long rowId) {
+        return entity.getId();
     }
     
     /** @inheritdoc */
     @Override
-    public Long getKey(Document entity) {
+    public String getKey(Document entity) {
         if(entity != null) {
             return entity.getId();
         } else {

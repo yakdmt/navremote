@@ -34,7 +34,6 @@ import xyz.yakdmt.navremote.database.Comment;
 import xyz.yakdmt.navremote.database.Contact;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.Delivery;
-import xyz.yakdmt.navremote.database.Document;
 import xyz.yakdmt.navremote.database.Order;
 import xyz.yakdmt.navremote.database.OrderDao;
 import xyz.yakdmt.navremote.database.Product;
@@ -312,7 +311,7 @@ public class MainActivity extends AppCompatActivity
          for (int i=0; i<10; i++) {
              Work work = new Work(String.valueOf(i));
              work.setCargo_id("20000"+i);
-             work.setDelivery_id("30000"+i);
+             work.setDelivery_id("30000" + i);
 
              DaoTask.getInstance().getSession().getWorkDao().insertOrReplace(work);
          }
@@ -326,7 +325,7 @@ public class MainActivity extends AppCompatActivity
 
          for (int i=0; i<10; i++) {
              Comment comment = new Comment(String.valueOf(10+i));
-             comment.setObject_id("30000"+i);
+             comment.setObject_id("30000" + i);
              comment.setText(TextUtil.removeNulls("comment" + comment.getId()));
              DaoTask.getInstance().getSession().getCommentDao().insertOrReplace(comment);
          }
@@ -343,12 +342,6 @@ public class MainActivity extends AppCompatActivity
              DaoTask.getInstance().getSession().getProductDao().insertOrReplace(product2);
          }
 
-         for (int i=0; i<10; i++) {
-             Document document = new Document();
-             document.setOrderId("10000" + i);
-             document.setDocument_path("path");
-             DaoTask.getInstance().getSession().getDocumentDao().insertOrReplace(document);
-         }
 
      }
 

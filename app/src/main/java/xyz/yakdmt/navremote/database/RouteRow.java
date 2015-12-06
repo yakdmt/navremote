@@ -12,14 +12,16 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class RouteRow implements Saveable {
 
+    /** Not-null value. */
+    private String id;
      @Column(name = "Доставка Но.")
     private String delivery_id;
      @Column(name = "Строка Но.")
     private String string_number;
      @Column(name = "Позиция")
     private String position;
-    /** Not-null value. */
-    private String id;
+     @Column(name = "Пункт Но.")
+    private String checkpoint_id;
      @Column(name = "Пункт Описание")
     private String checkpoint_description;
      @Column(name = "Операция Тип")
@@ -40,8 +42,8 @@ public class RouteRow implements Saveable {
     private String expected_departure_time;
      @Column(name = "Код Страны")
     private String country_code;
-     @Column(name = "Название Страны")
-    private String country_name;
+     @Column(name = "Адрес")
+    private String address;
      @Column(name = "Пункт Тип Расшир.")
     private String checkpoint_type;
      @Column(name = "Исполнитель")
@@ -50,10 +52,6 @@ public class RouteRow implements Saveable {
     private String performer_dept;
      @Column(name = "Активная")
     private String active;
-     @Column(name = "Адрес")
-    private String address;
-     @Column(name = "Пункт Но.")
-    private String checkpoint_id;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -65,11 +63,12 @@ public class RouteRow implements Saveable {
         this.id = id;
     }
 
-    public RouteRow(String delivery_id, String string_number, String position, String id, String checkpoint_description, String procedure_type, String expected_arrival_date, String actual_arrival_date, String actual_arrival_time, String actual_departure_date, String actual_departure_time, String expected_departure_date, String expected_departure_time, String country_code, String country_name, String checkpoint_type, String performer, String performer_dept, String active, String address, String checkpoint_id) {
+    public RouteRow(String id, String delivery_id, String string_number, String position, String checkpoint_id, String checkpoint_description, String procedure_type, String expected_arrival_date, String actual_arrival_date, String actual_arrival_time, String actual_departure_date, String actual_departure_time, String expected_departure_date, String expected_departure_time, String country_code, String address, String checkpoint_type, String performer, String performer_dept, String active) {
+        this.id = id;
         this.delivery_id = delivery_id;
         this.string_number = string_number;
         this.position = position;
-        this.id = id;
+        this.checkpoint_id = checkpoint_id;
         this.checkpoint_description = checkpoint_description;
         this.procedure_type = procedure_type;
         this.expected_arrival_date = expected_arrival_date;
@@ -80,13 +79,21 @@ public class RouteRow implements Saveable {
         this.expected_departure_date = expected_departure_date;
         this.expected_departure_time = expected_departure_time;
         this.country_code = country_code;
-        this.country_name = country_name;
+        this.address = address;
         this.checkpoint_type = checkpoint_type;
         this.performer = performer;
         this.performer_dept = performer_dept;
         this.active = active;
-        this.address = address;
-        this.checkpoint_id = checkpoint_id;
+    }
+
+    /** Not-null value. */
+    public String getId() {
+        return id;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDelivery_id() {
@@ -113,14 +120,12 @@ public class RouteRow implements Saveable {
         this.position = position;
     }
 
-    /** Not-null value. */
-    public String getId() {
-        return id;
+    public String getCheckpoint_id() {
+        return checkpoint_id;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setId(String id) {
-        this.id = id;
+    public void setCheckpoint_id(String checkpoint_id) {
+        this.checkpoint_id = checkpoint_id;
     }
 
     public String getCheckpoint_description() {
@@ -203,12 +208,12 @@ public class RouteRow implements Saveable {
         this.country_code = country_code;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCheckpoint_type() {
@@ -241,22 +246,6 @@ public class RouteRow implements Saveable {
 
     public void setActive(String active) {
         this.active = active;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCheckpoint_id() {
-        return checkpoint_id;
-    }
-
-    public void setCheckpoint_id(String checkpoint_id) {
-        this.checkpoint_id = checkpoint_id;
     }
 
     // KEEP METHODS - put your custom methods here

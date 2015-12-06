@@ -29,6 +29,7 @@ public class ProductDao extends AbstractDao<Product, String> {
         public final static Property Brutto_weight = new Property(3, String.class, "brutto_weight", false, "BRUTTO_WEIGHT");
         public final static Property Count = new Property(4, String.class, "count", false, "COUNT");
         public final static Property Description = new Property(5, String.class, "description", false, "DESCRIPTION");
+        public final static Property Measure_unit = new Property(6, String.class, "measure_unit", false, "MEASURE_UNIT");
     };
 
 
@@ -49,7 +50,8 @@ public class ProductDao extends AbstractDao<Product, String> {
                 "\"STRING_NUMBER\" TEXT," + // 2: string_number
                 "\"BRUTTO_WEIGHT\" TEXT," + // 3: brutto_weight
                 "\"COUNT\" TEXT," + // 4: count
-                "\"DESCRIPTION\" TEXT);"); // 5: description
+                "\"DESCRIPTION\" TEXT," + // 5: description
+                "\"MEASURE_UNIT\" TEXT);"); // 6: measure_unit
     }
 
     /** Drops the underlying database table. */
@@ -88,6 +90,11 @@ public class ProductDao extends AbstractDao<Product, String> {
         if (description != null) {
             stmt.bindString(6, description);
         }
+ 
+        String measure_unit = entity.getMeasure_unit();
+        if (measure_unit != null) {
+            stmt.bindString(7, measure_unit);
+        }
     }
 
     /** @inheritdoc */
@@ -105,7 +112,8 @@ public class ProductDao extends AbstractDao<Product, String> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // string_number
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // brutto_weight
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // count
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // description
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // description
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // measure_unit
         );
         return entity;
     }
@@ -119,6 +127,7 @@ public class ProductDao extends AbstractDao<Product, String> {
         entity.setBrutto_weight(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setCount(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setDescription(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setMeasure_unit(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */

@@ -13,28 +13,26 @@ public class Contact implements java.io.Serializable, Saveable {
 
      @Column(name = "Но.")
     private String id;
-     @Column(name = "adgad")
-    private String client_id;
      @Column(name = "Название")
     private String name;
+     @Column(name = "Клиент")
+    private String client_id;
      @Column(name = "Название Фирмы")
     private String client_name;
      @Column(name = "Почтовый Индекс")
     private String postal_index;
      @Column(name = "Код страны/региона")
     private String region_code;
-     @Column(name = "Название Фирмы")
-    private String firm_name;
-     @Column(name = "Телефон")
-    private String phone;
      @Column(name = "Но.")
     private String password;
+     @Column(name = "Телефон")
+    private String phone;
      @Column(name = "Мобильный Телефон")
     private String mobile_phone;
-     @Column(name = "Код Менеджера")
-    private String manager_code;
      @Column(name = "Факс")
     private String fax;
+     @Column(name = "Код Менеджера")
+    private String manager_code;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -46,19 +44,18 @@ public class Contact implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public Contact(String id, String client_id, String name, String client_name, String postal_index, String region_code, String firm_name, String phone, String password, String mobile_phone, String manager_code, String fax) {
+    public Contact(String id, String name, String client_id, String client_name, String postal_index, String region_code, String password, String phone, String mobile_phone, String fax, String manager_code) {
         this.id = id;
-        this.client_id = client_id;
         this.name = name;
+        this.client_id = client_id;
         this.client_name = client_name;
         this.postal_index = postal_index;
         this.region_code = region_code;
-        this.firm_name = firm_name;
-        this.phone = phone;
         this.password = password;
+        this.phone = phone;
         this.mobile_phone = mobile_phone;
-        this.manager_code = manager_code;
         this.fax = fax;
+        this.manager_code = manager_code;
     }
 
     public String getId() {
@@ -69,20 +66,20 @@ public class Contact implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public String getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
     }
 
     public String getClient_name() {
@@ -109,12 +106,12 @@ public class Contact implements java.io.Serializable, Saveable {
         this.region_code = region_code;
     }
 
-    public String getFirm_name() {
-        return firm_name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFirm_name(String firm_name) {
-        this.firm_name = firm_name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
@@ -125,14 +122,6 @@ public class Contact implements java.io.Serializable, Saveable {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getMobile_phone() {
         return mobile_phone;
     }
@@ -141,20 +130,20 @@ public class Contact implements java.io.Serializable, Saveable {
         this.mobile_phone = mobile_phone;
     }
 
-    public String getManager_code() {
-        return manager_code;
-    }
-
-    public void setManager_code(String manager_code) {
-        this.manager_code = manager_code;
-    }
-
     public String getFax() {
         return fax;
     }
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    public String getManager_code() {
+        return manager_code;
+    }
+
+    public void setManager_code(String manager_code) {
+        this.manager_code = manager_code;
     }
 
     // KEEP METHODS - put your custom methods here

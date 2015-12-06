@@ -188,8 +188,8 @@ public class DetailActivity  extends AppCompatActivity {
 
         TextView name = (TextView) view.findViewById(R.id.name);
         name.setText(TextUtil.removeNulls(contact.getName()));
-        TextView firmName = (TextView) view.findViewById(R.id.firm_name);
-        firmName.setText(TextUtil.removeNulls(contact.getFirm_name()));
+        TextView clientName = (TextView) view.findViewById(R.id.firm_name);
+        clientName.setText(TextUtil.removeNulls(contact.getClient_name()));
         TextView phone = (TextView) view.findViewById(R.id.phone);
         phone.setText(TextUtil.removeNulls(contact.getPhone()));
         TextView mobilePhone = (TextView) view.findViewById(R.id.mobile_phone);
@@ -209,7 +209,7 @@ public class DetailActivity  extends AppCompatActivity {
         adb.setView(view);
 
         TextView object = (TextView) view.findViewById(R.id.object);
-        object.setText(TextUtil.removeNulls("Заявка: " + document.getOrderId()));
+        object.setText(TextUtil.removeNulls("Заявка: " + document.getOrder_id()));
         TextView documentNumber = (TextView) view.findViewById(R.id.document_number);
         documentNumber.setText(TextUtil.removeNulls("Номер: " + document.getDocument_name()));
         TextView fileName = (TextView) view.findViewById(R.id.file_name);

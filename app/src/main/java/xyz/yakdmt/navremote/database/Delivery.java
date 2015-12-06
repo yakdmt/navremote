@@ -25,6 +25,8 @@ public class Delivery implements java.io.Serializable, Saveable {
     private String auto_carrier;
      @Column(name = "Доставка Описание")
     private String description;
+     @Column(name = "Груз Но.")
+    private String cargo_id;
      @Column(name = "Клиент Название")
     private String client_name;
      @Column(name = "Доставка Описание Груза")
@@ -57,18 +59,16 @@ public class Delivery implements java.io.Serializable, Saveable {
     private String gtd_release_date;
      @Column(name = "ГТД Но.")
     private String gtd_number;
-     @Column(name = "Контейнер Но.")
-    private String container_number;
-     @Column(name = "Вагон Но.")
-    private String wagon_number;
      @Column(name = "ТЛ Рейс Но.")
     private String tl_number;
      @Column(name = "ТЛ Тип Транспорта")
     private String tl_transport_type;
      @Column(name = "ТЛ Транспорт Но.")
     private String tl_transport_number;
-     @Column(name = "Груз Но.")
-    private String cargo_id;
+     @Column(name = "Контейнер Но.")
+    private String container_number;
+     @Column(name = "Вагон Но.")
+    private String wagon_number;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -80,13 +80,14 @@ public class Delivery implements java.io.Serializable, Saveable {
         this.id = id;
     }
 
-    public Delivery(String id, String transportation_method, String status, String auto_train_number, String auto_carrier, String description, String client_name, String cargo_description, String expected_start_date, String actual_start_date, String start_checkpoint_name, String finish_checkpoint_name, String start_country, String expected_arrival_terminal_date, String actual_arrival_terminal_date, String terminal_name, String receiver_name, String actual_release_terminal_date, String actual_finish_date, String performer_name, String gtd_release_date, String gtd_number, String container_number, String wagon_number, String tl_number, String tl_transport_type, String tl_transport_number, String cargo_id) {
+    public Delivery(String id, String transportation_method, String status, String auto_train_number, String auto_carrier, String description, String cargo_id, String client_name, String cargo_description, String expected_start_date, String actual_start_date, String start_checkpoint_name, String finish_checkpoint_name, String start_country, String expected_arrival_terminal_date, String actual_arrival_terminal_date, String terminal_name, String receiver_name, String actual_release_terminal_date, String actual_finish_date, String performer_name, String gtd_release_date, String gtd_number, String tl_number, String tl_transport_type, String tl_transport_number, String container_number, String wagon_number) {
         this.id = id;
         this.transportation_method = transportation_method;
         this.status = status;
         this.auto_train_number = auto_train_number;
         this.auto_carrier = auto_carrier;
         this.description = description;
+        this.cargo_id = cargo_id;
         this.client_name = client_name;
         this.cargo_description = cargo_description;
         this.expected_start_date = expected_start_date;
@@ -103,12 +104,11 @@ public class Delivery implements java.io.Serializable, Saveable {
         this.performer_name = performer_name;
         this.gtd_release_date = gtd_release_date;
         this.gtd_number = gtd_number;
-        this.container_number = container_number;
-        this.wagon_number = wagon_number;
         this.tl_number = tl_number;
         this.tl_transport_type = tl_transport_type;
         this.tl_transport_number = tl_transport_number;
-        this.cargo_id = cargo_id;
+        this.container_number = container_number;
+        this.wagon_number = wagon_number;
     }
 
     public String getId() {
@@ -157,6 +157,14 @@ public class Delivery implements java.io.Serializable, Saveable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCargo_id() {
+        return cargo_id;
+    }
+
+    public void setCargo_id(String cargo_id) {
+        this.cargo_id = cargo_id;
     }
 
     public String getClient_name() {
@@ -287,22 +295,6 @@ public class Delivery implements java.io.Serializable, Saveable {
         this.gtd_number = gtd_number;
     }
 
-    public String getContainer_number() {
-        return container_number;
-    }
-
-    public void setContainer_number(String container_number) {
-        this.container_number = container_number;
-    }
-
-    public String getWagon_number() {
-        return wagon_number;
-    }
-
-    public void setWagon_number(String wagon_number) {
-        this.wagon_number = wagon_number;
-    }
-
     public String getTl_number() {
         return tl_number;
     }
@@ -327,12 +319,20 @@ public class Delivery implements java.io.Serializable, Saveable {
         this.tl_transport_number = tl_transport_number;
     }
 
-    public String getCargo_id() {
-        return cargo_id;
+    public String getContainer_number() {
+        return container_number;
     }
 
-    public void setCargo_id(String cargo_id) {
-        this.cargo_id = cargo_id;
+    public void setContainer_number(String container_number) {
+        this.container_number = container_number;
+    }
+
+    public String getWagon_number() {
+        return wagon_number;
+    }
+
+    public void setWagon_number(String wagon_number) {
+        this.wagon_number = wagon_number;
     }
 
     // KEEP METHODS - put your custom methods here

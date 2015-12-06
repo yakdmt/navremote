@@ -13,6 +13,7 @@ public class App extends Application {
     public static boolean bindViews = true;
     public static String currentClientId = "";
     public static String currentContactId = "";
+    public static boolean skipLogin = true;
 
     @Override public void onCreate() {
         super.onCreate();

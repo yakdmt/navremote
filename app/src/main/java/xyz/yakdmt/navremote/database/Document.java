@@ -12,14 +12,21 @@ import xyz.yakdmt.navremote.utils.Saveable;
  */
 public class Document implements Saveable {
 
-     @Column(name = "йййййййй")
-    private String orderId;
-    private Long id;
-     @Column(name = "йййййййй")
+    /** Not-null value. */
+    private String id;
+     @Column(name = "Объект Но.")
+    private String order_id;
+     @Column(name = "Line No.")
+    private String string_number;
+     @Column(name = "Тип")
+    private String type;
+     @Column(name = "Документ Но.")
     private String document_name;
-     @Column(name = "йййййййй")
+     @Column(name = "Комментарий")
+    private String comment;
+     @Column(name = "Имя Файла")
     private String document_path;
-     @Column(name = "йййййййй")
+     @Column(name = "Создал")
     private String creator;
 
     // KEEP FIELDS - put your custom fields here
@@ -28,32 +35,53 @@ public class Document implements Saveable {
     public Document() {
     }
 
-    public Document(Long id) {
+    public Document(String id) {
         this.id = id;
     }
 
-    public Document(String orderId, Long id, String document_name, String document_path, String creator) {
-        this.orderId = orderId;
+    public Document(String id, String order_id, String string_number, String type, String document_name, String comment, String document_path, String creator) {
         this.id = id;
+        this.order_id = order_id;
+        this.string_number = string_number;
+        this.type = type;
         this.document_name = document_name;
+        this.comment = comment;
         this.document_path = document_path;
         this.creator = creator;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public Long getId() {
+    /** Not-null value. */
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+
+    public String getString_number() {
+        return string_number;
+    }
+
+    public void setString_number(String string_number) {
+        this.string_number = string_number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDocument_name() {
@@ -62,6 +90,14 @@ public class Document implements Saveable {
 
     public void setDocument_name(String document_name) {
         this.document_name = document_name;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getDocument_path() {

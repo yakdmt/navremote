@@ -11,8 +11,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import xyz.yakdmt.navremote.R;
+import xyz.yakdmt.navremote.database.DaoTask;
+import xyz.yakdmt.navremote.database.Sort;
+import xyz.yakdmt.navremote.database.SortDao;
 
 /**
  * Created by yakdmt on 07/11/15.
@@ -89,19 +94,42 @@ public class SchemeParser {
             builder.append("<mxGraphModel dx=\"1954\" dy=\"1571\" grid=\"1\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"1\" pageScale=\"1\" pageWidth=\"1826\" pageHeight=\"2169\" background=\"#ffffff\" math=\"0\"><root><mxCell id=\"0\"/><mxCell id=\"1\" parent=\"0\"/>");
             int id = 2;
             for (int i=0; i<Constants.CLASSES_ARRAY.length; i++) {
-                Class clazz = Constants.CLASSES_ARRAY[i];
+                final Class clazz = Constants.CLASSES_ARRAY[i];
                 builder.append("<mxCell id=\"" + id + "\" value=\"" + Constants.FILENAME_ARRAY[i] + "\" style=\"swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=1;\" vertex=\"1\" parent=\"1\"><mxGeometry x=\"" + i * 100 + "\" y=\"33\" width=\"160\" height=\"" + clazz.getFields().length * 26 + "\" as=\"geometry\"/></mxCell>");
                 int parentId = id;
                 id++;
-                for (int j=0; j<clazz.getDeclaredFields().length; j++) {
-                    Field field = clazz.getDeclaredFields()[j];
-                    Column columnName = field.getAnnotation(Column.class);
-                    if (columnName!=null) {
-                        String name = columnName.name();
-                        name = name+"("+field.getName()+")";
-                        builder.append("<mxCell id=\""+id+"\" value=\""+name+"\" style=\"text;html=1;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;\" vertex=\"1\" parent=\""+parentId+"\"><mxGeometry y=\""+(++j*26)+"\" width=\"160\" height=\"26\" as=\"geometry\"/></mxCell>");
-                        id++;
+                final Field[] fields = clazz.getDeclaredFields();
+                Arrays.sort(fields, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        String leftName = lhs.getName().split("\\.")[0];
+                        Sort sort1 = DaoTask.getInstance().getSession().getSortDao().queryBuilder().where(SortDao.Properties.Name.eq(clazz.getSimpleName() + "_" + leftName)).unique();
+                        long left = -1;
+                        if (sort1 != null) {
+                            left = sort1.getId();
+                        }
+                        String rightName = rhs.getName().split("\\.")[0];
+                        Sort sort2 = DaoTask.getInstance().getSession().getSortDao().queryBuilder().where(SortDao.Properties.Name.eq(clazz.getSimpleName() + "_" + rightName)).unique();
+                        long right = -1;
+                        if (sort2 != null) {
+                            right = sort2.getId();
+                        }
+                        return (int) (right - left);
                     }
+                });
+                for (int j=0; j<fields.length; j++) {
+                    Field field = clazz.getDeclaredFields()[j];
+                    Log.i("fields", field.getName());
+                    Column columnName = field.getAnnotation(Column.class);
+                    String name = "";
+                    if (columnName!=null) {
+                        name = columnName.name();
+                        name = name+"("+field.getName()+")";
+                    } else {
+                        name = field.getName();
+                    }
+                    builder.append("<mxCell id=\""+id+"\" value=\""+name+"\" style=\"text;html=1;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;\" vertex=\"1\" parent=\""+parentId+"\"><mxGeometry y=\""+(++j*26)+"\" width=\"160\" height=\"26\" as=\"geometry\"/></mxCell>");
+                    id++;
                 }
             }
             builder.append("</root></mxGraphModel>");

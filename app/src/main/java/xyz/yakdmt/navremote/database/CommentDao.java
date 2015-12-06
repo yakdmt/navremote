@@ -25,8 +25,8 @@ public class CommentDao extends AbstractDao<Comment, String> {
     public static class Properties {
         public final static Property Id = new Property(0, String.class, "id", true, "ID");
         public final static Property Object_id = new Property(1, String.class, "object_id", false, "OBJECT_ID");
-        public final static Property Object_type = new Property(2, String.class, "object_type", false, "OBJECT_TYPE");
-        public final static Property Date = new Property(3, String.class, "date", false, "DATE");
+        public final static Property Date = new Property(2, String.class, "date", false, "DATE");
+        public final static Property Object_type = new Property(3, String.class, "object_type", false, "OBJECT_TYPE");
         public final static Property Text = new Property(4, String.class, "text", false, "TEXT");
         public final static Property Author = new Property(5, String.class, "author", false, "AUTHOR");
         public final static Property Department = new Property(6, String.class, "department", false, "DEPARTMENT");
@@ -47,8 +47,8 @@ public class CommentDao extends AbstractDao<Comment, String> {
         db.execSQL("CREATE TABLE " + constraint + "\"COMMENT\" (" + //
                 "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 0: id
                 "\"OBJECT_ID\" TEXT," + // 1: object_id
-                "\"OBJECT_TYPE\" TEXT," + // 2: object_type
-                "\"DATE\" TEXT," + // 3: date
+                "\"DATE\" TEXT," + // 2: date
+                "\"OBJECT_TYPE\" TEXT," + // 3: object_type
                 "\"TEXT\" TEXT," + // 4: text
                 "\"AUTHOR\" TEXT," + // 5: author
                 "\"DEPARTMENT\" TEXT);"); // 6: department
@@ -75,14 +75,14 @@ public class CommentDao extends AbstractDao<Comment, String> {
             stmt.bindString(2, object_id);
         }
  
-        String object_type = entity.getObject_type();
-        if (object_type != null) {
-            stmt.bindString(3, object_type);
-        }
- 
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(4, date);
+            stmt.bindString(3, date);
+        }
+ 
+        String object_type = entity.getObject_type();
+        if (object_type != null) {
+            stmt.bindString(4, object_type);
         }
  
         String text = entity.getText();
@@ -113,8 +113,8 @@ public class CommentDao extends AbstractDao<Comment, String> {
         Comment entity = new Comment( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // object_id
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // object_type
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // date
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // date
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // object_type
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // text
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // author
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // department
@@ -127,8 +127,8 @@ public class CommentDao extends AbstractDao<Comment, String> {
     public void readEntity(Cursor cursor, Comment entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setObject_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setObject_type(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDate(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setDate(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setObject_type(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setText(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAuthor(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setDepartment(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));

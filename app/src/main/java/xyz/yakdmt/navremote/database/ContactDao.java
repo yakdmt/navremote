@@ -24,17 +24,16 @@ public class ContactDao extends AbstractDao<Contact, String> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, String.class, "id", true, "ID");
-        public final static Property Client_id = new Property(1, String.class, "client_id", false, "CLIENT_ID");
-        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
+        public final static Property Client_id = new Property(2, String.class, "client_id", false, "CLIENT_ID");
         public final static Property Client_name = new Property(3, String.class, "client_name", false, "CLIENT_NAME");
         public final static Property Postal_index = new Property(4, String.class, "postal_index", false, "POSTAL_INDEX");
         public final static Property Region_code = new Property(5, String.class, "region_code", false, "REGION_CODE");
-        public final static Property Firm_name = new Property(6, String.class, "firm_name", false, "FIRM_NAME");
+        public final static Property Password = new Property(6, String.class, "password", false, "PASSWORD");
         public final static Property Phone = new Property(7, String.class, "phone", false, "PHONE");
-        public final static Property Password = new Property(8, String.class, "password", false, "PASSWORD");
-        public final static Property Mobile_phone = new Property(9, String.class, "mobile_phone", false, "MOBILE_PHONE");
+        public final static Property Mobile_phone = new Property(8, String.class, "mobile_phone", false, "MOBILE_PHONE");
+        public final static Property Fax = new Property(9, String.class, "fax", false, "FAX");
         public final static Property Manager_code = new Property(10, String.class, "manager_code", false, "MANAGER_CODE");
-        public final static Property Fax = new Property(11, String.class, "fax", false, "FAX");
     };
 
 
@@ -51,17 +50,16 @@ public class ContactDao extends AbstractDao<Contact, String> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"CONTACT\" (" + //
                 "\"ID\" TEXT PRIMARY KEY NOT NULL UNIQUE ," + // 0: id
-                "\"CLIENT_ID\" TEXT," + // 1: client_id
-                "\"NAME\" TEXT," + // 2: name
+                "\"NAME\" TEXT," + // 1: name
+                "\"CLIENT_ID\" TEXT," + // 2: client_id
                 "\"CLIENT_NAME\" TEXT," + // 3: client_name
                 "\"POSTAL_INDEX\" TEXT," + // 4: postal_index
                 "\"REGION_CODE\" TEXT," + // 5: region_code
-                "\"FIRM_NAME\" TEXT," + // 6: firm_name
+                "\"PASSWORD\" TEXT," + // 6: password
                 "\"PHONE\" TEXT," + // 7: phone
-                "\"PASSWORD\" TEXT," + // 8: password
-                "\"MOBILE_PHONE\" TEXT," + // 9: mobile_phone
-                "\"MANAGER_CODE\" TEXT," + // 10: manager_code
-                "\"FAX\" TEXT);"); // 11: fax
+                "\"MOBILE_PHONE\" TEXT," + // 8: mobile_phone
+                "\"FAX\" TEXT," + // 9: fax
+                "\"MANAGER_CODE\" TEXT);"); // 10: manager_code
     }
 
     /** Drops the underlying database table. */
@@ -80,14 +78,14 @@ public class ContactDao extends AbstractDao<Contact, String> {
             stmt.bindString(1, id);
         }
  
-        String client_id = entity.getClient_id();
-        if (client_id != null) {
-            stmt.bindString(2, client_id);
-        }
- 
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(3, name);
+            stmt.bindString(2, name);
+        }
+ 
+        String client_id = entity.getClient_id();
+        if (client_id != null) {
+            stmt.bindString(3, client_id);
         }
  
         String client_name = entity.getClient_name();
@@ -105,9 +103,9 @@ public class ContactDao extends AbstractDao<Contact, String> {
             stmt.bindString(6, region_code);
         }
  
-        String firm_name = entity.getFirm_name();
-        if (firm_name != null) {
-            stmt.bindString(7, firm_name);
+        String password = entity.getPassword();
+        if (password != null) {
+            stmt.bindString(7, password);
         }
  
         String phone = entity.getPhone();
@@ -115,24 +113,19 @@ public class ContactDao extends AbstractDao<Contact, String> {
             stmt.bindString(8, phone);
         }
  
-        String password = entity.getPassword();
-        if (password != null) {
-            stmt.bindString(9, password);
-        }
- 
         String mobile_phone = entity.getMobile_phone();
         if (mobile_phone != null) {
-            stmt.bindString(10, mobile_phone);
+            stmt.bindString(9, mobile_phone);
+        }
+ 
+        String fax = entity.getFax();
+        if (fax != null) {
+            stmt.bindString(10, fax);
         }
  
         String manager_code = entity.getManager_code();
         if (manager_code != null) {
             stmt.bindString(11, manager_code);
-        }
- 
-        String fax = entity.getFax();
-        if (fax != null) {
-            stmt.bindString(12, fax);
         }
     }
 
@@ -147,17 +140,16 @@ public class ContactDao extends AbstractDao<Contact, String> {
     public Contact readEntity(Cursor cursor, int offset) {
         Contact entity = new Contact( //
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // client_id
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // client_id
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // client_name
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // postal_index
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // region_code
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // firm_name
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // password
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // phone
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // password
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // mobile_phone
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // manager_code
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11) // fax
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // mobile_phone
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // fax
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // manager_code
         );
         return entity;
     }
@@ -166,17 +158,16 @@ public class ContactDao extends AbstractDao<Contact, String> {
     @Override
     public void readEntity(Cursor cursor, Contact entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setClient_id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setClient_id(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setClient_name(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setPostal_index(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setRegion_code(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setFirm_name(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setPassword(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setPhone(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setPassword(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setMobile_phone(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setMobile_phone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setFax(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setManager_code(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setFax(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
      }
     
     /** @inheritdoc */

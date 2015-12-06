@@ -63,7 +63,6 @@ public class OrderHolder extends RecyclerView.ViewHolder {
         departureBuilder.append(order.getDeparture_checkpoint_address());
         mDeparture.setText(TextUtil.removeNulls(departureBuilder));
         mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime()));
-        mDeclarant.setText(TextUtil.removeNulls(order.getDeclarant_code()));
         StringBuilder arrivalBuilder = new StringBuilder();
         arrivalBuilder.append(order.getDestination_country_name());
         arrivalBuilder.append(", ");
