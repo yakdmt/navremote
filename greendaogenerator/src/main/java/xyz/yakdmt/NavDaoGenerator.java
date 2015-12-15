@@ -278,7 +278,7 @@ public class NavDaoGenerator {
     }
 
     public static String getAnnotation(String entityName) {
-
+        System.out.println(entityName);
         return "@Column(name = \""+entityName+"\")";
     }
 
