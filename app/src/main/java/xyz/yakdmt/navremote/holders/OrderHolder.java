@@ -72,7 +72,7 @@ public class OrderHolder extends RecyclerView.ViewHolder {
         mArrival.setText(TextUtil.removeNulls(arrivalBuilder));
         mWeight.setText(TextUtil.removeNulls(order.getBrutto_weight() + " кг."));
         mVolume.setText(TextUtil.removeNulls(order.getVolume()+" м^3"));
-        mCount.setText(TextUtil.removeNulls(order.getCount()));
+        mCount.setText("Мест: "+TextUtil.removeNulls(order.getCount()));
         mClientName.setText(TextUtil.removeNulls(order.getClient_name()));
         mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description()));
         mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date()));

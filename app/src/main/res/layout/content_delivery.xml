@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_margin="4dp"
+
             android:orientation="vertical"
             android:gravity="start"
             android:layout_gravity="top|start"
             android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/client_name"
@@ -26,7 +26,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_margin="4dp"
+
             android:orientation="vertical"
             android:gravity="end"
             android:layout_gravity="top|end"
@@ -37,15 +37,18 @@
                 android:id="@+id/id"
                 android:text="D084001"
                 android:textColor="@color/colorAccent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/ServiceInfo" />
             <TextView
                 android:id="@+id/status"
                 android:text="ЗАВЕРШЕНА"
-                style="@style/ServiceInfo" />
+                android:textColor="@color/colorPrimaryDark"
+                android:ellipsize="end"
+                style="@style/MainInfo" />
         </LinearLayout>
 
     </LinearLayout>
+
+
     <LinearLayout
         android:baselineAligned="false"
         android:orientation="horizontal"
@@ -53,7 +56,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_margin="4dp"
+
             android:orientation="vertical"
             android:gravity="start"
             android:layout_gravity="top|start"
@@ -68,6 +71,14 @@
                 android:id="@+id/description"
                 android:text="Прямая Доставка для Заявки CR040745"
                 style="@style/MainInfo" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"></View>
             <TextView
                 android:text="Отправление"
                 style="@style/MainInfo"
@@ -94,7 +105,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_margin="4dp"
+
+
             android:orientation="vertical"
             android:gravity="start"
             android:layout_gravity="top|start"
@@ -110,8 +122,7 @@
                 android:id="@+id/receiver"
                 android:textSize="12sp"
                 android:text="ООО ЕЛТРАНС+"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@style/ServiceInfo" />
             <TextView
                 android:id="@+id/finish_point"
                 android:text="Юго-Восточный Новороссийск. ТП"

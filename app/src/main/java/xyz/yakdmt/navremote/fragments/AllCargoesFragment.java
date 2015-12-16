@@ -12,10 +12,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
+import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
 import xyz.yakdmt.navremote.adapters.CargoAdapter;
 import xyz.yakdmt.navremote.database.Cargo;
+import xyz.yakdmt.navremote.database.CargoDao;
 import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.utils.Events;
 
@@ -64,7 +66,7 @@ public class AllCargoesFragment extends Fragment {
     }
 
     private void refreshData(){
-        ArrayList<Cargo> cargoes = (ArrayList<Cargo>) DaoTask.getInstance().getSession().getCargoDao().queryBuilder().list();
+        ArrayList<Cargo> cargoes = (ArrayList<Cargo>) DaoTask.getInstance().getSession().getCargoDao().queryBuilder().where(CargoDao.Properties.Client_id.eq(App.currentClientId)).list();
         mAdapter = new CargoAdapter(getActivity(), cargoes);
         mList.setAdapter(mAdapter);
     }

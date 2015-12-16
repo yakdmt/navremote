@@ -57,7 +57,7 @@ public class CargoHolder extends RecyclerView.ViewHolder {
         mId.setText(TextUtil.removeNulls(cargo.getId()));
         mClientName.setText(TextUtil.removeNulls("Клиент: "+cargo.getClient_name()));
         mDescription.setText(TextUtil.removeNulls("Описание: "+cargo.getDescription()));
-        mAppearanceDate.setText(TextUtil.removeNulls("Дата появления: "+cargo.getAppearance_date()));
+        mAppearanceDate.setText(TextUtil.removeNulls("Дата появ.: "+cargo.getAppearance_date()));
         mSenderName.setText(TextUtil.removeNulls(cargo.getSender_name()));
         mOccurence.setText(TextUtil.removeNulls(cargo.getOccurence_checkpoint_type()+", "+cargo.getOccurence_checkpoint_code()));
         mMasterDocument.setText(TextUtil.removeNulls(cargo.getMaster_document()));

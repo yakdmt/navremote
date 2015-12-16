@@ -26,7 +26,6 @@ import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.utils.Column;
 import xyz.yakdmt.navremote.utils.Constants;
 import xyz.yakdmt.navremote.utils.Events;
-import xyz.yakdmt.navremote.utils.SchemeParser;
 
 /**
  * Created by yakdmt on 26/11/15.
@@ -110,16 +109,21 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                                                 e.printStackTrace();
                                             }
                                         }
-                                        if (xlsName.toLowerCase().contains("дата")) {
-                                            Date date = cell.getDateCellValue();
-                                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                                            value = dateFormat.format(date);
+                                        try {
+                                            if (xlsName.toLowerCase().contains("дата")) {
+                                                Date date = cell.getDateCellValue();
+                                                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                                                value = dateFormat.format(date);
+                                            }
+                                            if (xlsName.toLowerCase().contains("время")) {
+                                                Date date = cell.getDateCellValue();
+                                                DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+                                                value = dateFormat.format(date);
+                                            }
+                                        } catch (IllegalStateException e) {
+                                            value = cell.getStringCellValue();
                                         }
-                                        if (xlsName.toLowerCase().contains("время")) {
-                                            Date date = cell.getDateCellValue();
-                                            DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-                                            value = dateFormat.format(date);
-                                        }
+
 
                                         if (value==null) {
                                             value = "";
@@ -150,7 +154,6 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                 e.printStackTrace();
             }
         }
-        SchemeParser.getInstance().createXml();
         return true;
     }
 

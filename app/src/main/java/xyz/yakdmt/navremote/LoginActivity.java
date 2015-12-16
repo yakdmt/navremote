@@ -16,7 +16,6 @@ import android.widget.Toast;
 import de.greenrobot.event.EventBus;
 import xyz.yakdmt.navremote.tasks.AuthTask;
 import xyz.yakdmt.navremote.utils.Events;
-import xyz.yakdmt.navremote.utils.SchemeParser;
 
 /**
  * Created by yakdmt on 29/11/15.
@@ -33,7 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (App.skipLogin) {
-
+            App.currentClientId = "10111";
+            App.currentContactId = "C000023";
             openMainActivity();
             finish();
         }
