@@ -8,7 +8,11 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
+import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
+import xyz.yakdmt.navremote.database.Checkpoint;
+import xyz.yakdmt.navremote.database.CheckpointDao;
+import xyz.yakdmt.navremote.database.DaoTask;
 import xyz.yakdmt.navremote.database.RouteRow;
 import xyz.yakdmt.navremote.utils.TextUtil;
 
@@ -45,6 +49,16 @@ public class RouteRowHolder extends RecyclerView.ViewHolder {
         }*/
         if (!App.bindViews) {
             return;
+        }
+        final Checkpoint checkpoint = DaoTask.getInstance().getSession().getCheckpointDao().queryBuilder().where(CheckpointDao.Properties.Id.eq(routeRow.getCheckpoint_id())).unique();
+        if (checkpoint!=null) {
+            mCheckpointRef.setText(TextUtil.removeNulls("Пункт: " + checkpoint.getName()));
+            mCheckpointRef.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((DetailActivity)mContext).showCheckpointDialog(checkpoint);
+                }
+            });
         }
         mAddress.setText(TextUtil.removeNulls(routeRow.getCountry_code()+", "+routeRow.getAddress()));
         mProcedureType.setText(TextUtil.removeNulls("Тип процедуры: "+routeRow.getProcedure_type()));

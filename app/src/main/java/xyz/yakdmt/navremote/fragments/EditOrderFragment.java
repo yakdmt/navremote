@@ -66,6 +66,10 @@ public class EditOrderFragment extends Fragment {
         //from holder
         mId.setText(TextUtil.removeNulls(order.getId()));
         mDateTime.setText(TextUtil.removeNulls(order.getDate() + " " + order.getTime()));
+        /*Client client = DaoTask.getInstance().getSession().getClientDao().load(App.currentClientId);
+        if (client!=null) {
+            mClientName.setText(order.getClient_name());
+        }*/
 
         return view;
     }
@@ -76,6 +80,8 @@ public class EditOrderFragment extends Fragment {
     }
 
     public Order getOrder(){
+        order.setClient_id(App.currentClientId);
+        order.setClient_name("ОАО КнААПО");
         return order;
     }
 

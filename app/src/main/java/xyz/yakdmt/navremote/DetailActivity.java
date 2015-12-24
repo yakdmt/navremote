@@ -191,13 +191,14 @@ public class DetailActivity  extends AppCompatActivity {
         TextView clientName = (TextView) view.findViewById(R.id.firm_name);
         clientName.setText(TextUtil.removeNulls(contact.getClient_name()));
         TextView phone = (TextView) view.findViewById(R.id.phone);
-        phone.setText(TextUtil.removeNulls(contact.getPhone()));
+        phone.setText("Тел.: "+TextUtil.removeNulls(contact.getPhone()));
         TextView mobilePhone = (TextView) view.findViewById(R.id.mobile_phone);
-        mobilePhone.setText(TextUtil.removeNulls(contact.getMobile_phone()));
+        //mobilePhone.setText("Моб. тел.: "+TextUtil.removeNulls(contact.getMobile_phone()));
+        mobilePhone.setText("Моб. тел.: "+"+7 926 951 1111");
         TextView manager = (TextView) view.findViewById((R.id.manager));
-        manager.setText(TextUtil.removeNulls(contact.getManager_code()));
+        manager.setText("Менеджер: "+TextUtil.removeNulls(contact.getManager_code()));
         TextView index = (TextView) view.findViewById(R.id.index);
-        index.setText(TextUtil.removeNulls(contact.getPostal_index()));
+        index.setText("Индекс: "+TextUtil.removeNulls(contact.getPostal_index()));
         adb.create().show();
     }
 

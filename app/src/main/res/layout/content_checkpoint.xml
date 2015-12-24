@@ -18,10 +18,6 @@
         android:text="Тип: FRA"
         style="@style/MainInfo" />
     <TextView
-        android:id="@+id/city_name"
-        android:text="Населенный пункт: Chateaurenard"
-        style="@style/MainInfo" />
-    <TextView
         android:id="@+id/info"
         style="@style/MainInfo" />
 </LinearLayout>

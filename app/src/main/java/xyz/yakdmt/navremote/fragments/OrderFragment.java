@@ -18,7 +18,11 @@ import butterknife.ButterKnife;
 import xyz.yakdmt.navremote.App;
 import xyz.yakdmt.navremote.DetailActivity;
 import xyz.yakdmt.navremote.R;
+import xyz.yakdmt.navremote.database.Client;
+import xyz.yakdmt.navremote.database.ClientDao;
 import xyz.yakdmt.navremote.database.DaoTask;
+import xyz.yakdmt.navremote.database.Delivery;
+import xyz.yakdmt.navremote.database.DeliveryDao;
 import xyz.yakdmt.navremote.database.Document;
 import xyz.yakdmt.navremote.database.DocumentDao;
 import xyz.yakdmt.navremote.database.Order;
@@ -92,17 +96,18 @@ public class OrderFragment extends Fragment {
         mCargoDesc.setText(TextUtil.removeNulls(order.getCargo_description()));
         mDepartureDate.setText(TextUtil.removeNulls(order.getDeparture_date()));
         //additional views
-        /*if (order.getClient()!=null) {
-            SpannableString clientId = new SpannableString(order.getClient().getId());
-            clientId.setSpan(new UnderlineSpan(), 0, clientId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mClientRef.setText(TextUtil.removeNulls("Клиент:" + clientId));
-            mClientRef.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((DetailActivity)getActivity()).openClientFragment(order.getClient());
-                }
-            });
-        }*/
+        if (order.getClient_id()!=null) {
+            final Client client = DaoTask.getInstance().getSession().getClientDao().queryBuilder().where(ClientDao.Properties.Id.eq(order.getClient_id())).unique();
+            if (client!=null) {
+                mClientRef.setText(TextUtil.removeNulls("Клиент:" + client.getId()));
+                mClientRef.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((DetailActivity)getActivity()).openClientFragment(client);
+                    }
+                });
+            }
+        }
         if (order.getContact()!=null) {
             SpannableString contactId = new SpannableString(order.getContact().getId());
             contactId.setSpan(new UnderlineSpan(), 0, contactId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -117,16 +122,27 @@ public class OrderFragment extends Fragment {
         if (order.getCargo()!=null) {
             SpannableString cargoId = new SpannableString(order.getCargo().getId());
             cargoId.setSpan(new UnderlineSpan(), 0, cargoId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mCargoRef.setText(TextUtil.removeNulls("Груз:" + cargoId));
+            mCargoRef.setText(TextUtil.removeNulls("Груз: " + cargoId));
             mCargoRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((DetailActivity)getActivity()).openCargoFragment(order.getCargo());
+                    ((DetailActivity) getActivity()).openCargoFragment(order.getCargo());
                 }
             });
+            final Delivery delivery = DaoTask.getInstance().getSession().getDeliveryDao().queryBuilder().where(DeliveryDao.Properties.Cargo_id.eq(order.getCargo().getId())).unique();
+            if (delivery!=null) {
+                mDeliveryRef.setText("Доставка: "+delivery.getId());
+                mDeliveryRef.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((DetailActivity) getActivity()).openDeliveryFragment(delivery);
+                    }
+                });
+            }
         }
 
         mPerformer.setText(TextUtil.removeNulls(order.getPerformer_name()));
+
 
         final ArrayList<Product> products = (ArrayList<Product>) DaoTask.getInstance().getSession().getProductDao().queryBuilder().where(ProductDao.Properties.Order_id.eq(order.getId())).list();
         if (products!=null && products.size()>0) {

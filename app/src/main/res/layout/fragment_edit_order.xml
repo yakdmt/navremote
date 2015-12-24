@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/client_name"
-                        android:text="ООО  &quot;Пирелли Тайр Руссия&quot;"
+                        android:text="ОАО  &quot;КнААПО&quot;"
                         style="@style/MainInfo" />
 
                     <EditText
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/declarant"
-                        android:text="YAKOVLEV"
+                        android:text="С000023"
                         style="@style/ServiceInfo" />
 
                 </LinearLayout>
@@ -101,8 +101,7 @@
                     <TextView
                         android:textSize="12sp"
                         android:text="Откуда:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        style="@style/ServiceInfo" />
                     <EditText
                         android:id="@+id/departure_country_name"
                         android:hint="Страна"
@@ -136,8 +135,7 @@
                     <TextView
                         android:textSize="12sp"
                         android:text="Куда:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        style="@style/ServiceInfo" />
                     <EditText
                         android:id="@+id/arrival_country_name"
                         android:hint="Страна"

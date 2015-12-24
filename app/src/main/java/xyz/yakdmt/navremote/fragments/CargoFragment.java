@@ -96,7 +96,7 @@ public class CargoFragment extends Fragment {
         if (cargo.getOrder()!=null) {
             SpannableString orderId = new SpannableString(cargo.getOrder().getId());
             orderId.setSpan(new UnderlineSpan(), 0, orderId.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mOrderRef.setText(TextUtil.removeNulls("Заказ:" + orderId));
+            mOrderRef.setText(TextUtil.removeNulls("Заявка:" + orderId));
             mOrderRef.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

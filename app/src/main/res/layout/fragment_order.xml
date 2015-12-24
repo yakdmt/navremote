@@ -20,18 +20,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <include layout="@layout/content_order"/>
             <LinearLayout
+                android:padding="8dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
-                    android:layout_margin="4dp"
                     android:orientation="vertical"
                     android:gravity="start"
                     android:layout_gravity="top|start"
@@ -66,7 +67,6 @@
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_margin="4dp"
                     android:orientation="vertical"
                     android:gravity="end"
                     android:layout_gravity="top|end"
@@ -81,14 +81,12 @@
                         android:text="YAKOVLEV"
                         style="@style/ServiceInfo" />
                     <TextView
-                        android:text="Исполнитель:"
+                        android:text="Исполн.:"
                         style="@style/ServiceInfo" />
                     <TextView
                         android:id="@+id/performer"
-                        android:text="YAKOVLEV"
+                        android:text="IVANOV"
                         style="@style/ServiceInfo" />
-
-
 
 
                 </LinearLayout>

@@ -25,10 +25,13 @@ public class ClientFragment extends Fragment {
     @Bind(R.id.id) TextView mId;
     @Bind(R.id.name) TextView mName;
     @Bind(R.id.ext_name) TextView mExtName;
-    @Bind(R.id.last_comment) TextView mLastComment;
+    @Bind(R.id.inn) TextView mInn;
+    @Bind(R.id.kpp) TextView mKpp;
     @Bind(R.id.email) TextView mEmail;
     @Bind(R.id.phone) TextView mPhone;
     @Bind(R.id.contact) TextView mContact;
+    @Bind(R.id.address_actual) TextView mAddressActual;
+    @Bind(R.id.address_legal) TextView mAddressLegal;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,16 @@ public class ClientFragment extends Fragment {
         if (!App.bindViews) {
             return view;
         }
-        mId.setText(TextUtil.removeNulls(client.getId()));
+        mId.setText("Клиент: "+TextUtil.removeNulls(client.getId()));
         mName.setText(TextUtil.removeNulls(client.getName()));
         mExtName.setText(TextUtil.removeNulls(client.getName()));
         mEmail.setText(TextUtil.removeNulls("Email: "+client.getEmail()));
         mPhone.setText(TextUtil.removeNulls("Телефон: "+client.getPhone()));
         mContact.setText(TextUtil.removeNulls("Контакт: "+client.getContact()));
+        mInn.setText(TextUtil.removeNulls("ИНН: "+client.getInn()));
+        mKpp.setText(TextUtil.removeNulls("КПП: "+client.getKpp()));
+        mAddressActual.setText(TextUtil.removeNulls("Адрес факт.: "+client.getAddress_actual()));
+        mAddressLegal.setText(TextUtil.removeNulls("Адрес юрид.: "+client.getAddress_legal()));
 
         return view;
     }

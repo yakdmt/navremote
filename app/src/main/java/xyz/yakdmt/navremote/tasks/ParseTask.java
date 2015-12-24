@@ -84,6 +84,11 @@ public class ParseTask extends AsyncTask<String, Void, Boolean> {
                             if (columnName != null) {
                                 String name = columnName.name();
                                 Cell nameCell = sheet.getRow(0).getCell(column);
+                                try {
+                                    nameCell.getStringCellValue();
+                                } catch (Exception e) {
+                                    Log.i("ParseTask","nameCell type="+nameCell.getCellType()+"ex="+e.toString());
+                                }
                                 String xlsName = nameCell.getStringCellValue();
                                 if (name.equals(xlsName)) {
                                     isFound = true;

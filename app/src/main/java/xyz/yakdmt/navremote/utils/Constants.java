@@ -6,7 +6,9 @@ import xyz.yakdmt.navremote.database.Client;
 import xyz.yakdmt.navremote.database.Comment;
 import xyz.yakdmt.navremote.database.Contact;
 import xyz.yakdmt.navremote.database.Delivery;
+import xyz.yakdmt.navremote.database.Document;
 import xyz.yakdmt.navremote.database.Order;
+import xyz.yakdmt.navremote.database.Product;
 import xyz.yakdmt.navremote.database.RouteRow;
 import xyz.yakdmt.navremote.database.Work;
 
@@ -22,10 +24,10 @@ public class Constants {
     public final static String AUTH_FILE = "Credentials";
 
     public final static String[] FILENAME_ARRAY = {"Пример Грузы", "Пример Доставки", "Пример Заявки","Пример Клиенты", "Пример Комментарии",
-            "Пример Контакты", "Пример Маршруты", "Пример Пункты", "Пример Работы" };
+            "Пример Контакты", "Пример Маршруты", "Пример Пункты", "Пример Работы", "Пример Товары", "Пример Документы" };
 
     public final static Class[] CLASSES_ARRAY = {Cargo.class, Delivery.class, Order.class, Client.class, Comment.class,
-            Contact.class, RouteRow.class, Checkpoint.class, Work.class};
+            Contact.class, RouteRow.class, Checkpoint.class, Work.class, Product.class, Document.class};
 
     public final static String SERVER_NAME = "31.220.16.199";
     public final static String USER_NAME = "u201936004";

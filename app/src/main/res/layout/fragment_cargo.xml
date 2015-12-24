@@ -124,7 +124,6 @@
             <TextView
                 style="@style/Ref"
                 android:layout_weight="1"
-                android:gravity="end"
                 android:layout_width="0dp"
                 android:id="@+id/works_ref"
                 android:text="Работы: 1"

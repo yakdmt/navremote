@@ -47,8 +47,12 @@
                     android:text="ООО Торговый дом Весь Мир"
                     style="@style/ServiceInfo" />
                 <TextView
-                    android:id="@+id/last_comment"
-                    android:text="сверен с 1С на 31.03.14 (Кудрявцева)"
+                    android:id="@+id/inn"
+                    android:text="1354135135135"
+                    style="@style/ServiceInfo" />
+                <TextView
+                    android:id="@+id/kpp"
+                    android:text="3183591375"
                     style="@style/ServiceInfo" />
                 <TextView
                     android:id="@+id/email"
@@ -61,6 +65,14 @@
                 <TextView
                     android:id="@+id/contact"
                     android:text="Контакт: Ирина Лесечко 910 452 8012"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/address_actual"
+                    android:text="адрес"
+                    style="@style/MainInfo" />
+                <TextView
+                    android:id="@+id/address_legal"
+                    android:text="адрес"
                     style="@style/MainInfo" />
 
             </LinearLayout>

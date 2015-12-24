@@ -36,10 +36,12 @@ public class CreateActivity extends AppCompatActivity {
                 }*/
                 Fragment fragment = getFragmentManager().findFragmentByTag(EditOrderFragment.class.getName());
                 if (fragment!=null && fragment.isVisible()) {
-                    if (((EditOrderFragment)fragment).validateViews()) {
+                    /*if (((EditOrderFragment)fragment).validateViews()) {
                         App.hideSoftKeyboard(CreateActivity.this);
                         openOrderFragment(((EditOrderFragment) fragment).getOrder());
-                    }
+                    }*/
+                    DaoTask.getInstance().getSession().getOrderDao().insertOrReplace(((EditOrderFragment) fragment).getOrder());
+                    finish();
                 }
 
                 Fragment previewFragment = getFragmentManager().findFragmentByTag(OrderFragment.class.getName());

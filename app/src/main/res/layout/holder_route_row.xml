@@ -32,6 +32,7 @@
                 android:text="Прибытие"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
                 style="@style/MainInfo"/>
             <LinearLayout
                 android:orientation="horizontal"
@@ -52,6 +53,7 @@
             </LinearLayout>
             <TextView
                 android:text="Убытие"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 style="@style/MainInfo"/>
