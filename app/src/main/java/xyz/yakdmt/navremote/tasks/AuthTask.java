@@ -180,6 +180,8 @@ public class AuthTask extends AsyncTask<String, Void, Boolean> {
                         Cell clientIdCell = sheet.getRow(row).getCell(3);
                         int clientId = (int) clientIdCell.getNumericCellValue();
                         App.currentClientId = String.valueOf(clientId);
+                        App.sharedPreferences.edit().putString("client_id", App.currentClientId).commit();
+                        App.sharedPreferences.edit().putString("contact)id", App.currentContactId).commit();
                         return true;
                     }
                 }

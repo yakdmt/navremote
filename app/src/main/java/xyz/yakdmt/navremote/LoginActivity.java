@@ -37,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
             openMainActivity();
             finish();
         }
+        if (!TextUtils.isEmpty(App.sharedPreferences.getString("contact_id", ""))
+                && !TextUtils.isEmpty(App.sharedPreferences.getString("client_id", ""))) {
+            openMainActivity();
+            finish();
+        }
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
