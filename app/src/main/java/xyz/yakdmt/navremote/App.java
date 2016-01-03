@@ -3,6 +3,7 @@ package xyz.yakdmt.navremote;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.inputmethod.InputMethodManager;
 
 /**
@@ -13,11 +14,14 @@ public class App extends Application {
     public static boolean bindViews = true;
     public static String currentClientId = "";
     public static String currentContactId = "";
-    public static boolean skipLogin = true;
+    public static boolean skipLogin = false;
+    public static SharedPreferences sharedPreferences;
+    final String PREF_FILE = "pref_file";
 
     @Override public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        sharedPreferences = getSharedPreferences(PREF_FILE, MODE_PRIVATE);
     }
 
     public static Context getContext(){
@@ -28,5 +32,7 @@ public class App extends Application {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
+
+
 
 }

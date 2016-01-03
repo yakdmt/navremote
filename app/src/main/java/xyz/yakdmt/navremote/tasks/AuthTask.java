@@ -53,12 +53,17 @@ public class AuthTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... params) {
         boolean isOk = false;
         try {
+            String ftpServer = params[2];
+            String ftpUsername = params[3];
+            String ftpPass = params[4];
+            String ftpPort = params[5];
+            String ftpPath = params[6];
             File output = new File(App.getContext().getFilesDir()+"/"+Constants.AUTH_FILE+Constants.FILE_EXTENSION);
-            isOk = downloadAndSaveFile(Constants.SERVER_NAME,
-                    Constants.PORT,
-                    Constants.USER_NAME,
-                    Constants.PASS,
-                    Constants.SERVER_PATH + Constants.AUTH_FILE + Constants.FILE_EXTENSION,
+            isOk = downloadAndSaveFile(ftpServer,
+                    Integer.parseInt(ftpPort),
+                    ftpUsername,
+                    ftpPass,
+                    ftpPath + Constants.AUTH_FILE + Constants.FILE_EXTENSION,
                     output);
             if (isOk) {
                 isOk = checkForCredentials(params[0], params[1]);
@@ -132,7 +137,11 @@ public class AuthTask extends AsyncTask<String, Void, Boolean> {
         } finally {
             if (ftp != null) {
                 //ftp.logout();
-                ftp.disconnect(true);
+                try {
+                    ftp.disconnect(true);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return isOk;

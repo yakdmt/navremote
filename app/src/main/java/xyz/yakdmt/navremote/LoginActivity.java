@@ -23,7 +23,7 @@ import xyz.yakdmt.navremote.utils.Events;
 public class LoginActivity extends AppCompatActivity {
 
     private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private EditText mPasswordView, mFtpServer, mFtpUsername, mFtpPassword, mFtpPort, mFtpPath;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -65,6 +65,20 @@ public class LoginActivity extends AppCompatActivity {
         }
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        mFtpServer = (EditText) findViewById(R.id.ftp_server);
+        mFtpUsername = (EditText) findViewById(R.id.ftp_username);
+        mFtpPassword = (EditText) findViewById(R.id.ftp_pass);
+        mFtpPort = (EditText) findViewById(R.id.ftp_port);
+        mFtpPath = (EditText) findViewById(R.id.ftp_path);
+
+        mEmailView.setText(App.sharedPreferences.getString("login", ""));
+        mPasswordView.setText(App.sharedPreferences.getString("password", ""));
+        mFtpServer.setText(App.sharedPreferences.getString("ftp_server", ""));
+        mFtpUsername.setText(App.sharedPreferences.getString("ftp_username", ""));
+        mFtpPassword.setText(App.sharedPreferences.getString("ftp_password", ""));
+        mFtpPort.setText(App.sharedPreferences.getString("ftp_port", ""));
+        mFtpPath.setText(App.sharedPreferences.getString("ftp_path", ""));
     }
 
     private void attemptLogin() {
@@ -76,6 +90,13 @@ public class LoginActivity extends AppCompatActivity {
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String ftpServer = mFtpServer.getText().toString();
+        String ftpUsername = mFtpUsername.getText().toString();
+        String ftpPassword = mFtpPassword.getText().toString();
+        String ftpPort = mFtpPort.getText().toString();
+        String ftpPath = mFtpPath.getText().toString();
+
+
 
         boolean cancel = false;
         View focusView = null;
@@ -92,23 +113,55 @@ public class LoginActivity extends AppCompatActivity {
             mEmailView.setError("Поле не заполнено");
             focusView = mEmailView;
             cancel = true;
-        } /*else  {
-            mEmailView.setError("Неверный логин");
-            focusView = mEmailView;
+        }
+        if (TextUtils.isEmpty(ftpServer)) {
+            mFtpServer.setError("Поле не заполнено");
+            focusView = mFtpServer;
             cancel = true;
-        }*/
+        }
+        if (TextUtils.isEmpty(ftpUsername)) {
+            mFtpUsername.setError("Поле не заполнено");
+            focusView = mFtpUsername;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(ftpPassword)) {
+            mFtpPassword.setError("Поле не заполнено");
+            focusView = mFtpPassword;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(ftpPort)) {
+            mFtpPort.setError("Поле не заполнено");
+            focusView = mFtpPort;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(ftpPath)) {
+            mFtpPath.setError("Поле не заполнено");
+            focusView = mFtpPath;
+            cancel = true;
+        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
-            checkCredentials(mEmailView.getText().toString(), mPasswordView.getText().toString());
+            checkCredentials(mEmailView.getText().toString(), mPasswordView.getText().toString(),
+                        mFtpServer.getText().toString(), mFtpUsername.getText().toString(),
+                        mFtpPassword.getText().toString(), mFtpPort.getText().toString(),
+                        mFtpPath.getText().toString());
         }
     }
 
-    private void checkCredentials(String login, String password){
-        new AuthTask(this, mProgressView).execute(login, password);
+    private void checkCredentials(String login, String password, String ftpServer, String ftpUsername,
+                                  String ftpPass, String ftpPort, String ftpPath){
+        App.sharedPreferences.edit().putString("login", login).commit();
+        App.sharedPreferences.edit().putString("password", password).commit();
+        App.sharedPreferences.edit().putString("ftp_server", ftpServer).commit();
+        App.sharedPreferences.edit().putString("ftp_username", ftpUsername).commit();
+        App.sharedPreferences.edit().putString("ftp_password", ftpPass).commit();
+        App.sharedPreferences.edit().putString("ftp_port", ftpPort).commit();
+        App.sharedPreferences.edit().putString("ftp_path", ftpPath).commit();
+        new AuthTask(this, mProgressView).execute(login, password, ftpServer, ftpUsername, ftpPass, ftpPort, ftpPath);
     }
 
     @SuppressWarnings("unused")
